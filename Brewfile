@@ -19,6 +19,7 @@ cask 'opera'
 # Terminal
 cask 'iterm2'
 brew 'zsh'
+brew 'vim'
 brew 'homebrew/dupes/screen'
 brew 'tmux'
 brew 'tmux-cssh'
