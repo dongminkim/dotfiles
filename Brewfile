@@ -1,7 +1,7 @@
 # Brewfile
 # Relies on https://github.com/Homebrew/homebrew-bundle
 # brew tap Homebrew/bundle
-# brew help bundle 
+# brew help bundle
 cask_args appdir: '/Applications'
 tap 'caskroom/cask'
 
@@ -18,7 +18,6 @@ cask 'opera'
 
 # Terminal
 cask 'iterm2'
-brew 'zsh'
 brew 'vim'
 brew 'homebrew/dupes/screen'
 brew 'tmux'
