@@ -1,0 +1,195 @@
+# ._shrc
+# common rc files for both bash and zsh
+# vim:filetype=zsh:foldmethod=marker
+
+# Functions {{{
+    # Color Settings for Manual Pages
+        function set_man_256colors { #{{{
+            export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
+            export LESS_TERMCAP_md=$'\E[01;38;5;160m'   # begin bold
+            export LESS_TERMCAP_me=$'\E[0m'             # end mode
+            export LESS_TERMCAP_us=$'\E[04;38;5;166m'   # begin underline
+            export LESS_TERMCAP_ue=$'\E[0m'             # end underline
+            export LESS_TERMCAP_so=$'\E[48;5;152m'      # begin standout-mode - info box
+            export LESS_TERMCAP_se=$'\E[0m'             # end standout-mode
+        } #}}}
+        function set_man_16colors { #{{{
+            export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
+            export LESS_TERMCAP_md=$'\E[31m'            # begin bold
+            export LESS_TERMCAP_me=$'\E[0m'             # end mode
+            export LESS_TERMCAP_us=$'\E[04;33m'         # begin underline
+            export LESS_TERMCAP_ue=$'\E[0m'             # end underline
+            export LESS_TERMCAP_so=$'\E[46m'            # begin standout-mode - info box
+            export LESS_TERMCAP_se=$'\E[0m'             # end standout-mode
+        } #}}}
+
+    # Git Command Overrider
+        function git { #{{{
+            typeset -r gitcmd="git-$1"
+            if /usr/bin/env which "$gitcmd" > /dev/null 2>&1; then
+                shift
+                "$gitcmd" "$@"
+            else
+                "$(/usr/bin/env which git)" "$@"
+            fi
+        } #}}}
+
+    # Path Compactor
+        function compact_path { #{{{
+            echo "$*" \
+                | awk '
+                    {
+                        for (i=1; i <= NF; ++i) {
+                            if (!($(i) in x)) {
+                                print $(i)
+                                x[$(i)] = 1expandtab
+                            }
+                        }
+                    }' FS=':' ORS=':' \
+                | sed -e 's/:$//'
+        } #}}}
+
+    # More RC Files
+        function load_more_rc_files { #{{{
+            placeholder="{{}}"
+            more_rc_files=(
+                "$HOME/.env/.os..$(uname -s).$placeholder"
+                "$HOME/.env/.host..$(uname -n).$placeholder"
+                "$HOME/.local.$placeholder"
+            )
+
+            for rc_tpl in "${more_rc_files[@]}"; do
+                for target in "$@"; do
+                    target=$( basename "$target" )
+                    rc="${rc_tpl//$placeholder/$target}"
+                    if [ -f "$rc" ]; then
+                        source "$rc"
+                    fi
+                done
+            done
+        } #}}}
+
+    # Shell Detector
+        function detect_shell { #{{{
+            case "$( ps -p $$ -ocomm= )" in
+                *bash ) echo bash; return 0 ;;
+                *zsh  ) echo zsh;  return 0 ;;
+            esac
+            return 1
+        } #}}}
+# Functions }}}
+
+# General Settings {{{
+    umask 022
+    ulimit -c 0
+
+    # set path {{{
+        export PATH=$( compact_path "$HOME/bin:$HOME/local/bin:$PATH" )
+        if whereis manpath > /dev/null 2>&1 ; then
+            export MANPATH=$( compact_path "$HOME/local/share/man:$(manpath)" )
+        else
+            export MANPATH=$( compact_path "$HOME/local/share/man:$MANPATH" )
+        fi > /dev/null 2>&1
+    #}}}
+
+    # set terminal type {{{
+        if [[ "$COLORTERM" == "gnome-terminal" ]]; then
+            if [[ "$TERM" == "xterm" ]]; then
+                export TERM="xterm-256color"
+            fi
+        fi
+    #}}}
+
+    # set colors: man {{{
+        if [[ "$TERM" =~ -256color(-.*)? ]]; then
+            set_man_256colors "$@"
+        else
+            set_man_16colors "$@"
+        fi
+    #}}}
+
+    # locale UTF-8 {{{
+        export LANG=$( LC_CTYPE=C locale -a | grep -i 'en_US\.utf-*8' )
+        export LC_CTYPE="$LANG"
+
+        # workaround for problems in ls, sort and etc.
+        export LC_COLLATE=C
+    #}}}
+
+    # default programs {{{
+        export VISUAL=vim
+        export EDITOR=$VISUAL
+    #}}}
+
+    # command aliases {{{
+        # screen {{{
+            SCREENCOMMAND="screen"
+            if [[ "$TERM" =~ -256color(-.*)? ]]; then
+                SCREENCOMMAND="$SCREENCOMMAND -T screen-256color"
+            fi
+            screenrc="$HOME/.env/.host..$(uname -n).screenrc"
+            if [ -f "$screenrc" ]; then
+                SCREENCOMMAND="$SCREENCOMMAND -c '$screenrc'"
+            fi
+            if [[ "$SCREENCOMMAND" == "screen" ]]; then
+                alias screen > /dev/null && unalias screen
+            else
+                alias screen="$SCREENCOMMAND"
+            fi
+        # }}}
+        alias rm='rm -i'
+        alias mv='mv -i'
+        alias cp='cp -i'
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias less='less -r'
+        alias vi='vim'
+    # }}}
+# General Settings }}}
+
+# OS Specific Settings {{{
+    os="$(uname -s)"
+    case "$os" in
+        Darwin | FreeBSD )
+            # http://geoff.greer.fm/lscolors/
+            export LSCOLORS="exfxcxdxbxaGagaBabacaf"
+            alias list='ls -al'
+            alias ls='ls -vG'
+            ;;
+
+        Linux | CYGWIN*  )
+            # http://geoff.greer.fm/lscolors/
+            export LSCOLORS="di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=0;1;46:cd=0;46:su=0;1;41:sg=0;41:tw=0;42:ow=0;45:"
+            alias list='ls -al --show --color=auto'
+            alias ls='ls -N --show --color=auto'
+            ;;
+    esac
+
+    if [[ "$os" == "Darwin" ]]; then
+        # brew-cask
+        export HOMEBREW_CASK_OPTS='--appdir=/Applications --caskroom=/etc/Caskroom'
+    fi
+# OS Specific Settings }}}
+
+# Shell Specific Settings {{{
+    PY_PKG_DIR="$( find /usr/local/lib/python2.7 -iname '*-packages' )"
+    case "$( detect_shell )" in
+        bash )
+            export _SH_SOURCE="$BASH_SOURCE"
+            set -o ignoreeof    # ignore EOF (Ctrl+D)
+            POWERLINE_SCRIPT="${PY_PKG_DIR}/powerline/bindings/bash/powerline.sh"
+            ;;
+
+        zsh  )
+            export _SH_SOURCE="${(%):-%N}"
+            setopt IGNORE_EOF   # ignore EOF (Ctrl+D)
+            POWERLINE_SCRIPT="${PY_PKG_DIR}/powerline/bindings/zsh/powerline.zsh"
+            ;;
+    esac
+    [ -f "${POWERLINE_SCRIPT}" ] && source "${POWERLINE_SCRIPT}"
+# Shell Specific Settings }}}
+
+# Additonal Settings {{{
+    load_more_rc_files "$( basename $_SH_SOURCE )" "$@"
+# Additonal Settings }}}
+

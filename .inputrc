@@ -1,0 +1,28 @@
+# .inputrc
+# readline init file
+
+# Hangul Input Settings {{{
+    # Enable 8-bit inputs
+        set input-meta on
+
+    # Disable converting 8-bit characters
+        set convert-meta off
+
+    # Enable displaying 8-bit characters
+        set output-meta on
+# }}}
+
+# General Settings {{{
+    # Enable case-insensitive filename matching and completion.
+        set completion-ignore-case on
+
+    # Enable listing possible completion matches.
+        set show-all-if-ambiguous on
+
+    # Disable scrolling the input horizontally rather than wrapping to a new line.
+        set horizontal-scroll-mode off
+
+    # Enable ringing the terminal bell.
+        set bell-style audible
+# }}}
+
