@@ -27,8 +27,8 @@
         Plugin 'gmarik/Vundle.vim'
 
         " Local plugins (and only plugins in this file!) {{{
-            if filereadable($HOME."/.vimrc.plugins")
-                source $HOME/.vimrc.plugins
+            if filereadable($HOME."/.local.plugins.vimrc")
+                source $HOME/.local.plugins.vimrc
             endif
         " }}}
 
@@ -99,8 +99,8 @@
 " }}}
 
 " Local leading config, only for prerequisites and will be overwritten {{{
-    if filereadable($HOME."/.vimrc.first")
-        source $HOME/.vimrc.first
+    if filereadable($HOME."/.local.pre.vimrc")
+        source $HOME/.local.pre.vimrc
     endif
 " }}}
 
@@ -193,7 +193,7 @@
         set foldlevelstart=99                       " folds open by default
     " }}}
     " Search and replace {{{
-        set gdefault                                " default s//g (global)
+        set nogdefault                              " default :s//g unset
         set incsearch                               " "live"-search
         set hlsearch                                " highlighted search
     " }}}
@@ -301,7 +301,7 @@
 
         " Highlight characters past 79 {{{
         " You might want to override this function and its variables with
-        " your own in .vimrc.last which might set for example colorcolumn or
+        " your own in .local.vimrc which might set for example colorcolumn or
         " even the textwidth. See https://github.com/timss/vimconf/pull/4
             let g:overlength_enabled = 0
             highlight OverLength ctermbg=238 guibg=#444444
@@ -485,9 +485,9 @@
     " Automatically create needed files and folders on first run (*nix only) {{{
         if !has("win32") && !has("win16")
             call system("mkdir -p $HOME/.vim/{swap,undo}")
-            if !filereadable($HOME."/.vimrc.plugins") | call system("touch $HOME/.vimrc.plugins") | endif
-            if !filereadable($HOME."/.vimrc.first") | call system("touch $HOME/.vimrc.first") | endif
-            if !filereadable($HOME."/.vimrc.last") | call system("touch $HOME/.vimrc.last") | endif
+            "if !filereadable($HOME."/.local.pre.vimrc") | call system("touch $HOME/.local.pre.vimrc") | endif
+            "if !filereadable($HOME."/.local.plugins.vimrc") | call system("touch $HOME/.local.plugins.vimrc") | endif
+            "if !filereadable($HOME."/.local.vimrc") | call system("touch $HOME/.local.vimrc") | endif
         endif
     " }}}
 " }}}
@@ -521,8 +521,10 @@
 " Plugin settings {{{
     " Startify {{{
         let g:startify_bookmarks = [
-            \ $HOME . "/.vimrc", $HOME . "/.vimrc.first",
-            \ $HOME . "/.vimrc.last", $HOME . "/.vimrc.plugins"
+            \ $HOME . "/.vimrc",
+            \ $HOME . "/.local.pre.vimrc",
+            \ $HOME . "/.local.plugins.vimrc",
+            \ $HOME . "/.local.vimrc"
             \ ]
         let g:startify_custom_header = [
             \ '   http://github.com/dongminkim/dotfiles',
@@ -548,7 +550,7 @@
     " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
-        " NOTE: override these in $HOME/.vimrc.last as needed!
+        " NOTE: override these in $HOME/.local.vimrc as needed!
         let g:syntastic_mode_map = {
             \ 'mode': 'passive',
             \ 'active_filetypes':
@@ -596,8 +598,8 @@
 " }}}
 
 " Local ending config, will overwrite anything above. Generally use this. {{{
-    if filereadable($HOME."/.vimrc.last")
-        source $HOME/.vimrc.last
+    if filereadable($HOME."/.local.vimrc")
+        source $HOME/.local.vimrc
     endif
 " }}}
 
