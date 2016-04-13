@@ -1,0 +1,86 @@
+# .screenrc
+# vim:tabstop=4 softtabstop=0 shiftwidth=4:expandtab:foldmethod=marker
+
+# Key Bindings {{{
+    # move among regions {{{
+        bind k focus up
+        bind j focus down
+    # }}}
+
+    # resize windows {{{
+        bind = resize =
+        bind + resize +1
+        bind - resize -1
+        bind _ resize max
+    # }}}
+
+    # list windows {{{
+        bind ' ' windowlist -b
+    # }}}
+# }}}
+
+# View Settings {{{
+    # default utf-8 {{{
+        defutf8 on
+    # }}}
+    
+    # turn off startup message {{{
+        startup_message off
+    # }}}
+
+    # default scrollback line size {{{
+        defscrollback 10000
+    # }}}
+
+    # visual bell {{{
+        vbell off
+    # }}}
+
+    # hardstatus and caption {{{
+        defhstatus "screen  (t) | $USER@H"
+        hardstatus off
+
+        #caption always "%{= Wk} %S %{kw} %-Lw%:%{Ck} %n%f* %t %{kw}%+Lw %= %{Kw} %Y-%m-%d %c:%s %{Wk} $USER@%H "
+        caption always "%{= Wk} %S %{kw} %n %t %= %{Kw} %Y-%m-%d %c:%s %{Wk} $USER@%H "
+
+        windowlist title  "[ #: name%15=] hardstatus"
+        windowlist string "[%2n: %t%15=] %h"
+    # }}}
+
+    # window title {{{
+        # special xterm hardstatus: use the window title.
+        termcapinfo xterm*|rxvt*|kterm*|Eterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
+    # }}}
+
+    # supporting 256 colors {{{
+        # terminfo and termcap for nice 256 color terminal
+        # allow bold colors - necessary for some reason
+        attrcolor b ".I" 
+
+        # tell screen how to set colors. AB=background, AF=foreground 
+        termcapinfo xterm-256color* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+
+        # erase background with current bg color 
+        defbce on
+    # }}}
+
+    # hardcopy(screenshot) directory {{{
+        hardcopydir $HOME/.screen
+    # }}}
+# }}}
+
+# startup commands {{{
+    # default login {{{
+        #deflogin on
+        shell -${SHELL}
+    # }}}
+
+    # startup windows {{{
+        #screen -t '$ |main' 0
+    # }}}
+
+    # start with window 0 {{{
+        select 0
+    # }}}
+# }}}
+
