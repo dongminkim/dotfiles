@@ -1,9 +1,9 @@
 # ._shrc
-# common rc files for both bash and zsh
+# common rc file for both bash and zsh
 # vim:filetype=zsh:foldmethod=marker
 
 # Functions {{{
-# Color Settings for Manual Pages
+    # Color Settings for Manual Pages
         function set_less_256colors { #{{{
             export LESS_TERMCAP_mb=$'\E[01;31m'             # begin blinking
             export LESS_TERMCAP_md=$'\E[01;38;5;160m'       # begin bold
@@ -48,6 +48,11 @@
                     }' FS=':' ORS=':' \
                 | sed -e 's/:$//'
         } #}}}
+        function sort_path { #{{{
+            user_path="$HOME/local/bin:$HOME/bin"
+            system_path="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+            compact_path "$user_path:$PATH:$system_path"
+        } #}}}
 
     # More RC Files
         function load_more_rc_files { #{{{
@@ -84,7 +89,7 @@
     ulimit -c 0
 
     # set path {{{
-        export PATH=$( compact_path "$HOME/bin:$HOME/local/bin:$PATH" )
+        export PATH=$( sort_path "$PATH" )
         if whereis manpath > /dev/null 2>&1 ; then
             export MANPATH=$( compact_path "$HOME/local/share/man:$(manpath)" )
         else

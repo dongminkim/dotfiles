@@ -1,0 +1,40 @@
+# .os.Darwin._shrc
+# additional common rc for Darwin(Mac OS X)
+# vim:filetype=zsh:foldmethod=marker
+
+# Functions {{{
+    # Shared ACL
+        function set_shared_acl { #{{{
+            if [ $# -lt 2 ]; then
+                echo "Usage: set_shared_acl GROUP PATH [PATH [PATH ...]]"
+                return 1
+            fi
+            group=$1
+            shift
+            sudo chmod -R +a "group:${group} allow file_inherit,directory_inherit,readattr,readextattr,readsecurity,read,execute,list,search,writeattr,writeextattr,delete,append,write,delete_child,add_file,add_subdirectory" "$@"
+        } #}}}
+
+    # Front-most Finder window's path
+    # https://coderwall.com/p/vp9zlw
+        function ff { #{{{
+            osascript \
+                -e 'tell application "Finder"' \
+                -e "if (${1-1} <= (count Finder windows)) then" \
+                -e "get POSIX path of (target of window ${1-1} as alias)" \
+                -e 'else' \
+                -e 'get POSIX path of (desktop as alias)' \
+                -e 'end if' \
+                -e 'end tell' \
+                2> /dev/null
+        } #}}}
+        function ffcd { #{{{
+            cd "`ff $@`"
+        } #}}}
+        function ffpushd { #{{{
+            pushd "`ff $@`"
+        } #}}}
+        function ffpbcopy { #{{{
+            echo -ne "`ff $@`" | pbcopy
+        } #}}}
+#}}}
+
