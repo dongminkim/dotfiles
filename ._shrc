@@ -3,24 +3,24 @@
 # vim:filetype=zsh:foldmethod=marker
 
 # Functions {{{
-    # Color Settings for Manual Pages
-        function set_man_256colors { #{{{
-            export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
-            export LESS_TERMCAP_md=$'\E[01;38;5;160m'   # begin bold
-            export LESS_TERMCAP_me=$'\E[0m'             # end mode
-            export LESS_TERMCAP_us=$'\E[04;38;5;166m'   # begin underline
-            export LESS_TERMCAP_ue=$'\E[0m'             # end underline
-            export LESS_TERMCAP_so=$'\E[48;5;152m'      # begin standout-mode - info box
-            export LESS_TERMCAP_se=$'\E[0m'             # end standout-mode
+# Color Settings for Manual Pages
+        function set_less_256colors { #{{{
+            export LESS_TERMCAP_mb=$'\E[01;31m'             # begin blinking
+            export LESS_TERMCAP_md=$'\E[01;38;5;160m'       # begin bold
+            export LESS_TERMCAP_me=$'\E[0m'                 # end mode
+            export LESS_TERMCAP_us=$'\E[01;38;5;166m'       # begin underline
+            export LESS_TERMCAP_ue=$'\E[0m'                 # end underline
+            export LESS_TERMCAP_so=$'\E[01;04;38;5;162m'    # begin standout (info-bar, search)
+            export LESS_TERMCAP_se=$'\E[0m'                 # end standout (info-bar, search)
         } #}}}
-        function set_man_16colors { #{{{
-            export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
-            export LESS_TERMCAP_md=$'\E[31m'            # begin bold
-            export LESS_TERMCAP_me=$'\E[0m'             # end mode
-            export LESS_TERMCAP_us=$'\E[04;33m'         # begin underline
-            export LESS_TERMCAP_ue=$'\E[0m'             # end underline
-            export LESS_TERMCAP_so=$'\E[46m'            # begin standout-mode - info box
-            export LESS_TERMCAP_se=$'\E[0m'             # end standout-mode
+        function set_less_16colors { #{{{
+            export LESS_TERMCAP_mb=$'\E[01;31m'     # begin blinking
+            export LESS_TERMCAP_md=$'\E[31m'        # begin bold
+            export LESS_TERMCAP_me=$'\E[0m'         # end mode
+            export LESS_TERMCAP_us=$'\E[04;33m'     # begin underline
+            export LESS_TERMCAP_ue=$'\E[0m'         # end underline
+            export LESS_TERMCAP_so=$'\E[46m'        # begin standout (info-bar, search)
+            export LESS_TERMCAP_se=$'\E[0m'         # end standout (info-bar, search)
         } #}}}
 
     # Git Command Overrider
@@ -102,9 +102,9 @@
 
     # set colors: man {{{
         if [[ "$TERM" =~ -256color(-.*)? ]]; then
-            set_man_256colors "$@"
+            set_less_256colors
         else
-            set_man_16colors "$@"
+            set_less_16colors
         fi
     #}}}
 
