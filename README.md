@@ -27,6 +27,8 @@ That's it!
   * [Homebrew](http://brew.sh)
   * [iTerm2](https://iterm2.com)
     * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
+  * [tmux](https://tmux.github.io)
+    * [tmux-MacOSX-pasteboard](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) aka reattach-to-user-namespace
 * zsh
   * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
   * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
@@ -54,4 +56,8 @@ That's it!
     * [scrooloose/syntastic](http://github.com/scrooloose/syntastic)
     * [majutsushi/tagbar](http://github.com/majutsushi/tagbar)
     * [Lokaltog/powerline](http://github.com/Lokaltog/powerline)
-
+* dotfiles
+  * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
+  * `.vimrc`
+  * `.tmux.conf`
+  * `.screenrc`
