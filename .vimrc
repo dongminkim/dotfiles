@@ -108,8 +108,14 @@
     " Syntax highlighting {{{
         filetype plugin indent on                   " detect file plugin+indent
         syntax on                                   " syntax highlighting
-        set background=dark                         " we're using a dark bg
-        colorscheme jellybeans                      " colorscheme from plugin
+        if !empty($VIM_THEME)
+            let _ = split($VIM_THEME, ':')          " VIM_THEME=light:solarized vim
+            exe "set background="._[0]
+            exe "colorscheme "._[1]
+        else
+            set background=dark                     " we're using a dark bg
+            colorscheme jellybeans                  " colorscheme from plugin
+        endif
 
         " Force behavior and filetypes, and by extension highlighting {{{
             augroup FileTypeRules
@@ -124,18 +130,6 @@
             if (&term =~ "xterm") || (&term =~ "screen")
                 set t_Co=256
             endif
-        " }}}
-
-        " Custom highlighting, where NONE uses terminal background {{{
-            function! CustomHighlighting()
-                highlight Normal ctermbg=NONE
-                highlight NonText ctermbg=NONE
-                highlight LineNr ctermbg=NONE
-                highlight SignColumn ctermbg=NONE
-                highlight SignColumn guibg=#151515
-                highlight CursorLine ctermbg=235
-            endfunction
-            call CustomHighlighting()
         " }}}
     " }}}
 
@@ -278,7 +272,6 @@
                     syntax off
                 else
                     syntax on
-                    call CustomHighlighting()
                 endif
             endfunction
             nnoremap <leader>ts :call ToggleSyntaxHighlighthing()<CR>
