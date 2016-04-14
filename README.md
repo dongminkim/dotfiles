@@ -63,3 +63,11 @@ That's it!
   * `.vimrc`
   * `.tmux.conf`
   * `.screenrc`
+
+## Author
+* [@dongminkim](https://github.com/dongminkim)
+* `vanity` is my account ID
+* `diego` is my nickname in my company
+
+## Thanks to...
+ * [@timss](https://github.com/timss) - `.vimrc` is originated from [timss/vimconf](https://github.com/timss/vimconf)
