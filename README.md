@@ -1,5 +1,7 @@
 # Vanity.dump(dotfiles)
 
+![Screenshot](https://cloud.githubusercontent.com/assets/1652790/14531193/4d389e0a-0297-11e6-9158-f6780b86b385.png)
+
 ## Installation
 
 **Warning:** Use at your own risk!
