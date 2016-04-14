@@ -152,7 +152,20 @@ OS="$(uname -s)"
         echo "${BLD}powerline fonts${RST} ${GRN}exists${RST}"
     fi
 
-# open iTerm
-    [[ "$OS" == "Darwin" ]] && open -a iTerm >& /dev/null
+# install iTerm profiles & color presets
+    if [[ "$OS" == "Darwin" ]]; then
+        vdir=ext/vanity
+        if [ ! -d "$vdir" ]; then
+            echo "${GRN}install${RST} ${BLD}iTerm profiles & color presets${RST}"
+            git clone https://github.com/dongminkim/vanity.git "$vdir"
+
+            echo "${MGT}[!] Open iTerm and load preferences${RST}"
+            echo "${BLD}iTerm > Preferences > General > (at bottom) Load preferences${RST}"
+            echo "${MGT}input:${RST} ${BLD}$PWD/$vdir/iTerm2${RST}"
+            open -a iTerm >& /dev/null
+        else
+            echo "${BLD}iTerm profiles & color presets${RST} ${GRN}exists${RST}"
+        fi
+    fi
 
 echo "${GRN}done${RST}"
