@@ -1,0 +1,49 @@
+# Brewfile.extra
+# Relies on https://github.com/Homebrew/homebrew-bundle
+# brew tap Homebrew/bundle
+# brew help bundle
+cask_args appdir: '/Applications'
+tap 'caskroom/cask'
+tap 'homebrew/dupes'
+
+# General
+cask 'quicksilver'
+cask '1password'
+cask 'caffeine'
+cask 'macvim'
+
+# Browsers
+cask 'google-chrome'
+cask 'firefox'
+cask 'opera'
+
+# Image Libraries
+brew 'libpng'
+brew 'libtiff'
+brew 'libjpeg'
+brew 'webp'
+brew 'little-cms2'
+brew 'imagemagick'
+
+# Terminal
+brew 'homebrew/dupes/screen'
+brew 'tmux-cssh'
+brew 'tree'
+brew 'watch'
+brew 'parallel'
+brew 'pv'
+brew 'nmap'
+
+# Dev Tools
+brew 'git'
+brew 'go'
+brew 'node'
+brew 'mysql'
+cask 'sourcetree'
+cask 'github-desktop'
+cask 'pycharm'
+cask 'java' unless system '/usr/libexec/java_home --failfast > /dev/null 2>&1'
+cask 'googleappengine'
+cask 'google-cloud-sdk'
+brew 'translate-toolkit'
+
