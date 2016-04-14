@@ -86,7 +86,7 @@ if [ "$PS1" ]; then
             fi
 
             # choose colors for $PR_HOST
-            local PROMPT_COLORS_ENV_FILE="$HOME/.env/.prompt_colors.host..${HOSTNAME}"
+            local PROMPT_COLORS_ENV_FILE="$HOME/.host.${HOSTNAME}.prompt_colors"
             local CV_USER_FG=BLACK
             local CV_USER_BG=GRAY_L
             local CV_HOST_FG=BLACK

@@ -53,8 +53,8 @@
         function load_more_rc_files { #{{{
             placeholder="{{}}"
             more_rc_files=(
-                "$HOME/.env/.os..$(uname -s)$placeholder"
-                "$HOME/.env/.host..$(uname -n)$placeholder"
+                "$HOME/.os.$(uname -s)$placeholder"
+                "$HOME/.host.$(uname -n)$placeholder"
                 "$HOME/.local$placeholder"
             )
 
@@ -127,7 +127,7 @@
             if [[ "$TERM" =~ -256color(-.*)? ]]; then
                 SCREENCOMMAND="$SCREENCOMMAND -T screen-256color"
             fi
-            screenrc="$HOME/.env/.host..$(uname -n).screenrc"
+            screenrc="$HOME/.host.$(uname -n).screenrc"
             if [ -f "$screenrc" ]; then
                 SCREENCOMMAND="$SCREENCOMMAND -c '$screenrc'"
             fi
