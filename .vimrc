@@ -49,6 +49,7 @@
 
         " Glorious colorscheme
         Plugin 'nanotech/jellybeans.vim'
+        Plugin 'altercation/vim-colors-solarized'
 
         " Super easy commenting, toggle comments etc
         Plugin 'scrooloose/nerdcommenter'
