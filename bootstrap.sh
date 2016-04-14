@@ -33,30 +33,40 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
         if ! brew list "$@" >& /dev/null; then
             echo "${GRN}brew install${RST} ${BLD}$@${RST}"
             brew install "$@"
+        else
+            echo "${BLD}brew $@${RST} ${GRN}exists${RST}"
         fi
     }
     function brew_cask_install {
         if ! brew cask list "$@" >& /dev/null; then
             echo "${GRN}brew cask install${RST} ${BLD}$@${RST}"
             brew cask install "$@"
+        else
+            echo "${BLD}brew cask $@${RST} ${GRN}exists${RST}"
         fi
     }
     function npm_install {
         if ! npm ls "$@" >& /dev/null; then
             echo "${GRN}npm install${RST} ${BLD}$@${RST}"
             npm install "$@"
+        else
+            echo "${BLD}npm $@${RST} ${GRN}exists${RST}"
         fi
     }
     function gem_install {
         if ! gem list -i "$@" > /dev/null; then
             echo "${GRN}gem install${RST} ${BLD}$@${RST}"
             gem install "$@" || { echo "${RED}Oops! Try again with sudo...${RST}"; sudo gem install "$@"; }
+        else
+            echo "${BLD}gem $@${RST} ${GRN}exists${RST}"
         fi
     }
     function pip_install {
         if ! pip show -q "$1" > /dev/null; then
             echo "${GRN}pip install${RST} ${BLD}$@${RST}"
             pip install "${2-$1}"
+        else
+            echo "${BLD}pip $@${RST} ${GRN}exists${RST}"
         fi
     }
     function osx_prerequisites {
@@ -64,21 +74,26 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
             if ! which brew >& /dev/null; then
                 echo "${GRN}install${RST} ${BLD}brew${RST}"
                 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            else
+                echo "${BLD}brew${RST} ${GRN}exists${RST}"
             fi
 
         # brew cask
             if ! brew cask >& /dev/null; then
                 echo "${GRN}brew tap${RST} ${BLD}caskroom/cask${RST}"
                 brew tap caskroom/cask
+            else
+                echo "${BLD}brew cask${RST} ${GRN}exists${RST}"
             fi
 
         # brew bundle
             if ! brew bundle >& /dev/null; then
                 echo "${GRN}brew tap${RST} ${BLD}Homebrew/bundle${RST}"
-                brew tap caskroom/cask
                 brew tap Homebrew/bundle
+            else
+                echo "${BLD}brew bundle${RST} ${GRN}exists${RST}"
             fi
-            echo "${GRN}brew${RST} ${BLD}bundle${RST}"
+            echo "${GRN}brew bundle${RST}"
             brew bundle
 
         # Xcode CLI Tools
@@ -109,6 +124,8 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 
         echo "${GRN}install${RST} ${BLD}zsh-syntax-highlighting${RST}"
         zsh -c 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'
+    else
+        echo "${BLD}oh-my-zsh${RST} ${GRN}exists${RST}"
     fi
 
 # copy dot files
