@@ -141,4 +141,16 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
         cp "$src_fn" "$HOME/"
     done
 
+# install powerline fonts
+    fontdir=ext/fonts
+    if [ ! -d "$fontdir" ]; then
+        echo "${GRN}install${RST} ${BLD}powerline fonts${RST}"
+        git clone https://github.com/powerline/fonts.git "$fontdir"
+        cd "$fontdir"
+        ./install.sh
+        cd -
+    else
+        echo "${BLD}powerline fonts${RST} ${GRN}exists${RST}"
+    fi
+
 echo "${GRN}done${RST}"
