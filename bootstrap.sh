@@ -2,6 +2,7 @@
 # boostrap.sh
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
+OS="$(uname -s)"
 
 # colors
     DEF=$(echo -en '\033[39m')
@@ -106,9 +107,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
     }
 
 # install
-    if [[ "$(uname -s)" == "Darwin" ]]; then
-        osx_prerequisites
-    fi
+    [[ "$OS" == "Darwin" ]] && osx_prerequisites
 
 # install powerline
     pip_install powerline-status
@@ -152,5 +151,8 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
     else
         echo "${BLD}powerline fonts${RST} ${GRN}exists${RST}"
     fi
+
+# open iTerm
+    [[ "$OS" == "Darwin" ]] && open -a iTerm >& /dev/null
 
 echo "${GRN}done${RST}"
