@@ -26,12 +26,21 @@
     # Git Command Overrider
         function git { #{{{
             typeset -r gitcmd="git-$1"
-            if /usr/bin/env which "$gitcmd" > /dev/null 2>&1; then
+            if which "$gitcmd" > /dev/null 2>&1; then
                 shift
                 "$gitcmd" "$@"
             else
                 "$(/usr/bin/env which git)" "$@"
             fi
+        } #}}}
+        function git-log { #{{{
+            # https://git-scm.com/docs/pretty-formats
+            "$(/usr/bin/env which git)" log \
+                --pretty=format:'%C(red)%h%C(reset) -%C(magenta)%d%C(reset) %C(bold)%s%C(reset) %C(green)(%cr; %ci)%C(reset) - %C(blue)%an %C(cyan)<%ae>%C(reset)' \
+                --abbrev-commit "$@"
+        } #}}}
+        function git-lg { #{{{
+            git-log --graph "$@"
         } #}}}
 
     # Path Compactor
