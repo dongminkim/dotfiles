@@ -53,9 +53,9 @@
         function load_more_rc_files { #{{{
             placeholder="{{}}"
             more_rc_files=(
-                "$HOME/.env/.os..$(uname -s).$placeholder"
-                "$HOME/.env/.host..$(uname -n).$placeholder"
-                "$HOME/.local.$placeholder"
+                "$HOME/.env/.os..$(uname -s)$placeholder"
+                "$HOME/.env/.host..$(uname -n)$placeholder"
+                "$HOME/.local$placeholder"
             )
 
             for rc_tpl in "${more_rc_files[@]}"; do
