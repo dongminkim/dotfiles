@@ -130,6 +130,15 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 # copy dot files
     echo "${GRN}copy${RST} ${BLD}dot files${RST}"
-    find . -depth 1 -type f -iname '.*' -exec cp -i {} "$HOME/"{} \;
+    dotfiles=($( find . -depth 1 -type f -iname '.*' -not -iname '.gitignore' ))
+    for fn in "${dotfiles[@]}"; do
+        src_fn="${fn#./}"
+        dst_fn="$HOME/$src_fn"
+        if [ -f "$dst_fn" ]; then
+            mv "$dst_fn" "$dst_fn.bak"
+        fi
+        echo "${GRN}cp${RST} ${BLD}\"${src_fn}\"${RST} \"$HOME/\""
+        cp "$src_fn" "$HOME/"
+    done
 
 echo "${GRN}done${RST}"
