@@ -136,7 +136,7 @@ OS="$(uname -s)"
         if [ -f "$dst_fn" ]; then
             mv "$dst_fn" "$dst_fn.bak"
         fi
-        echo "${GRN}cp${RST} ${BLD}\"${src_fn}\"${RST} \"$HOME/\""
+        echo "${GRN}cp${RST} \"${BLD}${src_fn}${RST}\" \"$HOME/\""
         cp "$src_fn" "$HOME/"
     done
 
