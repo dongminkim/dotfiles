@@ -139,6 +139,10 @@ OS="$(uname -s)"
         echo "${BLD}oh-my-zsh${RST} ${GRN}exists${RST}"
     fi
 
+# install Vim plugins
+    echo "${GRN}install${RST} ${BLD}Vim plugins${RST}"
+    vim -u './.vimrc' -c 'q'
+
 # copy dot files
     echo "${GRN}copy${RST} ${BLD}dot files${RST}"
     date="$( date '+%Y-%m-%dT%H:%M:%S' )"
