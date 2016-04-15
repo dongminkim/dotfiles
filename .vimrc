@@ -32,9 +32,6 @@
             endif
         " }}}
 
-        " <Tab> everything!
-        Plugin 'ervandew/supertab'
-
         " Fuzzy finder (files, mru, etc)
         Plugin 'ctrlpvim/ctrlp.vim'
 
@@ -563,14 +560,6 @@
         let g:netrw_banner = 0
         let g:netrw_list_hide = '^\.$'
         let g:netrw_liststyle = 3
-    " }}}
-    " Supertab {{{
-        " Complete based on context (compl-omni, compl-filename, ..)
-        let g:SuperTabDefaultCompletionType = "context"
-
-        " Longest common match, e.g. 'b<tab>' => 'bar' for 'barbar', 'barfoo'
-        let g:SuperTabLongestEnhanced = 1
-        let g:SuperTabLongestHighlight = 1
     " }}}
     " SnipMate {{{
         " Disable '.' => 'self' Python snippet
