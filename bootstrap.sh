@@ -63,9 +63,16 @@ OS="$(uname -s)"
         fi
     }
     function pip_install {
-        if ! pip show -q "$1" > /dev/null; then
+        if [ -x /usr/local/bin/python ]; then
+            # force to use pip of python installed with brew
+            pip="/usr/local/bin/python -m pip"
+        else
+            pip="python -m pip"
+        fi
+
+        if ! $pip show -q "$1" > /dev/null; then
             echo "${GRN}pip install${RST} ${BLD}$@${RST}"
-            pip install "${2-$1}"
+            $pip install "${2-$1}"
         else
             echo "${BLD}pip $@${RST} ${GRN}exists${RST}"
         fi
@@ -102,8 +109,13 @@ OS="$(uname -s)"
             xcode-select --install >& /dev/null
 
         # enable python pip install without sudo
-            echo "${GRN}chmod${RST} ${BLD}python site-packages/${RST}"
-            sudo chmod -R +a "user:$USER allow add_subdirectory,add_file,delete_child,directory_inherit" '/Library/Python/2.7/site-packages'
+            py_pkg_dir=/Library/Python/2.7/site-packages
+            if ! touch "$py_pkg_dir/_" >& /dev/null; then
+                echo "${GRN}chmod${RST} ${BLD}${py_pkg_dir}${RST}"
+                sudo chmod -R +a "user:$USER allow add_subdirectory,add_file,delete_child,directory_inherit" "$py_pkg_dir"
+            else
+                echo "${BLD}${py_pkg_dir}${RST} ${GRN}ACL exists${RST}"
+            fi
     }
 
 # install
