@@ -32,9 +32,6 @@
             endif
         " }}}
 
-        " Edit files using sudo/su
-        Plugin 'chrisbra/SudoEdit.vim'
-
         " <Tab> everything!
         Plugin 'ervandew/supertab'
 
@@ -111,8 +108,8 @@
         syntax on                                   " syntax highlighting
         if !empty($VIM_THEME)
             let _ = split($VIM_THEME, ':')          " VIM_THEME=light:solarized vim
-            exe "set background="._[0]
-            exe "colorscheme "._[1]
+            execute "set background="._[0]
+            execute "colorscheme "._[1]
         else
             set background=dark                     " we're using a dark bg
             colorscheme jellybeans                  " colorscheme from plugin
@@ -209,7 +206,7 @@
         augroup LastPosition
             autocmd! BufReadPost *
                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \     exe "normal! g`\"" |
+                \     execute "normal! g`\"" |
                 \ endif
         augroup END
     " }}}
@@ -364,10 +361,10 @@
                 let s:fname = expand("%:t:r")
                 if expand("%:e") == "h"
                     set splitright
-                    exe "vsplit" fnameescape(s:fname . ".cpp")
+                    execute "vsplit" fnameescape(s:fname . ".cpp")
                     set nosplitright
                 elseif expand("%:e") == "cpp"
-                    exe "vsplit" fnameescape(s:fname . ".h")
+                    execute "vsplit" fnameescape(s:fname . ".h")
                 endif
             endfunction
             nnoremap <leader>sr :call SplitRelSrc()<CR>
@@ -387,6 +384,16 @@
                     \ autocmd BufWritePre <buffer> :call
                     \ StripTrailingWhitespace()
             augroup END
+        " }}}
+
+        " Write with Sudo {{{
+            function! WriteWithSudo(fn)
+                let choice = confirm("Write '".a:fn."' with sudo?", "&Yes\n&No", 2)
+                if choice == 1
+                    execute ":silent w !sudo tee '".a:fn."' > /dev/null"
+                endif
+            endfunction
+            command! W :call WriteWithSudo(@%)<bar>:edit!
         " }}}
     " }}}
 
@@ -437,13 +444,12 @@
     " Clear undo. Requires Vim 7.3 {{{
         function! ClearUndo()
             let choice = confirm("Clear undo history?", "&Yes\n&No", 2)
-         if choice == 1
+            if choice == 1
                 " :help clear-undo (Vim 7.3+)
                 let old_undolevels = &undolevels
                 set undolevels=-1
                 execute "normal a \<Bs>\<Esc>"
                 let &undolevels = old_undolevels
-                "write
                 echo "done."
             endif
         endfunction
