@@ -37,28 +37,43 @@ That's it!
   * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * [Powerline](https://github.com/powerline/powerline)
   * [Powerline fonts](https://github.com/powerline/fonts)
-* vim
-  * [Vundle](https://github.com/VundleVim/Vundle.vim)
-    * [chrisbra/SudoEdit.vim](http://github.com/chrisbra/SudoEdit.vim)
-    * [ervandew/supertab](http://github.com/ervandew/supertab)
-    * [ctrlpvim/ctrlp.vim](http://github.com/ctrlpvim/ctrlp.vim)
-    * [bling/vim-bufferline](http://github.com/bling/vim-bufferline)
-    * [nanotech/jellybeans.vim](http://github.com/nanotech/jellybeans.vim)
-    * [altercation/vim-colors-solarized](http://github.com/altercation/vim-colors-solarized)
-    * [scrooloose/nerdcommenter](http://github.com/scrooloose/nerdcommenter)
-    * [somini/vim-autoclose](http://github.com/somini/vim-autoclose)
-    * [tpope/vim-fugitive](http://github.com/tpope/vim-fugitive)
-    * [tpope/vim-surround](http://github.com/tpope/vim-surround)
-    * [vim-scripts/Align](http://github.com/vim-scripts/Align)
-    * [MarcWeber/vim-addon-mw-utils](http://github.com/MarcWeber/vim-addon-mw-utils)
-    * [tomtom/tlib_vim](http://github.com/tomtom/tlib_vim)
-    * [honza/vim-snippets](http://github.com/honza/vim-snippets)
-    * [garbas/vim-snipmate](http://github.com/garbas/vim-snipmate)
-    * [mhinz/vim-startify](http://github.com/mhinz/vim-startify)
-    * [mhinz/vim-signify](http://github.com/mhinz/vim-signify)
-    * [scrooloose/syntastic](http://github.com/scrooloose/syntastic)
-    * [majutsushi/tagbar](http://github.com/majutsushi/tagbar)
-    * [Lokaltog/powerline](http://github.com/Lokaltog/powerline)
+* Vim
+  * Colorschemes
+    * [nanotech/jellybeans.vim](https://github.com/nanotech/jellybeans.vim)
+    * [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
+  * Powerline
+    * [Lokaltog/powerline](https://github.com/Lokaltog/powerline)
+  * A fancy start screen, shows MRU etc.
+    * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
+  * Handle surround chars like ''
+    * [tpope/vim-surround](https://github.com/tpope/vim-surround)
+  * Handle alignment
+    * [junegunn/vim-easy-align](https://github.com/junegunn/vim-easy-align)
+  * Visualize undo tree
+    * [mbbill/undotree](https://github.com/mbbill/undotree)
+  * Git inside Vim
+    * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+  * Gist inside Vim
+    * [mattn/webapi-vim](https://github.com/mattn/webapi-vim) 
+    * [mattn/gist-vim](https://github.com/mattn/gist-vim)
+  * Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
+    * [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
+  * Awesome syntax checker.
+    * [scrooloose/syntastic](https://github.com/scrooloose/syntastic)
+  * Functions, class data etc.
+    * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
+  * FZF - Fuzzy Finder
+    * [junegunn/fzf](https://github.com/junegunn/fzf)
+    * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
+  * Syntax
+    * [tpope/vim-git](https://github.com/tpope/vim-git)
+    * [cakebaker/scss-syntax.vim](https://github.com/cakebaker/scss-syntax.vim)
+    * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
+    * [pangloss/vim-javascript](https://github.com/pangloss/vim-javascript)
+  * Completion (or template)
+    * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
+  * Make % match xml tags
+    * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
 * dotfiles
   * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
   * `.vimrc`
@@ -80,13 +95,17 @@ That's it!
     * e.g. `host.github.com.screenrc` will be used when run screen at host github.com
 * Vim rc files with `.local` prefix will be loaded
   * `.local.plugins.vimrc` will be loaded in Vundle's loading step
-  * `.local.pre.vimrc` will be loaded just before the main .vimrc settings and just after Vundle loading step
+  * `.local.pre.vimrc` will be loaded just before the main .vimrc settings and just after vim-plug loading step
   * `.local.vimrc` will be loaded after the main .vimrc settings
 
 ## Author
+
 * [@dongminkim](https://github.com/dongminkim)
 * `vanity` is my account ID
 * `diego` is my nickname in my company
 
 ## Thanks to...
- * [@timss](https://github.com/timss) - `.vimrc` is originated from [timss/vimconf](https://github.com/timss/vimconf)
+
+* [@timss](https://github.com/timss)
+  * My old `.vimrc` has been rewritten with the `.vimrc` of [timss/vimconf](https://github.com/timss/vimconf)
+
