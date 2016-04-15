@@ -156,8 +156,9 @@
         alias cp='cp -i'
         alias grep='grep --color=auto'
         alias fgrep='fgrep --color=auto'
-        alias less='less -r'
+        alias less='less -R'
         alias vi='vim'
+        alias ag='ag --page "less -R"'
     # }}}
 # General Settings }}}
 

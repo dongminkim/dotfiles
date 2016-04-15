@@ -185,6 +185,9 @@
         set nogdefault                              " default :s//g unset
         set incsearch                               " "live"-search
         set hlsearch                                " highlighted search
+        if executable('ag')
+            set grepprg=ag\ --nogroup\ --nocolor    " use ag over grep
+        endif
     " }}}
     " Matching {{{
         set matchtime=2                             " time to blink match {}
@@ -537,6 +540,11 @@
 
         " Don't split in Startify
         let g:ctrlp_reuse_window = 'startify'
+
+        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+        if executable('ag')
+            let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        endif
     " }}}
     " TagBar {{{
         set tags=tags;/
