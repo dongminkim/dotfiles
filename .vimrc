@@ -1,94 +1,85 @@
 " .vimrc
+" vim:foldmethod=marker
 
 " vimconf is not vi-compatible {{{
     set nocompatible
 " }}}
 
-" Vundle plugin manager {{{
-    " Automatically setting up Vundle {{{
-    " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
-        let has_vundle=1
-        if !filereadable($HOME."/.vim/bundle/Vundle.vim/README.md")
-            echo "Installing Vundle..."
+" Plugin manager {{{
+    " Automatically setting up vim-plug {{{
+        if empty(glob('~/.vim/autoload/plug.vim'))
+            let has_vim_plug = 0
+            echo "install vim-plug ..."
             echo ""
-            silent !mkdir -p $HOME/.vim/bundle
-            silent !git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
-            let has_vundle=0
+            silent !mkdir -p ~/.vim/plugged
+            silent !mkdir -p ~/.vim/autoload
+            silent !curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
+        else
+            let has_vim_plug = 1
         endif
     " }}}
 
-    " Initialize Vundle {{{
-        filetype off                                " required to init
-        set rtp+=$HOME/.vim/bundle/Vundle.vim       " include vundle
-        call vundle#begin()                         " init vundle
-    " }}}
+    call plug#begin('~/.vim/plugged')
 
-    " Github repos, uncomment to disable a plugin {{{
-        Plugin 'gmarik/Vundle.vim'
-
-        " Local plugins (and only plugins in this file!) {{{
-            if filereadable($HOME."/.local.plugins.vimrc")
-                source $HOME/.local.plugins.vimrc
-            endif
-        " }}}
-
-        " Fuzzy finder (files, mru, etc)
-        Plugin 'ctrlpvim/ctrlp.vim'
-
-        " Powerline
-        Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-
-        " Bufferline
-        Plugin 'bling/vim-bufferline'
-
-        " Glorious colorscheme
-        Plugin 'nanotech/jellybeans.vim'
-        Plugin 'altercation/vim-colors-solarized'
-
-        " Super easy commenting, toggle comments etc
-        Plugin 'scrooloose/nerdcommenter'
-
-        " Autoclose (, " etc
-        Plugin 'somini/vim-autoclose'
-
-        " Git wrapper inside Vim
-        Plugin 'tpope/vim-fugitive'
-
-        " Handle surround chars like ''
-        Plugin 'tpope/vim-surround'
-
-        " Align your = etc.
-        Plugin 'vim-scripts/Align'
-
-        " Snippets like textmate
-        Plugin 'MarcWeber/vim-addon-mw-utils'
-        Plugin 'tomtom/tlib_vim'
-        Plugin 'honza/vim-snippets'
-        Plugin 'garbas/vim-snipmate'
+    " Load Plugins {{{
+        " Colorschemes
+        Plug 'nanotech/jellybeans.vim'
+        Plug 'altercation/vim-colors-solarized'
 
         " A fancy start screen, shows MRU etc.
-        Plugin 'mhinz/vim-startify'
+        Plug 'mhinz/vim-startify'
+
+        " Powerline
+        Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+        " Bufferline
+        Plug 'bling/vim-bufferline'
+
+        " Super easy commenting, toggle comments etc
+        Plug 'scrooloose/nerdcommenter'
+
+        " Autoclose (, " etc
+        Plug 'somini/vim-autoclose'
+
+        " Git wrapper inside Vim
+        Plug 'tpope/vim-fugitive'
+
+        " Handle surround chars like ''
+        Plug 'tpope/vim-surround'
+
+        " Align your = etc.
+        Plug 'vim-scripts/Align'
+
+        " Snippets like textmate
+        Plug 'MarcWeber/vim-addon-mw-utils'
+        Plug 'tomtom/tlib_vim'
+        Plug 'honza/vim-snippets'
+        Plug 'garbas/vim-snipmate'
 
         " Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
-        Plugin 'mhinz/vim-signify'
+        Plug 'mhinz/vim-signify'
 
         " Awesome syntax checker.
         " REQUIREMENTS: See :h syntastic-intro
-        Plugin 'scrooloose/syntastic'
+        Plug 'scrooloose/syntastic'
 
         " Functions, class data etc.
         " REQUIREMENTS: (exuberant)-ctags
-        Plugin 'majutsushi/tagbar'
+        Plug 'majutsushi/tagbar'
     " }}}
 
-    " Finish Vundle stuff {{{
-        call vundle#end()
+    " Load local plugins {{{
+        if filereadable($HOME."/.local.plugins.vimrc")
+            source $HOME/.local.plugins.vimrc
+        endif
     " }}}
 
-    " Installing plugins the first time, quits when done {{{
-        if has_vundle == 0
-            :silent! PluginInstall
-            :qa
+    call plug#end()
+
+    " Install plugins for the first time, and quits when done {{{
+        if has_vim_plug == 0
+            silent! PlugInstall
+            qa
         endif
     " }}}
 " }}}
