@@ -24,7 +24,7 @@ git clone https://github.com/dongminkim/dotfiles.git ~/.dotfiles && ~/.dotfiles/
 
 That's it!
 
-### What are installed?
+### What will be installed?
 
 * Mac OS X
   * [Homebrew](http://brew.sh)
@@ -64,6 +64,24 @@ That's it!
   * `.vimrc`
   * `.tmux.conf`
   * `.screenrc`
+
+### Customize more
+
+* Shell rc files with `.os.$(uname -s)` prefix will be loaded
+  * `.os.$(uname -s)._shrc`(for both zsh and bash), `.os.$(uname -s).zshrc`, `.os.$(uname -s).bashrc`
+    * e.g. `os.Darwin.zshrc` will be loaded in Mac OS X zsh
+* Shell rc files with `.host.$(uname -n)` prefix will be loaded
+  * `.host.$(uname -n)._shrc`(for both zsh and bash), `.host.$(uname -n).zshrc`, `.host.$(uname -n).bashrc`
+    * e.g. `host.github.com.bashrc` will be loaded in bash at host github.com
+* Shell rc files with `.local` prefix will be loaded
+  * `.local._shrc`(for both zsh and bash), `.local.zshrc`, `.local.bashrc`
+* Screen rc files with `.host.$(uname -n)` prefix will be loaded
+  * `.host.$(uname -n).screenrc`
+    * e.g. `host.github.com.screenrc` will be used when run screen at host github.com
+* Vim rc files with `.local` prefix will be loaded
+  * `.local.plugins.vimrc` will be loaded in Vundle's loading step
+  * `.local.pre.vimrc` will be loaded just before the main .vimrc settings and just after Vundle loading step
+  * `.local.vimrc` will be loaded after the main .vimrc settings
 
 ## Author
 * [@dongminkim](https://github.com/dongminkim)
