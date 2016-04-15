@@ -35,10 +35,17 @@
         " Handle surround chars like ''
         Plug 'tpope/vim-surround'
 
+        " Handle alignment
+        Plug 'junegunn/vim-easy-align'
+
+        " Visualize undo tree
+        Plug 'mbbill/undotree'
 
         " Git inside Vim
         Plug 'tpope/vim-fugitive'
 
+        " Gist inside Vim
+        Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
         " Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
         Plug 'mhinz/vim-signify'
@@ -48,6 +55,20 @@
 
         " Functions, class data etc.
         Plug 'majutsushi/tagbar'
+
+        " FZF - Fuzzy Finder
+        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+
+        " Syntax
+        Plug 'tpope/vim-git', { 'for': 'git' }
+        Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+        Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+        " Completion (or template)
+        Plug 'mattn/emmet-vim', { 'for': 'html' }
+
+        " Make % match xml tags
+        Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
     " }}}
 
     " Load local plugins {{{
@@ -374,7 +395,7 @@
 " }}}
 
 " Files {{{
-    set autochdir                                   " always use curr. dir.
+    set noautochdir                                 " disable auto chdir
     set autoread                                    " refresh if changed
     set confirm                                     " confirm changed files
     set noautowrite                                 " never autowrite
@@ -505,6 +526,32 @@
         let g:tagbar_left = 0
         let g:tagbar_width = 30
     " }}}
+    " FZF {{{
+        " Mapping selecting mappings
+        nmap <leader><tab> <plug>(fzf-maps-n)
+        xmap <leader><tab> <plug>(fzf-maps-x)
+        omap <leader><tab> <plug>(fzf-maps-o) 
+
+        " Insert mode completion
+        imap <c-f><c-d> <plug>(fzf-complete-word)
+        imap <c-f><c-f> <plug>(fzf-complete-path)
+        imap <c-f><c-g> <plug>(fzf-complete-file-ag)
+        imap <c-f><c-l> <plug>(fzf-complete-line)
+
+        " Key bindings
+        nnoremap ff :Files<space>
+        nnoremap fb :Buffers<CR>
+        nnoremap fa :Ag<space>
+        nnoremap ft :Tags<space> 
+        nnoremap fm :Marks<CR>
+        nnoremap fh :Helptags<CR>
+        nnoremap fc :Commands<CR>
+        nnoremap fhf :History<CR>
+        nnoremap fhc :History:<CR>
+        nnoremap fhs :History/<CR>
+        nnoremap fgf :GitFiles<CR>
+        nnoremap fgc :Commits<CR>
+    " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
         "let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['c', 'cpp', 'perl', 'python'] }
@@ -521,6 +568,10 @@
         let g:netrw_list_hide = '^\.$'
         let g:netrw_liststyle = 3
     " }}}
+    " Undo-tree {{{
+        nnoremap <leader>du :UndotreeToggle<CR>
+        nnoremap <leader>dU :call ClearUndo()<CR><bar>:UndotreeHide<CR>
+  " }}}
 " }}}
 
 " Local ending config, will overwrite anything above. Generally use this. {{{

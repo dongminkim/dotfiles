@@ -8,6 +8,7 @@ tap 'caskroom/cask'
 # Terminal
 brew 'vim'
 brew 'python'
+brew 'ctags'
 brew 'readline'
 brew 'wget'
 brew 'openssl'
