@@ -26,45 +26,27 @@
         Plug 'nanotech/jellybeans.vim'
         Plug 'altercation/vim-colors-solarized'
 
-        " A fancy start screen, shows MRU etc.
-        Plug 'mhinz/vim-startify'
-
         " Powerline
         Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
-        " Bufferline
-        Plug 'bling/vim-bufferline'
-
-        " Super easy commenting, toggle comments etc
-        Plug 'scrooloose/nerdcommenter'
-
-        " Autoclose (, " etc
-        Plug 'somini/vim-autoclose'
-
-        " Git wrapper inside Vim
-        Plug 'tpope/vim-fugitive'
+        " A fancy start screen, shows MRU etc.
+        Plug 'mhinz/vim-startify'
 
         " Handle surround chars like ''
         Plug 'tpope/vim-surround'
 
-        " Align your = etc.
-        Plug 'vim-scripts/Align'
 
-        " Snippets like textmate
-        Plug 'MarcWeber/vim-addon-mw-utils'
-        Plug 'tomtom/tlib_vim'
-        Plug 'honza/vim-snippets'
-        Plug 'garbas/vim-snipmate'
+        " Git inside Vim
+        Plug 'tpope/vim-fugitive'
+
 
         " Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
         Plug 'mhinz/vim-signify'
 
         " Awesome syntax checker.
-        " REQUIREMENTS: See :h syntastic-intro
         Plug 'scrooloose/syntastic'
 
         " Functions, class data etc.
-        " REQUIREMENTS: (exuberant)-ctags
         Plug 'majutsushi/tagbar'
     " }}}
 
@@ -203,7 +185,7 @@
     " }}}
 " }}}
 
-" Keybindings {{{
+" Key bindings {{{
     " General {{{
         " Remap <leader>
         let mapleader=","
@@ -221,12 +203,6 @@
         " Toggle folding
         " http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
         nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-
-        " Bubbling (bracket matching)
-        nmap <C-up> [e
-        nmap <C-down> ]e
-        vmap <C-up> [egv
-        vmap <C-down> ]egv
 
         " Scroll up/down lines from 'scroll' option, default half a screen
         map <C-j> <C-d>
@@ -246,9 +222,8 @@
 
         " Buffers, preferred over tabs now with bufferline.
         nnoremap gn :bnext<CR>
-        nnoremap gN :bprevious<CR>
+        nnoremap gp :bprevious<CR>
         nnoremap gd :bdelete<CR>
-        nnoremap gf <C-^>
 
         " Highlight last inserted text
         nnoremap gV '[V']
@@ -476,8 +451,8 @@
     " Automatically create needed files and folders on first run (*nix only) {{{
         if !has("win32") && !has("win16")
             call system("mkdir -p $HOME/.vim/{swap,undo}")
-            "if !filereadable($HOME."/.local.pre.vimrc") | call system("touch $HOME/.local.pre.vimrc") | endif
             "if !filereadable($HOME."/.local.plugins.vimrc") | call system("touch $HOME/.local.plugins.vimrc") | endif
+            "if !filereadable($HOME."/.local.pre.vimrc") | call system("touch $HOME/.local.pre.vimrc") | endif
             "if !filereadable($HOME."/.local.vimrc") | call system("touch $HOME/.local.vimrc") | endif
         endif
     " }}}
@@ -513,29 +488,15 @@
     " Startify {{{
         let g:startify_bookmarks = [
             \ $HOME . "/.vimrc",
-            \ $HOME . "/.local.pre.vimrc",
             \ $HOME . "/.local.plugins.vimrc",
+            \ $HOME . "/.local.pre.vimrc",
             \ $HOME . "/.local.vimrc"
             \ ]
         let g:startify_custom_header = [
             \ '   http://github.com/dongminkim/dotfiles',
-            \ '   ← http://github.com/timss/vimconf',
             \ ''
             \ ]
         let g:startify_files_number = 5
-    " }}}
-    " CtrlP {{{
-        " Don't recalculate files on start (slow)
-        let g:ctrlp_clear_cache_on_exit = 0
-        let g:ctrlp_working_path_mode = 'ra'
-
-        " Don't split in Startify
-        let g:ctrlp_reuse_window = 'startify'
-
-        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-        if executable('ag')
-            let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-        endif
     " }}}
     " TagBar {{{
         set tags=tags;/
@@ -546,42 +507,19 @@
     " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
-        " NOTE: override these in $HOME/.local.vimrc as needed!
-        let g:syntastic_mode_map = {
-            \ 'mode': 'passive',
-            \ 'active_filetypes':
-                \ ['c', 'cpp', 'perl', 'python'] }
+        "let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['c', 'cpp', 'perl', 'python'] }
 
         " Skip check on :wq, :x, :ZZ etc
         let g:syntastic_check_on_wq = 0
+    " }}}
+    " Signify {{{
+        " Enable signify only with git
+        "let g:signify_vcs_list = [ 'git' ]
     " }}}
     " Netrw {{{
         let g:netrw_banner = 0
         let g:netrw_list_hide = '^\.$'
         let g:netrw_liststyle = 3
-    " }}}
-    " SnipMate {{{
-        " Disable '.' => 'self' Python snippet
-        " Breaks SuperTab with omnicomplete (e.g. module.<Tab>)
-        function! DisablePythonSelfSnippet()
-            let l:pysnip = $HOME."/.vim/after/snippets/python.snippets"
-            if !filereadable(l:pysnip)
-                call system("echo 'snippet!! .' > " . l:pysnip)
-            endif
-        endfunction
-
-        augroup DisablePythonSelfSnippet
-            autocmd!
-            autocmd BufNewFile,BufRead *.py :call DisablePythonSelfSnippet()
-        augroup END
-    " }}}
-    " Automatically remove preview window after autocomplete {{{
-    " (mainly for clang_complete)
-        augroup RemovePreview
-            autocmd!
-            autocmd CursorMovedI * if pumvisible() == 0 | pclose | endif
-            autocmd InsertLeave * if pumvisible() == 0 | pclose | endif
-        augroup END
     " }}}
 " }}}
 
