@@ -38,6 +38,8 @@ That's it!
 * [Powerline](https://github.com/powerline/powerline)
   * [Powerline fonts](https://github.com/powerline/fonts)
 * Vim
+  * Plugin manager
+    * [junegunn/vim-plug](https://github.com/junegunn/vim-plug)
   * Colorschemes
     * [nanotech/jellybeans.vim](https://github.com/nanotech/jellybeans.vim)
     * [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
@@ -58,9 +60,9 @@ That's it!
     * [mattn/gist-vim](https://github.com/mattn/gist-vim)
   * Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
     * [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
-  * Awesome syntax checker.
+  * Awesome syntax checker
     * [scrooloose/syntastic](https://github.com/scrooloose/syntastic)
-  * Functions, class data etc.
+  * Class outline viewer
     * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
   * FZF - Fuzzy Finder
     * [junegunn/fzf](https://github.com/junegunn/fzf)
@@ -69,7 +71,6 @@ That's it!
     * [tpope/vim-git](https://github.com/tpope/vim-git)
     * [cakebaker/scss-syntax.vim](https://github.com/cakebaker/scss-syntax.vim)
     * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
-    * [pangloss/vim-javascript](https://github.com/pangloss/vim-javascript)
   * Completion (or template)
     * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
   * Make % match xml tags
@@ -87,12 +88,12 @@ That's it!
     * e.g. `os.Darwin.zshrc` will be loaded in Mac OS X zsh
 * Shell rc files with `.host.$(uname -n)` prefix will be loaded
   * `.host.$(uname -n)._shrc`(for both zsh and bash), `.host.$(uname -n).zshrc`, `.host.$(uname -n).bashrc`
-    * e.g. `host.github.com.bashrc` will be loaded in bash at host github.com
+    * e.g. `.host.github.com.bashrc` will be loaded in bash at host github.com
 * Shell rc files with `.local` prefix will be loaded
   * `.local._shrc`(for both zsh and bash), `.local.zshrc`, `.local.bashrc`
 * Screen rc files with `.host.$(uname -n)` prefix will be loaded
   * `.host.$(uname -n).screenrc`
-    * e.g. `host.github.com.screenrc` will be used when run screen at host github.com
+    * e.g. `.host.github.com.screenrc` will be used when run screen at host github.com
 * Vim rc files with `.local` prefix will be loaded
   * `.local.plugins.vimrc` will be loaded in Vundle's loading step
   * `.local.pre.vimrc` will be loaded just before the main .vimrc settings and just after vim-plug loading step

@@ -50,10 +50,10 @@
         " Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
         Plug 'mhinz/vim-signify'
 
-        " Awesome syntax checker.
+        " Awesome syntax checker
         Plug 'scrooloose/syntastic'
 
-        " Functions, class data etc.
+        " Class outline viewer
         Plug 'majutsushi/tagbar'
 
         " FZF - Fuzzy Finder
