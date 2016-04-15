@@ -141,12 +141,13 @@ OS="$(uname -s)"
 
 # copy dot files
     echo "${GRN}copy${RST} ${BLD}dot files${RST}"
+    date="$( date '+%Y-%m-%dT%H:%M:%S' )"
     dotfiles=($( find . -depth 1 -type f -iname '.*' -not -iname '.gitignore' ))
     for fn in "${dotfiles[@]}"; do
         src_fn="${fn#./}"
         dst_fn="$HOME/$src_fn"
         if [ -f "$dst_fn" ]; then
-            mv "$dst_fn" "$dst_fn.bak"
+            mv "$dst_fn" "$dst_fn.$date.bak"
         fi
         echo "${GRN}cp${RST} \"${BLD}${src_fn}${RST}\" \"$HOME/\""
         cp "$src_fn" "$HOME/"
