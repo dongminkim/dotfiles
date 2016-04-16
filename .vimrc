@@ -519,12 +519,19 @@
             \ ]
         let g:startify_files_number = 5
     " }}}
-    " TagBar {{{
+    " Tagbar {{{
         set tags=tags;/
 
         " Proportions
         let g:tagbar_left = 0
         let g:tagbar_width = 30
+    " }}}
+    " EasyAlign {{{
+        " Start interactive EasyAlign in visual mode (e.g. vipga)
+        xmap ga <Plug>(EasyAlign)
+
+        " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+        nmap ga <Plug>(EasyAlign)
     " }}}
     " FZF {{{
         " Mapping selecting mappings
