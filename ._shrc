@@ -193,15 +193,19 @@
             export _SH_SOURCE="$BASH_SOURCE"
             set -o ignoreeof    # ignore EOF (Ctrl+D)
             POWERLINE_SCRIPT="${PY_PKG_DIR}/powerline/bindings/bash/powerline.sh"
+            FZF_SCRIPT="$HOME/.fzf.bash"
             ;;
 
         zsh  )
             export _SH_SOURCE="${(%):-%N}"
             setopt IGNORE_EOF   # ignore EOF (Ctrl+D)
             POWERLINE_SCRIPT="${PY_PKG_DIR}/powerline/bindings/zsh/powerline.zsh"
+            FZF_SCRIPT="$HOME/.fzf.zsh"
             ;;
     esac
     [ -f "${POWERLINE_SCRIPT}" ] && source "${POWERLINE_SCRIPT}"
+    [ -f "${FZF_SCRIPT}" ] && source "${FZF_SCRIPT}"
+
 # Shell Specific Settings }}}
 
 # Additonal Settings {{{
