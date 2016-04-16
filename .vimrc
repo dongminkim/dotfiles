@@ -569,7 +569,7 @@
         let g:netrw_liststyle = 3
     " }}}
     " Undo-tree {{{
-        nnoremap <leader>du :UndotreeToggle<CR>
+        nnoremap <leader>tU :UndotreeToggle<CR>
         nnoremap <leader>dU :call ClearUndo()<CR><bar>:UndotreeHide<CR>
   " }}}
 " }}}
