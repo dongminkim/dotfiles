@@ -141,7 +141,7 @@ OS="$(uname -s)"
 
 # install Vim plugins
     echo "${GRN}install${RST} ${BLD}Vim plugins${RST}"
-    vim -u './.vimrc' -c 'q'
+    vim -u './.vimrc' -c 'PlugUpdate' -c 'qa'
 
 # copy dot files
     echo "${GRN}copy${RST} ${BLD}dot files${RST}"
