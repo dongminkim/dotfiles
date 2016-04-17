@@ -212,8 +212,8 @@
         let mapleader=","
 
         " Quickly edit/source .vimrc
-        noremap <leader>ve :edit $HOME/.vimrc<CR>
-        noremap <leader>vs :source $HOME/.vimrc<CR>
+        nnoremap <leader><C-o> :new $HOME/.vimrc<CR>
+        nnoremap <leader><C-r> :source $HOME/.vimrc<CR>
 
         " Yank(copy) to system clipboard
         noremap <leader>y "+y
@@ -373,14 +373,15 @@
             augroup END
         " }}}
 
-        " Write with Sudo {{{
+        " Write and Sudo {{{
             function! WriteWithSudo(fn)
                 let choice = confirm("Write '".a:fn."' with sudo?", "&Yes\n&No", 2)
                 if choice == 1
                     execute ":silent w !sudo tee '".a:fn."' > /dev/null"
                 endif
             endfunction
-            command! W :call WriteWithSudo(@%)<bar>:edit!
+            command! SudoWrite :call WriteWithSudo(@%)<bar>:edit!
+            command! W :write
         " }}}
     " }}}
 
@@ -424,8 +425,8 @@
             endif
             execute "edit ".dir
         endfunction
-        nnoremap <leader>sD :call SplitAndEditDirectory(0)<CR>
-        nnoremap <leader>vsD :call SplitAndEditDirectory(1)<CR>
+        nnoremap <leader>S :call SplitAndEditDirectory(0)<CR>
+        nnoremap <leader>V :call SplitAndEditDirectory(1)<CR>
     " }}}
 
     " Clear undo. Requires Vim 7.3 {{{
@@ -546,6 +547,7 @@
         imap <c-f><c-l> <plug>(fzf-complete-line)
 
         " Key bindings
+        nmap <C-w><Space> :Windows<CR>
         nnoremap ff :Files<space>
         nnoremap fb :Buffers<CR>
         nnoremap fa :Ag<space>
