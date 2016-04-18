@@ -77,7 +77,7 @@ That's it!
     * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
 * dotfiles
   * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
-  * `.vimrc`
+  * `.vimrc` (My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
   * `.tmux.conf`
   * `.screenrc`
 
@@ -102,11 +102,6 @@ That's it!
 ## Author
 
 * [@dongminkim](https://github.com/dongminkim)
-* `vanity` is my account ID
-* `diego` is my nickname in my company
-
-## Thanks to...
-
-* [@timss](https://github.com/timss)
-  * My old `.vimrc` has been rewritten with the `.vimrc` of [timss/vimconf](https://github.com/timss/vimconf)
+  * `vanity` is my account ID
+  * `diego` is my nickname in my company
 
