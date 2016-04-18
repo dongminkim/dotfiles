@@ -59,3 +59,8 @@ plugins=(git gitfast zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 source $HOME/._shrc "${(%):-%N}"
 
+# https://github.com/junegunn/fzf/wiki/Fuzzy-completion
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
+

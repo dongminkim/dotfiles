@@ -252,7 +252,7 @@
     esac
     [ -f "${POWERLINE_SCRIPT}" ] && source "${POWERLINE_SCRIPT}"
     [ -f "${FZF_SCRIPT}" ] && source "${FZF_SCRIPT}"
-
+    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 # Shell Specific Settings }}}
 
 # Additonal Settings {{{
