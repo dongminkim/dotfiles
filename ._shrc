@@ -33,7 +33,7 @@
 
     # Screen Command Overrider
         function screen { #{{{
-            screencmd=( "$(/usr/bin/env which screen)" )
+            local screencmd=( "$(/usr/bin/env which screen)" )
             if [[ "$TERM" =~ -256color(-.*)? ]]; then
                 screencmd=( "${screencmd[@]}" -T screen-256color )
             fi
@@ -44,10 +44,50 @@
             "${screencmd[@]}"
         } #}}}
 
+    # Tmux Launcher
+        function tmx { #{{{
+            local OPTIND opt_dup
+            while getopts ":dh" opt; do
+                case $opt in
+                    d ) opt_dup=1 ;;
+                    h ) echo "Usage: $0 [-h][-d] [SESSION_NAME]"
+                        echo "Options:"
+                        echo "  -h  Print this help"
+                        echo "  -d  Duplicate SESSION_NAME(default '0') tmux session"
+                        return 0 ;;
+                esac
+            done
+            shift $(($OPTIND - 1))
+
+            local ses_name="${1:-0}"
+            if [ "$ses_name" = "ls" ]; then
+                tmux ls
+            elif tmux ls 2> /dev/null | grep "^$ses_name:"; then
+                if [ "$opt_dup" ]; then
+                    local dup_seq=$( tmux ls | egrep "^vv~\d+:" | cut -f1 -d: | cut -f2 -d~ | sort -n | awk '$1!=p+1{print p+1;exit}{p=$1}' )
+                    local dup_ses_name="${ses_name}~${dup_seq:-1}"
+                    tmux new-session -t "$ses_name" -s "$dup_ses_name"
+                else
+                    tmux attach-session -t "$ses_name"
+                fi
+            else
+                if [ "$opt_dup" ]; then
+                    echo "No such tmux session '$ses_name'" 1>&2
+                    return 1
+                else
+                    if check-runnable "tmx-$ses_name"; then
+                        "tmx-$ses_name" "$ses_name"
+                    else
+                        tmux new-session -s "$ses_name"
+                    fi
+                fi
+            fi
+        } #}}}
+
     # Git Command Overrider
         function git { #{{{
-            typeset -r gitcmd="git-$1"
-            if check-runnable "$gitcmd" > /dev/null 2>&1; then
+            local gitcmd="git-$1"
+            if check-runnable "$gitcmd"; then
                 shift
                 "$gitcmd" "$@"
             else
@@ -79,14 +119,15 @@
                 | sed -e 's/:$//'
         } #}}}
         function sort_path { #{{{
-            user_path="$HOME/local/bin:$HOME/bin"
-            system_path="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+            local user_path="$HOME/local/bin:$HOME/bin"
+            local system_path="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
             compact_path "$user_path:$PATH:$system_path"
         } #}}}
 
     # More RC Files
         function load_more_rc_files { #{{{
-            placeholder="{{}}"
+            local placeholder="{{}}"
+            local more_rc_files
             more_rc_files=(
                 "$HOME/.os.$(uname -s)$placeholder"
                 "$HOME/.host.$(uname -n)$placeholder"
@@ -95,8 +136,8 @@
 
             for rc_tpl in "${more_rc_files[@]}"; do
                 for target in "$@"; do
-                    target=$( basename "$target" )
-                    rc="${rc_tpl//$placeholder/$target}"
+                    local target=$( basename "$target" )
+                    local rc="${rc_tpl//$placeholder/$target}"
                     if [ -f "$rc" ]; then
                         source "$rc"
                     fi
