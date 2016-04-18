@@ -77,7 +77,7 @@ That's it!
     * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
 * dotfiles
   * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
-  * `.vimrc` (My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
+  * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
   * `.tmux.conf`
   * `.screenrc`
 
