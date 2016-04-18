@@ -23,10 +23,18 @@
             export LESS_TERMCAP_se=$'\E[0m'         # end standout (info-bar, search)
         } #}}}
 
+    # Command Existenace Checker
+        function check-runnable {
+            case "$( detect_shell )" in
+                bash ) [ "$( type -t $1 )" = "" ] && return 1 || return 0 ;;
+                zsh  ) type "$1" > /dev/null ;;
+            esac
+        }
+
     # Git Command Overrider
         function git { #{{{
             typeset -r gitcmd="git-$1"
-            if which "$gitcmd" > /dev/null 2>&1; then
+            if check-runnable "$gitcmd" > /dev/null 2>&1; then
                 shift
                 "$gitcmd" "$@"
             else
