@@ -31,6 +31,19 @@
             esac
         }
 
+    # Screen Command Overrider
+        function screen { #{{{
+            screencmd=( "$(/usr/bin/env which screen)" )
+            if [[ "$TERM" =~ -256color(-.*)? ]]; then
+                screencmd=( "${screencmd[@]}" -T screen-256color )
+            fi
+            screenrc="$HOME/.host.$(uname -n).screenrc"
+            if [ -f "$screenrc" ]; then
+                screencmd=( "${screencmd[@]}" -c "$screenrc" )
+            fi
+            "${screencmd[@]}"
+        } #}}}
+
     # Git Command Overrider
         function git { #{{{
             typeset -r gitcmd="git-$1"
@@ -144,21 +157,6 @@
     #}}}
 
     # command aliases {{{
-        # screen {{{
-            SCREENCOMMAND="screen"
-            if [[ "$TERM" =~ -256color(-.*)? ]]; then
-                SCREENCOMMAND="$SCREENCOMMAND -T screen-256color"
-            fi
-            screenrc="$HOME/.host.$(uname -n).screenrc"
-            if [ -f "$screenrc" ]; then
-                SCREENCOMMAND="$SCREENCOMMAND -c '$screenrc'"
-            fi
-            if [[ "$SCREENCOMMAND" == "screen" ]]; then
-                alias screen > /dev/null && unalias screen
-            else
-                alias screen="$SCREENCOMMAND"
-            fi
-        # }}}
         alias rm='rm -i'
         alias mv='mv -i'
         alias cp='cp -i'
