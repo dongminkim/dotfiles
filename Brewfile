@@ -6,7 +6,7 @@ cask_args appdir: '/Applications'
 tap 'caskroom/cask'
 
 # Terminal
-brew 'vim'
+brew 'vim', args: ['with-lua']
 brew 'python'
 brew 'ctags'
 brew 'readline'
