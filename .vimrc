@@ -53,6 +53,9 @@
         " Awesome syntax checker
         Plug 'scrooloose/syntastic'
 
+        " NERDTree
+        Plug 'scrooloose/nerdtree'
+
         " Class outline viewer
         Plug 'majutsushi/tagbar'
 
@@ -384,15 +387,6 @@
             command! W :write
         " }}}
     " }}}
-
-    " Plugins {{{
-        " Toggle tagbar (definitions, functions etc.)
-        map <leader>tT :TagbarToggle<CR>
-
-        " Syntastic - toggle error list. Probably should be toggleable.
-        noremap <silent><leader>tE :Errors<CR>
-        noremap <silent><leader>tC :lclose<CR>
-    " }}}
 " }}}
 
 " Files {{{
@@ -526,6 +520,9 @@
         " Proportions
         let g:tagbar_left = 0
         let g:tagbar_width = 30
+
+        " Toggle tagbar (definitions, functions etc.)
+        map <leader>tT :TagbarToggle<CR>
     " }}}
     " EasyAlign {{{
         " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -567,10 +564,18 @@
 
         " Skip check on :wq, :x, :ZZ etc
         let g:syntastic_check_on_wq = 0
+
+        " Syntastic - toggle error list
+        noremap <silent><leader>tE :Errors<CR>
+        noremap <silent><leader>tC :lclose<CR>
     " }}}
     " Signify {{{
         " Enable signify only with git
         "let g:signify_vcs_list = [ 'git' ]
+    " }}}
+    " NERDTree {{{
+        " NERDTree toggle
+        noremap <silent><leader>t. :NERDTreeToggle<CR>
     " }}}
     " Netrw {{{
         let g:netrw_banner = 0
