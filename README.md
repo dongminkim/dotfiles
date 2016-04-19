@@ -20,7 +20,7 @@ git clone https://github.com/dongminkim/dotfiles.git ~/.dotfiles && ~/.dotfiles/
 
 1. When the bootstrap script finishes, you can see the instructions how to load iTerm2 profiles.
 
-1. Then run `vim` to install Vim Plugins.  It will automatically install plugins with Vundle.
+1. Quit and restart iTerm2.
 
 That's it!
 
