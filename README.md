@@ -56,22 +56,26 @@ That's it!
   * Git inside Vim
     * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
   * Gist inside Vim
-    * [mattn/webapi-vim](https://github.com/mattn/webapi-vim) 
     * [mattn/gist-vim](https://github.com/mattn/gist-vim)
   * Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
     * [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
   * Awesome syntax checker
     * [scrooloose/syntastic](https://github.com/scrooloose/syntastic)
+  * File & Directory viewer
+    * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
   * Class outline viewer
     * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
-  * FZF - Fuzzy Finder
+  * Fuzzy Finder
     * [junegunn/fzf](https://github.com/junegunn/fzf)
     * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
+  * Completion
+    * [Shougo/neocomplete.vim](https://github.com/Shougo/neocomplete.vim)
+    * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim)
   * Syntax
     * [tpope/vim-git](https://github.com/tpope/vim-git)
     * [cakebaker/scss-syntax.vim](https://github.com/cakebaker/scss-syntax.vim)
     * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
-  * Completion (or template)
+  * Template
     * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
   * Make % match xml tags
     * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
