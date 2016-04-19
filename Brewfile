@@ -15,7 +15,7 @@ brew 'openssl'
 brew 'netcat'
 brew 'socat'
 brew 'tmux'
-brew 'reattach-to-user-namespace'
+#brew 'reattach-to-user-namespace'
 brew 'the_silver_searcher'
 cask 'iterm2'
 
