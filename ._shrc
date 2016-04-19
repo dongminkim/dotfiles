@@ -33,7 +33,8 @@
 
     # Screen Command Overrider
         function screen { #{{{
-            local screencmd=( "$(/usr/bin/env which screen)" )
+            local screencmd
+            screencmd=( "$(/usr/bin/env which screen)" )
             if [[ "$TERM" =~ -256color(-.*)? ]]; then
                 screencmd=( "${screencmd[@]}" -T screen-256color )
             fi
