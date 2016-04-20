@@ -5,78 +5,10 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 OS="$(uname -s)"
 
 # colors
-    DEF=$(echo -en '\033[39m')
-    BLK=$(echo -en '\033[30m')
-    RED=$(echo -en '\033[31m')
-    GRN=$(echo -en '\033[32m')
-    YLW=$(echo -en '\033[33m')
-    BLU=$(echo -en '\033[34m')
-    MGT=$(echo -en '\033[35m')
-    CYN=$(echo -en '\033[36m')
-    LGRY=$(echo -en '\033[37m')
-    DGRY=$(echo -en '\033[90m')
-    LRED=$(echo -en '\033[91m')
-    LGRN=$(echo -en '\033[92m')
-    LYLW=$(echo -en '\033[93m')
-    LBLU=$(echo -en '\033[94m')
-    LMGT=$(echo -en '\033[95m')
-    LCYN=$(echo -en '\033[96m')
-    WHT=$(echo -en '\033[97m')
-    ORNG=$(echo -en '\033[38;5;166m')
-    RST=$(echo -en '\033[00m')
-    BLD=$(echo -en '\033[1;2m')
-    RBLD=$(echo -en '\033[21;22m')
-    UND=$(echo -en '\033[4m')
-    RUND=$(echo -en '\033[24m')
+    source ./.colors.sh
+    source ./.install_functions.sh
 
 # install functions
-    function brew_install {
-        if ! brew list "$@" >& /dev/null; then
-            echo "${GRN}brew install${RST} ${BLD}$@${RST}"
-            brew install "$@"
-        else
-            echo "${BLD}brew $@${RST} ${GRN}exists${RST}"
-        fi
-    }
-    function brew_cask_install {
-        if ! brew cask list "$@" >& /dev/null; then
-            echo "${GRN}brew cask install${RST} ${BLD}$@${RST}"
-            brew cask install "$@"
-        else
-            echo "${BLD}brew cask $@${RST} ${GRN}exists${RST}"
-        fi
-    }
-    function npm_install {
-        if ! npm ls "$@" >& /dev/null; then
-            echo "${GRN}npm install${RST} ${BLD}$@${RST}"
-            npm install "$@"
-        else
-            echo "${BLD}npm $@${RST} ${GRN}exists${RST}"
-        fi
-    }
-    function gem_install {
-        if ! gem list -i "$@" > /dev/null; then
-            echo "${GRN}gem install${RST} ${BLD}$@${RST}"
-            gem install "$@" || { echo "${RED}Oops! Try again with sudo...${RST}"; sudo gem install "$@"; }
-        else
-            echo "${BLD}gem $@${RST} ${GRN}exists${RST}"
-        fi
-    }
-    function pip_install {
-        if [ -x /usr/local/bin/python ]; then
-            # force to use pip of python installed with brew
-            pip="/usr/local/bin/python -m pip"
-        else
-            pip="python -m pip"
-        fi
-
-        if ! $pip show -q "$1" > /dev/null; then
-            echo "${GRN}pip install${RST} ${BLD}$@${RST}"
-            $pip install "${2-$1}"
-        else
-            echo "${BLD}pip $@${RST} ${GRN}exists${RST}"
-        fi
-    }
     function osx_prerequisites {
         # brew
             if ! which brew >& /dev/null; then

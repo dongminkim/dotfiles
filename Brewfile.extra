@@ -1,7 +1,8 @@
 # Brewfile.extra
-# Relies on https://github.com/Homebrew/homebrew-bundle
-# brew tap Homebrew/bundle
-# brew help bundle
+# - relies on https://github.com/Homebrew/homebrew-bundle
+#   brew tap Homebrew/bundle
+# - install
+#   brew bundle --file=Brewfile.extra
 cask_args appdir: '/Applications'
 tap 'caskroom/cask'
 tap 'homebrew/dupes'
@@ -11,6 +12,7 @@ cask 'quicksilver'
 cask '1password'
 cask 'caffeine'
 cask 'macvim'
+cask 'xquartz'
 
 # Browsers
 cask 'google-chrome'
@@ -33,6 +35,7 @@ brew 'watch'
 brew 'parallel'
 brew 'pv'
 brew 'nmap'
+brew 'gpg'
 
 # Dev Tools
 brew 'git'

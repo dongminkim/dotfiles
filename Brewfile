@@ -1,7 +1,8 @@
 # Brewfile
-# Relies on https://github.com/Homebrew/homebrew-bundle
-# brew tap Homebrew/bundle
-# brew help bundle
+# - relies on https://github.com/Homebrew/homebrew-bundle
+#   brew tap Homebrew/bundle
+# - install
+#   brew bundle
 cask_args appdir: '/Applications'
 tap 'caskroom/cask'
 
