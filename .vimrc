@@ -35,6 +35,9 @@
         " Handle surround chars like ''
         Plug 'tpope/vim-surround'
 
+        " Preview the contents of registers
+        Plug 'junegunn/vim-peekaboo'
+
         " Handle alignment
         Plug 'junegunn/vim-easy-align'
 
