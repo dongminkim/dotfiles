@@ -38,9 +38,6 @@
         " Preview the contents of registers
         Plug 'junegunn/vim-peekaboo'
 
-        " Handle alignment
-        Plug 'junegunn/vim-easy-align'
-
         " Visualize undo tree
         Plug 'mbbill/undotree'
 
@@ -79,6 +76,13 @@
 
         " Make % match xml tags
         Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
+
+        " Handle alignment
+        "Plug 'junegunn/vim-easy-align'
+
+        " Markdown preview on OS X
+        "Plug 'junegunn/vim-xmark', { 'for': 'markdown', 'do': 'make' }
+
     " }}}
 
     " Load local plugins {{{
