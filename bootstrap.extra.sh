@@ -51,4 +51,7 @@ OS="$(uname -s)"
         echo "${BLD}rvm${RST} ${GRN}exists${RST}"
     fi
 
+# install gems
+    gem_install bundler
+
 echo "${GRN}done${RST}"
