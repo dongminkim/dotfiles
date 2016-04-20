@@ -42,7 +42,7 @@
         Plug 'mbbill/undotree'
 
         " Git inside Vim
-        Plug 'tpope/vim-fugitive'
+        Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
 
         " Gist inside Vim
         Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
