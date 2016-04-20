@@ -83,7 +83,8 @@ OS="$(uname -s)"
                 echo "${GRN}install${RST} ${BLD}brew${RST}"
                 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
             else
-                echo "${BLD}brew${RST} ${GRN}exists${RST}"
+                echo "${GRN}brew update${RST}"
+                brew update
             fi
 
         # brew cask
