@@ -49,23 +49,25 @@ That's it!
     * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
   * Handle surround chars like ''
     * [tpope/vim-surround](https://github.com/tpope/vim-surround)
-  * Handle alignment
-    * [junegunn/vim-easy-align](https://github.com/junegunn/vim-easy-align)
+  * Preview the contents of registers
+    * [junegunn/vim-peekaboo](https://github.com/junegunn/vim-peekaboo)
   * Visualize undo tree
     * [mbbill/undotree](https://github.com/mbbill/undotree)
   * Git inside Vim
     * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+    * [junegunn/gv.vim](https://github.com/junegunn/gv.vim)
   * Gist inside Vim
+    * [mattn/webapi-vim](https://github.com/mattn/webapi-vim)
     * [mattn/gist-vim](https://github.com/mattn/gist-vim)
   * Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
     * [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
   * Awesome syntax checker
     * [scrooloose/syntastic](https://github.com/scrooloose/syntastic)
-  * File & Directory viewer
+  * NERDTree
     * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
   * Class outline viewer
     * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
-  * Fuzzy Finder
+  * FZF - Fuzzy Finder
     * [junegunn/fzf](https://github.com/junegunn/fzf)
     * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
   * Completion
@@ -79,6 +81,7 @@ That's it!
     * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
   * Make % match xml tags
     * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
+
 * dotfiles
   * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
   * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))

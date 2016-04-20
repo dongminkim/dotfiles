@@ -82,7 +82,6 @@
 
         " Markdown preview on OS X
         "Plug 'junegunn/vim-xmark', { 'for': 'markdown', 'do': 'make' }
-
     " }}}
 
     " Load local plugins {{{
