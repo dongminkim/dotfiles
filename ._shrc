@@ -24,12 +24,12 @@
         } #}}}
 
     # Command Existenace Checker
-        function check-runnable {
+        function check-runnable { #{{{
             case "$( detect_shell )" in
                 bash ) [ "$( type -t $1 )" = "" ] && return 1 || return 0 ;;
                 zsh  ) type "$1" > /dev/null ;;
             esac
-        }
+        } #}}}
 
     # Screen Command Overrider
         function screen { #{{{
@@ -38,7 +38,7 @@
             if [[ "$TERM" =~ -256color(-.*)? ]]; then
                 screencmd=( "${screencmd[@]}" -T screen-256color )
             fi
-            screenrc="$HOME/.host.$(uname -n).screenrc"
+            local screenrc="$HOME/.host.$(uname -n).screenrc"
             if [ -f "$screenrc" ]; then
                 screencmd=( "${screencmd[@]}" -c "$screenrc" )
             fi

@@ -10,9 +10,9 @@ Screenshot captured in iTerm2 with `Vanity Dark` Profile
 ### Using Git and the bootstrap script
 
 1. You can clone the repository wherever you want, and run the bootstrap script.
-  ```bash
+    ```bash
 git clone https://github.com/dongminkim/dotfiles.git ~/.dotfiles && ~/.dotfiles/bootstrap.sh
-  ```
+    ```
 
 1. You may be asked your password to do `sudo` once or twice.
 
@@ -27,88 +27,149 @@ That's it!
 ### What will be installed?
 
 * Mac OS X
-  * [Homebrew](http://brew.sh)
-  * [iTerm2](https://iterm2.com)
-    * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
-  * [tmux](https://tmux.github.io)
-    * [tmux-MacOSX-pasteboard](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) aka reattach-to-user-namespace
+    * [Homebrew](http://brew.sh)
+    * [iTerm2](https://iterm2.com)
+        * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
+    * [tmux](https://tmux.github.io)
+        * [tmux-MacOSX-pasteboard](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) aka reattach-to-user-namespace
 * zsh
-  * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
-  * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+    * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
+    * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * [Powerline](https://github.com/powerline/powerline)
-  * [Powerline fonts](https://github.com/powerline/fonts)
+    * [Powerline fonts](https://github.com/powerline/fonts)
 * Vim
-  * Plugin manager
-    * [junegunn/vim-plug](https://github.com/junegunn/vim-plug)
-  * Colorschemes
-    * [nanotech/jellybeans.vim](https://github.com/nanotech/jellybeans.vim)
-    * [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
-  * Powerline
-    * [Lokaltog/powerline](https://github.com/Lokaltog/powerline)
-  * A fancy start screen, shows MRU etc.
-    * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
-  * Handle surround chars like ''
-    * [tpope/vim-surround](https://github.com/tpope/vim-surround)
-  * Preview the contents of registers
-    * [junegunn/vim-peekaboo](https://github.com/junegunn/vim-peekaboo)
-  * Visualize undo tree
-    * [mbbill/undotree](https://github.com/mbbill/undotree)
-  * Git inside Vim
-    * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
-    * [junegunn/gv.vim](https://github.com/junegunn/gv.vim)
-  * Gist inside Vim
-    * [mattn/webapi-vim](https://github.com/mattn/webapi-vim)
-    * [mattn/gist-vim](https://github.com/mattn/gist-vim)
-  * Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
-    * [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
-  * Awesome syntax checker
-    * [scrooloose/syntastic](https://github.com/scrooloose/syntastic)
-  * NERDTree
-    * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
-  * Class outline viewer
-    * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
-  * FZF - Fuzzy Finder
-    * [junegunn/fzf](https://github.com/junegunn/fzf)
-    * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
-  * Completion
-    * [Shougo/neocomplete.vim](https://github.com/Shougo/neocomplete.vim)
-    * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim)
-  * Syntax
-    * [tpope/vim-git](https://github.com/tpope/vim-git)
-    * [cakebaker/scss-syntax.vim](https://github.com/cakebaker/scss-syntax.vim)
-    * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
-  * Template
-    * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
-  * Make % match xml tags
-    * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
-
+    * Plugin manager
+        * [junegunn/vim-plug](https://github.com/junegunn/vim-plug)
+    * Colorschemes
+        * [nanotech/jellybeans.vim](https://github.com/nanotech/jellybeans.vim)
+        * [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
+    * Powerline
+        * [Lokaltog/powerline](https://github.com/Lokaltog/powerline)
+    * A fancy start screen, shows MRU etc.
+        * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
+    * Handle surround chars like ''
+        * [tpope/vim-surround](https://github.com/tpope/vim-surround)
+    * Preview the contents of registers
+        * [junegunn/vim-peekaboo](https://github.com/junegunn/vim-peekaboo)
+    * Visualize undo tree
+        * [mbbill/undotree](https://github.com/mbbill/undotree)
+    * Git inside Vim
+        * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+        * [junegunn/gv.vim](https://github.com/junegunn/gv.vim)
+    * Gist inside Vim
+        * [mattn/webapi-vim](https://github.com/mattn/webapi-vim)
+        * [mattn/gist-vim](https://github.com/mattn/gist-vim)
+    * Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
+        * [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
+    * Awesome syntax checker
+        * [scrooloose/syntastic](https://github.com/scrooloose/syntastic)
+    * NERDTree
+        * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
+    * Class outline viewer
+        * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
+    * FZF - Fuzzy Finder
+        * [junegunn/fzf](https://github.com/junegunn/fzf)
+        * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
+    * Completion
+        * [Shougo/neocomplete.vim](https://github.com/Shougo/neocomplete.vim)
+        * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim)
+    * Syntax
+        * [tpope/vim-git](https://github.com/tpope/vim-git)
+        * [cakebaker/scss-syntax.vim](https://github.com/cakebaker/scss-syntax.vim)
+        * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
+    * Template
+        * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
+    * Make % match xml tags
+        * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
 * dotfiles
-  * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
-  * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
-  * `.tmux.conf`
-  * `.screenrc`
+    * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
+    * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
+    * `.tmux.conf`
+    * `.screenrc`
 
 ### Customize more
 
 * Shell rc files with `.os.$(uname -s)` prefix will be loaded
-  * `.os.$(uname -s)._shrc`(for both zsh and bash), `.os.$(uname -s).zshrc`, `.os.$(uname -s).bashrc`
-    * e.g. `os.Darwin.zshrc` will be loaded in Mac OS X zsh
+    * `.os.$(uname -s)._shrc`(for both zsh and bash), `.os.$(uname -s).zshrc`, `.os.$(uname -s).bashrc`
+        * e.g. `os.Darwin.zshrc` will be loaded in Mac OS X zsh
 * Shell rc files with `.host.$(uname -n)` prefix will be loaded
-  * `.host.$(uname -n)._shrc`(for both zsh and bash), `.host.$(uname -n).zshrc`, `.host.$(uname -n).bashrc`
-    * e.g. `.host.github.com.bashrc` will be loaded in bash at host github.com
+    * `.host.$(uname -n)._shrc`(for both zsh and bash), `.host.$(uname -n).zshrc`, `.host.$(uname -n).bashrc`
+        * e.g. `.host.github.com.bashrc` will be loaded in bash at host github.com
 * Shell rc files with `.local` prefix will be loaded
-  * `.local._shrc`(for both zsh and bash), `.local.zshrc`, `.local.bashrc`
+    * `.local._shrc`(for both zsh and bash), `.local.zshrc`, `.local.bashrc`
 * Screen rc files with `.host.$(uname -n)` prefix will be loaded
-  * `.host.$(uname -n).screenrc`
-    * e.g. `.host.github.com.screenrc` will be used when run screen at host github.com
+    * `.host.$(uname -n).screenrc`
+        * e.g. `.host.github.com.screenrc` will be used when run screen at host github.com
 * Vim rc files with `.local` prefix will be loaded
-  * `.local.plugins.vimrc` will be loaded in Vundle's loading step
-  * `.local.pre.vimrc` will be loaded just before the main .vimrc settings and just after vim-plug loading step
-  * `.local.vimrc` will be loaded after the main .vimrc settings
+    * `.local.plugins.vimrc` will be loaded in Vundle's loading step
+    * `.local.pre.vimrc` will be loaded just before the main .vimrc settings and just after vim-plug loading step
+    * `.local.vimrc` will be loaded after the main .vimrc settings
+
+## Usage
+
+### tmux
+
+`tmux` key bindings are heavily modified to be similar with `GNU screen` and `vim`.
+
+First of all, prefix changed from `C-b` to `C-a`.
+
+Here are all the modified key bindings:
+
+| key bindings | action |
+| ------------ | ------ |
+| `a` | `send-prefix` |
+| `C-r` | reload conf |
+| `*` | `list-clients` |
+| `C-l` | `refresh-client` |
+| `d`, `C-d` | `detach` |
+| `M-s` | `rename-session` |
+| `M-q` | `kill-session` |
+| `c`, `C-c` | `new-window` |
+| `A` | `rename-window` |
+| `C-a` | `last-window` |
+| `C-n` | `next-window` |
+| `p`, `C-p`, `BSpace` | `previous-window` |
+| `w`, `C-w`, `"`, `Space` | `choose-window` |
+| `C-k` | `kill-window` |
+| `S` | `split-window` horizontally |
+| `V` | `split-window` vertically |
+| `T` | `break-pane` into new window |
+| `_`, `Enter` | `resize-pane` to zoom in & out |
+| `Tab`, `BTab` | `select-pane` next, previous |
+| `h`, `j`, `k`, `l` | `select-pane` left, down, up, right |
+| `M-h`, `M-j`, `M-k`, `M-l` | `resize-pane` left, down, up, right |
+| `L` | `next-layout` |
+| `C-x` | `kill-pane` |
+| `R` | `respawn-pane` |
+| *(copy mode)* `Space`, `v` | `begin-selection` |
+| *(copy mode)* `Enter`, `y` | `copy-selection` |
+
+And I made `tmx` shell function that does run the user-defined startup script, attach to existing session or duplicate and open duplicated session.
+
+```
+tmx foo
+```
+* if there is a tmux session with name `foo`,
+    * attach to the existing `foo` session
+* if there is no tmux session with name `foo`,
+    * if there is a runnable function or command `tmx-foo`,
+        * run `tmx-foo foo` that might make a tmux session with name `foo`
+    * if there is no function or command `tmx-foo`,
+        * just open a new tmux session with name `foo`
+
+```
+tmx -d foo
+```
+* if there is a tmux session with name `foo`,
+    * duplicate the existing `foo` session and name it `foo~1` and attach to it
+* if there is no tmux session with name `foo`,
+    * just print error message
+
+
 
 ## Author
 
 * [@dongminkim](https://github.com/dongminkim)
-  * `vanity` is my account ID
-  * `diego` is my nickname in my company
+    * `vanity` is my account ID
+    * `diego` is my nickname in my company
 
