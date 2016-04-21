@@ -194,9 +194,13 @@ function tmx-foo {
 }
 ```
 
+## License
+
+[MIT](LICENSE)
+
 ## Author
 
-* [@dongminkim](https://github.com/dongminkim)
-    * `vanity` is my account ID
-    * `diego` is my nickname in my company
+[@dongminkim](https://github.com/dongminkim)
+
+*aka `vanity` or `diego`*
 
