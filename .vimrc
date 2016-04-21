@@ -167,7 +167,7 @@
     set iskeyword+=_,$,@,%,#                        " not word dividers
     set laststatus=2                                " always show statusline
     set linebreak                                   " don't cut words on wrap
-    set listchars=tab:>\                            " > to highlight <tab>
+    set listchars=tab:>\                            " > to highlight <Tab>
     set list                                        " displaying listchars
     set mouse=a                                     " enable mouse
     set noshowmode                                  " hide mode cmd line
@@ -220,22 +220,22 @@
 
 " Key bindings {{{
     " General {{{
-        " Remap <leader>
+        " Remap <Leader>
         let mapleader=","
 
         " Quickly edit/source .vimrc
-        nnoremap <leader><C-o> :new $HOME/.vimrc<CR>
-        nnoremap <leader><C-r> :source $HOME/.vimrc<CR>
+        nnoremap <Leader><C-o> :new $HOME/.vimrc<CR>
+        nnoremap <Leader><C-r> :source $HOME/.vimrc<CR>
 
         " Yank(copy) to system clipboard
-        noremap <leader>y "+y
+        noremap <Leader>y "+y
 
         " Toggle pastemode, doesn't indent
-        set pastetoggle=<leader>tp
+        set pastetoggle=<Leader>tp
 
         " Toggle folding
         " http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
-        nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+        nnoremap <Silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
         " Scroll up/down lines from 'scroll' option, default half a screen
         map <C-j> <C-d>
@@ -246,12 +246,12 @@
         nnoremap k gk
 
         " We don't need any help!
-        inoremap <F1> <nop>
-        nnoremap <F1> <nop>
-        vnoremap <F1> <nop>
+        inoremap <F1> <Nop>
+        nnoremap <F1> <Nop>
+        vnoremap <F1> <Nop>
 
         " Disable annoying ex mode (Q)
-        map Q <nop>
+        map Q <Nop>
 
         " Buffers, preferred over tabs now with bufferline.
         nnoremap gn :bnext<CR>
@@ -271,7 +271,7 @@
                     syntax on
                 endif
             endfunction
-            nnoremap <leader>ts :call ToggleSyntaxHighlighthing()<CR>
+            nnoremap <Leader>ts :call ToggleSyntaxHighlighthing()<CR>
         " }}}
 
         " Toggle highlighted search {{{
@@ -287,7 +287,7 @@
         " }}}
 
         " Clear last used search pattern
-        nnoremap <silent><CR> :let @/ = ""<CR>
+        nnoremap <Silent><CR> :let @/ = ""<CR>
 
         " Highlight characters past 79 {{{
         " You might want to override this function and its variables with
@@ -307,7 +307,7 @@
                     echo 'OverLength highlighting turned off'
                 endif
             endfunction
-            nnoremap <leader>tlh :call ToggleOverLengthHighlight()<CR>
+            nnoremap <Leader>tlh :call ToggleOverLengthHighlight()<CR>
         " }}}
 
         " Toggle number {{{
@@ -319,7 +319,7 @@
                 endif
                 setlocal number?
             endfunction
-            nnoremap <leader>tn :call NumberToggle()<CR>
+            nnoremap <Leader>tn :call NumberToggle()<CR>
         " }}}
 
         " Toggle relativenumber {{{
@@ -331,7 +331,7 @@
                 endif
                 setlocal relativenumber?
             endfunction
-            nnoremap <leader>trn :call RelativeNumberToggle()<CR>
+            nnoremap <Leader>trn :call RelativeNumberToggle()<CR>
         " }}}
 
         " Toggle text wrapping, wrap on whole words {{{
@@ -345,14 +345,14 @@
                     set wrap
                 endif
             endfunction
-            nnoremap <leader>tw :call WrapToggle()<CR>
+            nnoremap <Leader>tw :call WrapToggle()<CR>
         " }}}
 
         " Remove multiple empty lines {{{
             function! DeleteMultipleEmptyLines()
                 g/^\_$\n\_^$/d
             endfunction
-            nnoremap <leader>ld :call DeleteMultipleEmptyLines()<CR>
+            nnoremap <Leader>ld :call DeleteMultipleEmptyLines()<CR>
         " }}}
 
         " Split to relative header/source {{{
@@ -366,7 +366,7 @@
                     execute "vsplit" fnameescape(s:fname . ".h")
                 endif
             endfunction
-            nnoremap <leader>sr :call SplitRelSrc()<CR>
+            nnoremap <Leader>sr :call SplitRelSrc()<CR>
         " }}}
 
         " Strip trailing whitespace, return to cursor at save {{{
@@ -376,12 +376,12 @@
                 %s/\s\+$//e
                 call cursor(l, c)
             endfunction
-            nnoremap <leader><space>d :call StripTrailingWhitespace()<CR>
+            nnoremap <Leader><Space>d :call StripTrailingWhitespace()<CR>
 
             augroup StripTrailingWhitespace
                 autocmd!
                 "autocmd FileType c,cpp,cfg,conf,css,html,perl,python,sh,tex,yaml
-                "    \ autocmd BufWritePre <buffer> :call
+                "    \ autocmd BufWritePre <Buffer> :call
                 "    \ StripTrailingWhitespace()
             augroup END
         " }}}
@@ -393,7 +393,7 @@
                     execute ":silent w !sudo tee '".a:fn."' > /dev/null"
                 endif
             endfunction
-            command! SudoWrite :call WriteWithSudo(@%)<bar>:edit!
+            command! SudoWrite :call WriteWithSudo(@%)<Bar>:edit!
             command! W :write
         " }}}
     " }}}
@@ -412,7 +412,7 @@
             cd %:h
             pwd
         endfunction
-        nnoremap <leader>cwd :call Cwd()<CR>
+        nnoremap <Leader>cwd :call Cwd()<CR>
     " }}}
 
     " Split window and edit directory {{{
@@ -429,8 +429,8 @@
             endif
             execute "edit ".dir
         endfunction
-        nnoremap <leader>S :call SplitAndEditDirectory(0)<CR>
-        nnoremap <leader>V :call SplitAndEditDirectory(1)<CR>
+        nnoremap <Leader>S :call SplitAndEditDirectory(0)<CR>
+        nnoremap <Leader>V :call SplitAndEditDirectory(1)<CR>
     " }}}
 
     " Clear undo. Requires Vim 7.3 {{{
@@ -445,7 +445,7 @@
                 echo "done."
             endif
         endfunction
-        nnoremap <leader>dU :call ClearUndo()<CR>
+        nnoremap <Leader>dU :call ClearUndo()<CR>
     " }}}
 
     " Persistent undo. Requires Vim 7.3 {{{
@@ -495,8 +495,8 @@
     set shiftwidth=4                                " default 8
     set smartcase                                   " sensitive with uppercase
     set smarttab                                    " tab to 0,4,8 etc.
-    set softtabstop=4                               " "tab" feels like <tab>
-    set tabstop=4                                   " replace <TAB> w/4 spaces
+    set softtabstop=4                               " "tab" feels like <Tab>
+    set tabstop=4                                   " replace <Tab> w/4 spaces
     " Only auto-comment newline for block comments {{{
         augroup AutoBlockComment
             autocmd! FileType c,cpp setlocal comments -=:// comments +=f://
@@ -532,7 +532,7 @@
         let g:tagbar_width = 30
 
         " Toggle tagbar (definitions, functions etc.)
-        map <leader>tT :TagbarToggle<CR>
+        map <Leader>tT :TagbarToggle<CR>
     " }}}
     " EasyAlign {{{
         " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -543,22 +543,22 @@
     " }}}
     " FZF {{{
         " Mapping selecting mappings
-        nmap <leader><tab> <plug>(fzf-maps-n)
-        xmap <leader><tab> <plug>(fzf-maps-x)
-        omap <leader><tab> <plug>(fzf-maps-o)
+        nmap <Leader><Tab> <Plug>(fzf-maps-n)
+        xmap <Leader><Tab> <Plug>(fzf-maps-x)
+        omap <Leader><Tab> <Plug>(fzf-maps-o)
 
         " Insert mode completion
-        imap <c-f><c-d> <plug>(fzf-complete-word)
-        imap <c-f><c-f> <plug>(fzf-complete-path)
-        imap <c-f><c-g> <plug>(fzf-complete-file-ag)
-        imap <c-f><c-l> <plug>(fzf-complete-line)
+        imap <C-f><C-d> <Plug>(fzf-complete-word)
+        imap <C-f><C-f> <Plug>(fzf-complete-path)
+        imap <C-f><C-g> <Plug>(fzf-complete-file-ag)
+        imap <C-f><C-l> <Plug>(fzf-complete-line)
 
         " Key bindings
         nmap <C-w><Space> :Windows<CR>
-        nnoremap ff :Files<space>
+        nnoremap ff :Files<Space>
         nnoremap fb :Buffers<CR>
-        nnoremap fa :Ag<space>
-        nnoremap ft :Tags<space>
+        nnoremap fa :Ag<Space>
+        nnoremap ft :Tags<Space>
         nnoremap fm :Marks<CR>
         nnoremap fh :Helptags<CR>
         nnoremap fc :Commands<CR>
@@ -576,8 +576,8 @@
         let g:syntastic_check_on_wq = 0
 
         " Syntastic - toggle error list
-        noremap <silent><leader>tE :Errors<CR>
-        noremap <silent><leader>tC :lclose<CR>
+        noremap <Silent><Leader>tE :Errors<CR>
+        noremap <Silent><Leader>tC :lclose<CR>
     " }}}
     " Signify {{{
         " Enable signify only with git
@@ -585,7 +585,7 @@
     " }}}
     " NERDTree {{{
         " NERDTree toggle
-        noremap <silent><leader>t. :NERDTreeToggle<CR>
+        noremap <Silent><Leader>t. :NERDTreeToggle<CR>
     " }}}
     " Netrw {{{
         let g:netrw_banner = 0
@@ -593,8 +593,8 @@
         let g:netrw_liststyle = 3
     " }}}
     " Undo-tree {{{
-        nnoremap <leader>tU :UndotreeToggle<CR>
-        nnoremap <leader>dU :call ClearUndo()<CR><bar>:UndotreeHide<CR>
+        nnoremap <Leader>tU :UndotreeToggle<CR>
+        nnoremap <Leader>dU :call ClearUndo()<CR><Bar>:UndotreeHide<CR>
     " }}}
     " Neocomplete {{{
     " https://github.com/Shougo/neocomplete.vim/blob/master/README.md
@@ -617,27 +617,27 @@
         let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
         " Plugin key-mappings.
-        inoremap <expr><C-g>     neocomplete#undo_completion()
-        inoremap <expr><C-l>     neocomplete#complete_common_string()
+        inoremap <Expr><C-g>     neocomplete#undo_completion()
+        inoremap <Expr><C-l>     neocomplete#complete_common_string()
 
         " Recommended key-mappings.
         " <CR>: close popup and save indent.
-        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+        inoremap <Silent> <CR> <C-r>=<SID>my_cr_function()<CR>
         function! s:my_cr_function()
             return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
             " For no inserting <CR> key.
             "return pumvisible() ? "\<C-y>" : "\<CR>"
         endfunction
 
-        " <TAB>: completion.
-        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+        " <Tab>: completion.
+        inoremap <Expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 
         " <C-h>, <BS>: close popup and delete backword char.
-        "inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-        "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+        "inoremap <Expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+        "inoremap <Expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
         " Close popup by <Space>.
-        "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+        "inoremap <Expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
         " AutoComplPop like behavior.
         "let g:neocomplete#enable_auto_select = 1
@@ -646,7 +646,7 @@
         "set completeopt+=longest
         "let g:neocomplete#enable_auto_select = 1
         "let g:neocomplete#disable_auto_complete = 1
-        "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+        "inoremap <Expr><Tab>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
