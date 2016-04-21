@@ -146,7 +146,7 @@ Here are all the modified key bindings:
 
 And I made `tmx` shell function that does run the user-defined startup script, attach to existing session or duplicate and open duplicated session.
 
-```
+```sh
 tmx foo
 ```
 * if there is a tmux session with name `foo`,
@@ -157,7 +157,7 @@ tmx foo
     * if there is no function or command `tmx-foo`,
         * just open a new tmux session with name `foo`
 
-```
+```sh
 tmx -d foo
 ```
 * if there is a tmux session with name `foo`,
@@ -165,7 +165,34 @@ tmx -d foo
 * if there is no tmux session with name `foo`,
     * just print error message
 
+Here is a sample tmx startup script `tmx-foo`
 
+```sh
+function tmx-foo {
+# http://superuser.com/questions/200382/how-do-i-get-tmux-to-open-up-a-set-of-panes-without-manually-entering-them/200453#200453
+    local ses_name="${1-foo}"
+    # Here I don't use pushd & popd because of oh-my-zsh's 'setopt auto_pushd'
+    local _pwd="$PWD"
+    cd "$HOME"
+    tmux new-session -d -s $ses_name
+    tmux rename-window -t $ses_name:0 '~'
+
+    tmux set set-remain-on-exit on
+
+        # All panes in 'foo-main' window are not destroyed on exit
+        # You can type `C-a` `R` to respawn exited pane
+        cd "$HOME/work/foo"
+        tmux new-window -t $ses_name:1 -n 'foo-main'
+        tmux splitw -t 0 dev_appserver.py --host 0.0.0.0 app.yaml
+
+    tmux set -u set-remain-on-exit
+
+    tmux select-window -t $ses_name:0
+    tmux select-pane -t 0
+    cd "$_pwd"
+    tmux attach-session -t $ses_name
+}
+```
 
 ## Author
 
