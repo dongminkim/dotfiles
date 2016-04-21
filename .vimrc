@@ -122,9 +122,8 @@
         " Force behavior and filetypes, and by extension highlighting {{{
             augroup FileTypeRules
                 autocmd!
-                autocmd BufNewFile,BufRead *.md set ft=markdown tw=79
-                autocmd BufNewFile,BufRead *.tex set ft=tex tw=79
-                autocmd BufNewFile,BufRead *.txt set ft=sh tw=79
+                "autocmd BufNewFile,BufRead *.tex set ft=tex tw=79
+                "autocmd BufNewFile,BufRead *.txt set ft=sh tw=79
             augroup END
         " }}}
 
@@ -377,12 +376,13 @@
                 %s/\s\+$//e
                 call cursor(l, c)
             endfunction
+            nnoremap <leader><space>d :call StripTrailingWhitespace()<CR>
 
             augroup StripTrailingWhitespace
                 autocmd!
-                autocmd FileType c,cpp,cfg,conf,css,html,perl,python,sh,tex,yaml
-                    \ autocmd BufWritePre <buffer> :call
-                    \ StripTrailingWhitespace()
+                "autocmd FileType c,cpp,cfg,conf,css,html,perl,python,sh,tex,yaml
+                "    \ autocmd BufWritePre <buffer> :call
+                "    \ StripTrailingWhitespace()
             augroup END
         " }}}
 
@@ -545,7 +545,7 @@
         " Mapping selecting mappings
         nmap <leader><tab> <plug>(fzf-maps-n)
         xmap <leader><tab> <plug>(fzf-maps-x)
-        omap <leader><tab> <plug>(fzf-maps-o) 
+        omap <leader><tab> <plug>(fzf-maps-o)
 
         " Insert mode completion
         imap <c-f><c-d> <plug>(fzf-complete-word)
@@ -558,7 +558,7 @@
         nnoremap ff :Files<space>
         nnoremap fb :Buffers<CR>
         nnoremap fa :Ag<space>
-        nnoremap ft :Tags<space> 
+        nnoremap ft :Tags<space>
         nnoremap fm :Marks<CR>
         nnoremap fh :Helptags<CR>
         nnoremap fc :Commands<CR>
@@ -674,4 +674,3 @@
         source $HOME/.local.vimrc
     endif
 " }}}
-
