@@ -69,7 +69,7 @@
                     local dup_ses_name="${ses_name}~${dup_seq:-1}"
                     tmux new-session -t "$ses_name" -s "$dup_ses_name"
                 else
-                    tmux attach-session -t "$ses_name"
+                    tmux attach-session -d -t "$ses_name"
                 fi
             else
                 if [ "$opt_dup" ]; then
