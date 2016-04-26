@@ -235,7 +235,7 @@
 
         " Toggle folding
         " http://vim.wikia.com/wiki/Folding#Mappings_to_toggle_folds
-        nnoremap <Silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+        nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
         " Scroll up/down lines from 'scroll' option, default half a screen
         map <C-j> <C-d>
@@ -287,7 +287,7 @@
         " }}}
 
         " Clear last used search pattern
-        nnoremap <Silent><CR> :let @/ = ""<CR>
+        nnoremap <silent><CR> :let @/ = ""<CR>
 
         " Highlight characters past 79 {{{
         " You might want to override this function and its variables with
@@ -576,8 +576,8 @@
         let g:syntastic_check_on_wq = 0
 
         " Syntastic - toggle error list
-        noremap <Silent><Leader>tE :Errors<CR>
-        noremap <Silent><Leader>tC :lclose<CR>
+        noremap <silent><Leader>tE :Errors<CR>
+        noremap <silent><Leader>tC :lclose<CR>
     " }}}
     " Signify {{{
         " Enable signify only with git
@@ -585,7 +585,7 @@
     " }}}
     " NERDTree {{{
         " NERDTree toggle
-        noremap <Silent><Leader>t. :NERDTreeToggle<CR>
+        noremap <silent><Leader>t. :NERDTreeToggle<CR>
     " }}}
     " Netrw {{{
         let g:netrw_banner = 0
@@ -622,7 +622,7 @@
 
         " Recommended key-mappings.
         " <CR>: close popup and save indent.
-        inoremap <Silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
         function! s:my_cr_function()
             return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
             " For no inserting <CR> key.
