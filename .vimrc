@@ -276,11 +276,7 @@
 
         " Toggle highlighted search {{{
             function! ToggleHighlightedSearch()
-                if (&hlsearch == 1)
-                    setlocal nohlsearch
-                else
-                    setlocal hlsearch
-                endif
+                setlocal hlsearch!
                 setlocal hlsearch?
             endfunction
             nnoremap th :call ToggleHighlightedSearch()<CR>
@@ -311,41 +307,28 @@
         " }}}
 
         " Toggle number {{{
-            function! NumberToggle()
-                if (&number == 1)
-                    setlocal nonumber
-                else
-                    setlocal number
-                endif
+            function! ToggleNumber()
+                setlocal number!
                 setlocal number?
             endfunction
-            nnoremap <Leader>tn :call NumberToggle()<CR>
+            nnoremap <Leader>tn :call ToggleNumber()<CR>
         " }}}
 
         " Toggle relativenumber {{{
-            function! RelativeNumberToggle()
-                if (&relativenumber == 1)
-                    setlocal norelativenumber
-                else
-                    setlocal relativenumber
-                endif
+            function! ToggleRelativeNumber()
+                setlocal relativenumber!
                 setlocal relativenumber?
             endfunction
-            nnoremap <Leader>trn :call RelativeNumberToggle()<CR>
+            nnoremap <Leader>trn :call ToggleRelativeNumber()<CR>
         " }}}
 
         " Toggle text wrapping, wrap on whole words {{{
         " For more info see: http://stackoverflow.com/a/2470885/1076493
-            function! WrapToggle()
-                if &wrap
-                    set list
-                    set nowrap
-                else
-                    set nolist
-                    set wrap
-                endif
+            function! ToggleWrap()
+                set wrap!
+                set wrap?
             endfunction
-            nnoremap <Leader>tw :call WrapToggle()<CR>
+            nnoremap <Leader>tw :call ToggleWrap()<CR>
         " }}}
 
         " Remove multiple empty lines {{{
@@ -405,6 +388,14 @@
     set confirm                                     " confirm changed files
     set noautowrite                                 " never autowrite
     set nobackup                                    " disable backups
+
+    " Toggle autochdir {{{
+        function! ToggleAutochdir()
+            setlocal autochdir!
+            setlocal autochdir?
+        endfunction
+        nnoremap <Leader>tcd :call ToggleAutochdir()<CR>
+    " }}}
 
     " Change into working directory {{{
     " Useful with noautochdir
