@@ -596,6 +596,9 @@
         nnoremap <Leader>tU :UndotreeToggle<CR>
         nnoremap <Leader>dU :call ClearUndo()<CR><Bar>:UndotreeHide<CR>
     " }}}
+    " Emmet {{{
+        let g:user_emmet_leader_key='<C-m>'
+    " }}}
     " Neocomplete {{{
     " https://github.com/Shougo/neocomplete.vim/blob/master/README.md
         " Disable AutoComplPop & Use neocomplete.
