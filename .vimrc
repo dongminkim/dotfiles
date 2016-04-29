@@ -533,6 +533,12 @@
         nmap ga <Plug>(EasyAlign)
     " }}}
     " FZF {{{
+        " This is the default extra key bindings
+        let g:fzf_action = {
+                \ 'ctrl-t': 'tab split',
+                \ 'ctrl-s': 'split',
+                \ 'ctrl-v': 'vsplit' }
+
         " Mapping selecting mappings
         nmap <Leader><Tab> <Plug>(fzf-maps-n)
         xmap <Leader><Tab> <Plug>(fzf-maps-x)
