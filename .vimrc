@@ -550,11 +550,26 @@
         imap <C-f><C-g> <Plug>(fzf-complete-file-ag)
         imap <C-f><C-l> <Plug>(fzf-complete-line)
 
+        " Set base dir for :Files {{{
+            let g:fzf_base_dir = getcwd()
+            function! SetFzfBaseDir()
+                let path = input('FZF Base Dir ['.getcwd().']: ', '', 'dir')
+                if path !~ '^\s*$' 
+                    execute 'cd '.path
+                endif
+                let g:fzf_base_dir = getcwd()
+                cd -
+                redraw
+                echo g:fzf_base_dir
+            endfunction
+            nnoremap <Leader>fcd :call SetFzfBaseDir()<CR>
+        " }}}
+
         " Key bindings
         nmap <C-w><Space> :Windows<CR>
-        nnoremap ff :Files<Space>
+        nnoremap ff :execute 'cd '.g:fzf_base_dir<CR>:Files<Space>
+        nnoremap fa :execute 'cd '.g:fzf_base_dir<CR>:Ag<Space>
         nnoremap fb :Buffers<CR>
-        nnoremap fa :Ag<Space>
         nnoremap ft :Tags<Space>
         nnoremap fm :Marks<CR>
         nnoremap fh :Helptags<CR>
