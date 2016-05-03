@@ -9,8 +9,8 @@
     " Automatically setting up vim-plug {{{
         if empty(glob('~/.vim/autoload/plug.vim'))
             let has_vim_plug = 0
-            echo "install vim-plug ..."
-            echo ""
+            echo 'install vim-plug ...'
+            echo ''
             silent !mkdir -p ~/.vim/plugged
             silent !mkdir -p ~/.vim/autoload
             silent !curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
@@ -85,7 +85,7 @@
     " }}}
 
     " Load local plugins {{{
-        if filereadable($HOME."/.local.plugins.vimrc")
+        if filereadable($HOME.'/.local.plugins.vimrc')
             source $HOME/.local.plugins.vimrc
         endif
     " }}}
@@ -101,7 +101,7 @@
 " }}}
 
 " Local leading config, only for prerequisites and will be overwritten {{{
-    if filereadable($HOME."/.local.pre.vimrc")
+    if filereadable($HOME.'/.local.pre.vimrc')
         source $HOME/.local.pre.vimrc
     endif
 " }}}
@@ -112,8 +112,8 @@
         syntax on                                   " syntax highlighting
         if !empty($VIM_THEME)
             let _ = split($VIM_THEME, ':')          " VIM_THEME=light:solarized vim
-            execute "set background="._[0]
-            execute "colorscheme "._[1]
+            execute 'set background='._[0]
+            execute 'colorscheme '._[1]
         else
             set background=dark                     " we're using a dark bg
             colorscheme jellybeans                  " colorscheme from plugin
@@ -128,7 +128,7 @@
         " }}}
 
         " 256 colors for maximum jellybeans bling. See commit log for info {{{
-            if (&term =~ "xterm") || (&term =~ "screen")
+            if (&term =~ 'xterm') || (&term =~ 'screen')
                 set t_Co=256
             endif
         " }}}
@@ -147,7 +147,7 @@
             "set encoding=utf-8                    " default $LANG/latin1
             "set fileencoding=utf-8                " default none
             set fileencodings=ucs-bom,utf-8,cp949,euc-kr,latin1
-            if v:ctype =~? '\<UTF-*8$' || v:ctype ==? "C" && v:lang =~? '\<UTF-*8$'
+            if v:ctype =~? '\<UTF-*8$' || v:ctype ==? 'C' && v:lang =~? '\<UTF-*8$'
                 set termencoding=utf-8
             endif
         " }}}
@@ -221,7 +221,7 @@
 " Key bindings {{{
     " General {{{
         " Remap <Leader>
-        let mapleader=","
+        let mapleader=','
 
         " Quickly edit/source .vimrc
         nnoremap <Leader><C-o> :new $HOME/.vimrc<CR>
@@ -265,7 +265,7 @@
     " Functions and/or fancy keybinds {{{
         " Toggle syntax highlighting {{{
             function! ToggleSyntaxHighlighthing()
-                if exists("g:syntax_on")
+                if exists('g:syntax_on')
                     syntax off
                 else
                     syntax on
@@ -283,7 +283,7 @@
         " }}}
 
         " Clear last used search pattern
-        nnoremap <silent><CR> :let @/ = ""<CR>
+        nnoremap <silent><CR> :let @/ = ''<CR>
 
         " Highlight characters past 79 {{{
         " You might want to override this function and its variables with
@@ -340,13 +340,13 @@
 
         " Split to relative header/source {{{
             function! SplitRelSrc()
-                let s:fname = expand("%:t:r")
-                if expand("%:e") == "h"
+                let s:fname = expand('%:t:r')
+                if expand('%:e') == 'h'
                     set splitright
-                    execute "vsplit" fnameescape(s:fname . ".cpp")
+                    execute 'vsplit' fnameescape(s:fname . '.cpp')
                     set nosplitright
                 elseif expand("%:e") == "cpp"
-                    execute "vsplit" fnameescape(s:fname . ".h")
+                    execute 'vsplit' fnameescape(s:fname . '.h')
                 endif
             endfunction
             nnoremap <Leader>sr :call SplitRelSrc()<CR>
@@ -354,8 +354,8 @@
 
         " Strip trailing whitespace, return to cursor at save {{{
             function! StripTrailingWhitespace()
-                let l = line(".")
-                let c = col(".")
+                let l = line('.')
+                let c = col('.')
                 %s/\s\+$//e
                 call cursor(l, c)
             endfunction
