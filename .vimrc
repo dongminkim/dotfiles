@@ -609,7 +609,7 @@
         nnoremap <Leader>dU :call ClearUndo()<CR><Bar>:UndotreeHide<CR>
     " }}}
     " Emmet {{{
-        let g:user_emmet_leader_key='<C-m>'
+        let g:user_emmet_leader_key='<C-p>'
     " }}}
     " Neocomplete {{{
     " https://github.com/Shougo/neocomplete.vim/blob/master/README.md
