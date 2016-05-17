@@ -31,7 +31,6 @@ That's it!
     * [iTerm2](https://iterm2.com)
         * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
     * [tmux](https://tmux.github.io)
-        * [tmux-MacOSX-pasteboard](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard) aka reattach-to-user-namespace
 * zsh
     * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
     * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
