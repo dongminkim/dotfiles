@@ -16,11 +16,11 @@ git clone https://github.com/dongminkim/dotfiles.git ~/.dotfiles && ~/.dotfiles/
 
 1. You may be asked your password to do `sudo` once or twice.
 
-1. And after oh-my-zsh installed, in order to continue to the next steps, you should type `exit` in oh-my-zsh interactive shell prompt.
+1. And after **oh-my-zsh** installed, in order to continue to the next steps, you should type `exit` in **oh-my-zsh** interactive shell prompt.
 
-1. When the bootstrap script finishes, you can see the instructions how to load iTerm2 profiles.
+1. When the bootstrap script finishes, you can see the **instructions** how to load **iTerm2** profiles.
 
-1. Quit and restart iTerm2.
+1. Quit and restart **iTerm2**.
 
 That's it!
 
