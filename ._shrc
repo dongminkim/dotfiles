@@ -108,15 +108,7 @@
     # Path Compactor
         function compact_path { #{{{
             echo "$*" \
-                | awk '
-                    {
-                        for (i=1; i <= NF; ++i) {
-                            if (!($(i) in x)) {
-                                print $(i)
-                                x[$(i)] = 1expandtab
-                            }
-                        }
-                    }' FS=':' ORS=':' \
+                | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':' \
                 | sed -e 's/:$//'
         } #}}}
         function sort_path { #{{{

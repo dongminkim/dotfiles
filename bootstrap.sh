@@ -79,7 +79,7 @@ OS="$(uname -s)"
 # copy dot files
     echo "${GRN}copy${RST} ${BLD}dot files${RST}"
     date="$( date '+%Y-%m-%dT%H:%M:%S' )"
-    dotfiles=($( find . -depth 1 -type f -iname '.*' -not -iname '.gitignore' ))
+    dotfiles=($( find . -maxdepth 1 -type f -iname '.*' -not -iname '.gitignore' ))
     for fn in "${dotfiles[@]}"; do
         src_fn="${fn#./}"
         dst_fn="$HOME/$src_fn"
