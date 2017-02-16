@@ -78,8 +78,6 @@ That's it!
         * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
     * Template
         * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
-    * Make % match xml tags
-        * [edsono/vim-matchit](https://github.com/edsono/vim-matchit)
 * dotfiles
     * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
     * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))

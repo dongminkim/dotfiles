@@ -74,9 +74,6 @@
         " Template
         Plug 'mattn/emmet-vim', { 'for': 'html' }
 
-        " Make % match xml tags
-        Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
-
         " Handle alignment
         "Plug 'junegunn/vim-easy-align'
 
