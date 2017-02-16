@@ -114,7 +114,7 @@
         function sort_path { #{{{
             local user_path="$HOME/local/bin:$HOME/bin"
             local system_path="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-            compact_path "$user_path:$PATH:$system_path"
+            compact_path "$user_path:$*:$system_path"
         } #}}}
 
     # More RC Files
