@@ -209,7 +209,7 @@
             # http://geoff.greer.fm/lscolors/
             export LSCOLORS="exfxcxdxbxaGagaBabacaf"
             alias list='ls -al'
-            alias ls='ls -vG'
+            alias ls='ls -vGp --quoting-style=shell-escape --color'
             ;;
 
         Linux | CYGWIN*  )
