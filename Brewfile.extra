@@ -8,7 +8,7 @@ tap 'caskroom/cask'
 tap 'homebrew/dupes'
 
 # General
-cask 'quicksilver'
+#cask 'quicksilver'
 cask '1password'
 cask 'caffeine'
 cask 'macvim'
