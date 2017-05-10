@@ -18,5 +18,6 @@ brew 'socat'
 brew 'tmux'
 brew 'reattach-to-user-namespace'
 brew 'the_silver_searcher'
+brew 'ripgrep'
 cask 'iterm2'
 
