@@ -22,6 +22,7 @@
             export LESS_TERMCAP_so=$'\E[46m'        # begin standout (info-bar, search)
             export LESS_TERMCAP_se=$'\E[0m'         # end standout (info-bar, search)
         } #}}}
+        export LESS="-Ri"
 
     # Command Existenace Checker
         function check-runnable { #{{{
@@ -196,9 +197,8 @@
         alias cp='cp -i'
         alias grep='grep --color=auto'
         alias fgrep='fgrep --color=auto'
-        alias less='less -R'
         alias vi='vim'
-        alias ag='ag --page "less -R"'
+        alias ag='ag --page "less -Ri"'
     # }}}
 # General Settings }}}
 
