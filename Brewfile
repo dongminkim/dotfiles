@@ -19,5 +19,6 @@ brew 'tmux'
 brew 'reattach-to-user-namespace'
 brew 'the_silver_searcher'
 brew 'ripgrep'
+brew 'diff-so-fancy'
 cask 'iterm2'
 
