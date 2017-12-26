@@ -8,6 +8,7 @@ tap 'caskroom/cask'
 
 # Terminal
 brew 'vim', args: ['with-lua']
+brew 'tldr'
 brew 'python'
 brew 'ctags'
 brew 'readline'
