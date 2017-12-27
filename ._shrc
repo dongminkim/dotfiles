@@ -123,7 +123,7 @@
             fi
         } #}}}
         function git-df { #{{{
-            git diff --color=always "$@" | diff-so-fancy
+            git diff --color=always "$@" | diff-so-fancy | less
         } #}}}
 
     # Path Compactor
