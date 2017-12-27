@@ -43,6 +43,12 @@ That's it!
     * [fasd](https://github.com/clvv/fasd) - Quick access to files and directories
     * [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) - Line-oriented search tool
     * [tldr](https://github.com/tldr-pages/tldr) - Community-driven man pages
+    * dotfiles
+        * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
+        * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
+        * `.tmux.conf`
+        * `.screenrc`
+
 * Vim
     * Plugin manager
         * [junegunn/vim-plug](https://github.com/junegunn/vim-plug)
@@ -84,11 +90,6 @@ That's it!
         * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
     * Template
         * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
-* dotfiles
-    * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
-    * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
-    * `.tmux.conf`
-    * `.screenrc`
 
 ### Customize more
 
