@@ -103,7 +103,27 @@
                 --abbrev-commit "$@"
         } #}}}
         function git-lg { #{{{
-            git-log --graph "$@"
+            local _logLineToHash="grep -o '[a-f0-9]\{7\}' | head -1"
+            local _showCommit="xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
+            local _viewLogLine="echo {} | $_logLineToHash | $_showCommit"
+            local _out _key _hash
+            IFS=$'\n' _out=$(
+                git-log --graph --color=always "$@" \
+                    | fzf --no-sort --reverse --tiebreak=index --no-multi --ansi --preview $_viewLogLine \
+                        --exit-0 --expect=ctrl-o,ctrl-y
+            )
+            _key=$( head -1 <<< "$_out" )
+            _hash=$( head -2 <<< "$_out" | tail -1 | eval "$_logLineToHash" )
+            if [ -n "$_hash" ]; then
+                case "$_key" in
+                    ctrl-o ) echo $_hash | eval "$_showCommit" | less ;;
+                    ctrl-y ) check-runnable pbcopy && echo -n $_hash | pbcopy ;;
+                esac
+                echo $_hash
+            fi
+        } #}}}
+        function git-df { #{{{
+            git diff --color=always "$@" | diff-so-fancy
         } #}}}
 
     # Path Compactor
