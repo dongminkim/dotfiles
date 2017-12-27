@@ -10,9 +10,9 @@ Screenshot captured in iTerm2 with `Vanity Dark` Profile
 ### Using Git and the bootstrap script
 
 1. You can clone the repository wherever you want, and run the bootstrap script.
-    ```bash
+```sh
 git clone https://github.com/dongminkim/dotfiles.git ~/.dotfiles && ~/.dotfiles/bootstrap.sh
-    ```
+```
 
 1. You may be asked your password to do `sudo` once or twice.
 
@@ -30,12 +30,19 @@ That's it!
     * [Homebrew](http://brew.sh)
     * [iTerm2](https://iterm2.com)
         * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
+* Shell
+    * zsh
+        * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
+        * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+    * [Powerline](https://github.com/powerline/powerline)
+        * [Powerline fonts](https://github.com/powerline/fonts)
     * [tmux](https://tmux.github.io)
-* zsh
-    * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
-    * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-* [Powerline](https://github.com/powerline/powerline)
-    * [Powerline fonts](https://github.com/powerline/fonts)
+    * [fzf](https://github.com/junegunn/fzf) - Fuzzy Finder
+        * will be installed via Vim Plugin
+        * FYI, you may want to take a look at [fzf Examples](https://github.com/junegunn/fzf/wiki/Examples)
+    * [fasd](https://github.com/clvv/fasd) - Quick access to files and directories
+    * [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) - Line-oriented search tool
+    * [tldr](https://github.com/tldr-pages/tldr) - Community-driven man pages
 * Vim
     * Plugin manager
         * [junegunn/vim-plug](https://github.com/junegunn/vim-plug)
@@ -66,8 +73,7 @@ That's it!
         * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
     * Class outline viewer
         * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
-    * FZF - Fuzzy Finder
-        * [junegunn/fzf](https://github.com/junegunn/fzf)
+    * fzf - Fuzzy Finder
         * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
     * Completion
         * [Shougo/neocomplete.vim](https://github.com/Shougo/neocomplete.vim)
