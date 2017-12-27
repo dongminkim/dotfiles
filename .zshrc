@@ -52,11 +52,12 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast zsh-syntax-highlighting)
+plugins=(zsh-syntax-highlighting)
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # User configuration
 source $ZSH/oh-my-zsh.sh
+unsetopt autopushd
 source $HOME/._shrc "${(%):-%N}"
 
 # https://github.com/junegunn/fzf/wiki/Fuzzy-completion
