@@ -10,9 +10,9 @@ Screenshot captured in iTerm2 with `Vanity Dark` Profile
 ### Using Git and the bootstrap script
 
 1. You can clone the repository wherever you want, and run the bootstrap script.
-```sh
-git clone https://github.com/dongminkim/dotfiles.git ~/.dotfiles && ~/.dotfiles/bootstrap.sh
-```
+    ```sh
+    git clone https://github.com/dongminkim/dotfiles.git ~/.dotfiles && ~/.dotfiles/bootstrap.sh
+    ```
 
 1. You may be asked your password to do `sudo` once or twice.
 
