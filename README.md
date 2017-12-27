@@ -30,13 +30,14 @@ That's it!
     * [Homebrew](http://brew.sh)
     * [iTerm2](https://iterm2.com)
         * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
-* Shell
+* Terminal & Shell
     * zsh
         * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
         * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-    * [Powerline](https://github.com/powerline/powerline)
+        * [zsh-interactive-cd](https://github.com/changyuheng/zsh-interactive-cd)
+    * [Powerline](https://github.com/powerline/powerline) - Statusline Plugin
         * [Powerline fonts](https://github.com/powerline/fonts)
-    * [tmux](https://tmux.github.io)
+    * [tmux](https://tmux.github.io) - Terminal Multiplexer
     * [fzf](https://github.com/junegunn/fzf) - Fuzzy Finder
         * will be installed via Vim Plugin
         * FYI, you may want to take a look at [fzf Examples](https://github.com/junegunn/fzf/wiki/Examples)
