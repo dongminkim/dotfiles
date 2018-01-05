@@ -32,6 +32,10 @@
         " A fancy start screen, shows MRU etc.
         Plug 'mhinz/vim-startify'
 
+        " Pairs of handy bracket mappings (e.g. ]q [q for quickfix)
+        " https://noahfrederick.com/log/a-list-of-vims-lists
+        Plug 'tpope/vim-unimpaired'
+
         " Handle surround chars like ''
         Plug 'tpope/vim-surround'
 

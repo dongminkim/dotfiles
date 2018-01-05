@@ -60,6 +60,9 @@ That's it!
         * [Lokaltog/powerline](https://github.com/Lokaltog/powerline)
     * A fancy start screen, shows MRU etc.
         * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
+    * Pairs of handy bracket mappings
+        * [tpope/vim-unimpaired](https://github.com/tpope/vim-unimpaired)
+            * https://noahfrederick.com/log/a-list-of-vims-lists
     * Handle surround chars like ''
         * [tpope/vim-surround](https://github.com/tpope/vim-surround)
     * Preview the contents of registers
