@@ -192,7 +192,9 @@
         set nogdefault                              " default :s//g unset
         set incsearch                               " "live"-search
         set hlsearch                                " highlighted search
-        if executable('ag')
+        if executable('rg')
+            set grepprg=rg\ --vimgrep               " use rg over grep
+        elseif executable('ag')
             set grepprg=ag\ --nogroup\ --nocolor    " use ag over grep
         endif
     " }}}
@@ -566,20 +568,14 @@
             nnoremap <Leader>fcd :call SetFzfBaseDir()<CR>
         " }}}
 
+        " :Find command for $( rg | fzf | quickfix )
+        " https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+        command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
         " Key bindings
         nmap <C-w><Space> :Windows<CR>
-        nnoremap ff :execute 'cd '.g:fzf_base_dir<CR>:Files<Space>
-        nnoremap fa :execute 'cd '.g:fzf_base_dir<CR>:Ag<Space>
-        nnoremap fb :Buffers<CR>
-        nnoremap ft :Tags<Space>
-        nnoremap fm :Marks<CR>
-        nnoremap fh :Helptags<CR>
-        nnoremap fc :Commands<CR>
-        nnoremap fhf :History<CR>
-        nnoremap fhc :History:<CR>
-        nnoremap fhs :History/<CR>
-        nnoremap fgf :GitFiles<CR>
-        nnoremap fgc :Commits<CR>
+        nnoremap <Leader>f :Files<Space>
+        nnoremap <Leader>g :Find<Space>
     " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
