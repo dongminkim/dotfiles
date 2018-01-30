@@ -227,6 +227,7 @@
         alias fgrep='fgrep --color=auto'
         alias vi='vim'
         alias ag='ag --page "less -Ri"'
+        alias list='ls -al'
     # }}}
 # General Settings }}}
 
@@ -234,17 +235,18 @@
     os="$(uname -s)"
     case "$os" in
         Darwin | FreeBSD )
-            # http://geoff.greer.fm/lscolors/
-            export LSCOLORS="exfxcxdxbxaGagaBabacaf"
-            alias list='ls -al'
-            alias ls='ls -vGp --quoting-style=shell-escape --color=auto'
+            alias ls='ls -vGpb'
+            if check-runnable "gls"; then
+                # http://geoff.greer.fm/lscolors/
+                export LSCOLORS="exfxcxdxbxaGagaBabacaf"
+                alias ls='gls --quoting-style=shell-escape --color=auto'
+            fi
             ;;
 
         Linux | CYGWIN*  )
             # http://geoff.greer.fm/lscolors/
             export LSCOLORS="di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=0;1;46:cd=0;46:su=0;1;41:sg=0;41:tw=0;42:ow=0;45:"
-            alias list='ls -al --show --color=auto'
-            alias ls='ls -N --show --color=auto'
+            alias ls='ls --quoting-style=shell-escape --color=auto'
             ;;
     esac
 
