@@ -5,11 +5,10 @@
 #   brew bundle --file=Brewfile.extra
 cask_args appdir: '/Applications'
 tap 'caskroom/cask'
-tap 'homebrew/dupes'
 
 # General
 #cask 'quicksilver'
-cask '1password'
+#cask '1password'
 cask 'caffeine'
 cask 'macvim'
 cask 'xquartz'
@@ -28,7 +27,6 @@ brew 'little-cms2'
 brew 'imagemagick'
 
 # Terminal
-brew 'homebrew/dupes/screen'
 brew 'tmux-cssh'
 brew 'tree'
 brew 'watch'

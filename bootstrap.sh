@@ -57,8 +57,6 @@ OS="$(uname -s)"
 # install powerline
     pip_install powerline-status
     pip_install psutil
-    pip_install bzr
-    pip_install mercurial
 
 # install oh-my-zsh
     if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then

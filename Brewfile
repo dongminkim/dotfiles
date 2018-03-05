@@ -7,6 +7,7 @@ cask_args appdir: '/Applications'
 tap 'caskroom/cask'
 
 # Terminal
+brew 'coreutils'
 brew 'vim', args: ['with-lua']
 brew 'fasd'
 brew 'tldr'
