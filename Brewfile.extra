@@ -9,7 +9,7 @@ tap 'caskroom/cask'
 # General
 #cask 'quicksilver'
 #cask '1password'
-cask 'caffeine'
+cask 'keepingyouawake'
 cask 'macvim'
 cask 'xquartz'
 
