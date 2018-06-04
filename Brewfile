@@ -9,6 +9,7 @@ tap 'caskroom/cask'
 # Terminal
 brew 'coreutils'
 brew 'vim', args: ['with-lua']
+brew 'bat'
 brew 'fasd'
 brew 'tldr'
 brew 'python'
