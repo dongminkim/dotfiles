@@ -8,6 +8,7 @@ DEFAULT_USER="$USER"
 DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
+# https://github.com/zsh-users/zsh-syntax-highlighting
 plugins=(zsh-syntax-highlighting)
 
 # User configuration {{{
@@ -22,7 +23,7 @@ plugins=(zsh-syntax-highlighting)
     bindkey '^I' $fzf_default_completion
 #}}}
 
-# https://github.com/zsh-users/zsh-syntax-highlighting {{{
+# https://github.com/changyuheng/zsh-interactive-cd {{{
     __zic_fzf_prog() {
         [ -n "$TMUX_PANE" ] && [ "${FZF_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ] \
             && echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
