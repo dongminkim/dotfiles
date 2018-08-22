@@ -78,9 +78,6 @@
         " Template
         Plug 'mattn/emmet-vim', { 'for': 'html' }
 
-        " Handle alignment
-        "Plug 'junegunn/vim-easy-align'
-
         " Markdown preview on OS X
         "Plug 'junegunn/vim-xmark', { 'for': 'markdown', 'do': 'make' }
     " }}}
@@ -527,13 +524,6 @@
 
         " Toggle tagbar (definitions, functions etc.)
         map <Leader>tT :TagbarToggle<CR>
-    " }}}
-    " EasyAlign {{{
-        " Start interactive EasyAlign in visual mode (e.g. vipga)
-        xmap ga <Plug>(EasyAlign)
-
-        " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-        nmap ga <Plug>(EasyAlign)
     " }}}
     " FZF {{{
         " This is the default extra key bindings
