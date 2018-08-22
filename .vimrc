@@ -260,6 +260,10 @@
 
         " Highlight last inserted text
         nnoremap gV '[V']
+
+        " Insert Unicode Codepoint of the character under the cursor
+        " https://www.reddit.com/r/vim_magic/comments/4uanzz/insert_the_codepoint_of_the_character_under_the/
+        nmap <Leader>U mz"zylo<C-r>=printf('U+%X', char2nr(@z))<CR><ESC>`z
     " }}}
 
     " Functions and/or fancy keybinds {{{
