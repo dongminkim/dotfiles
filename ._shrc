@@ -105,7 +105,7 @@
         function git-lg { #{{{
             local _logLineToHash="grep -o '[a-f0-9]\{7\}' | head -1"
             local _diffModifier="cat"
-            if check-runnable diff-so-fancy; then
+            if check-runnable "diff-so-fancy"; then
                 _diffModifier="diff-so-fancy"
             fi
             local _showCommit="xargs -I % sh -c 'git show --color=always % | $_diffModifier'"
@@ -121,13 +121,13 @@
             if [ -n "$_hash" ]; then
                 case "$_key" in
                     ctrl-o ) echo $_hash | eval "$_showCommit" | less ;;
-                    ctrl-y ) check-runnable pbcopy && echo -n $_hash | pbcopy ;;
+                    ctrl-y ) check-runnable "pbcopy" && echo -n $_hash | pbcopy ;;
                 esac
                 echo $_hash
             fi
         } #}}}
         function git-df { #{{{
-            if check-runnable diff-so-fancy; then
+            if check-runnable "diff-so-fancy"; then
                 git diff --color=always "$@" | diff-so-fancy | less
             else
                 git diff
