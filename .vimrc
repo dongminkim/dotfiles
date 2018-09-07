@@ -562,14 +562,8 @@
             nnoremap <Leader>fcd :call SetFzfBaseDir()<CR>
         " }}}
 
-        " :Find command for $( rg | fzf | quickfix )
-        " https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
-        command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-
         " Key bindings
         nmap <C-w><Space> :Windows<CR>
-        nnoremap <Leader>f :Files<Space>
-        nnoremap <Leader>g :Find<Space>
     " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
