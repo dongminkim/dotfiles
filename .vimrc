@@ -565,6 +565,12 @@
         " Key bindings
         nmap <C-w><Space> :Windows<CR>
     " }}}
+    " Fugitive {{{
+        autocmd User fugitive 
+            \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+            \   nnoremap <buffer> .. :edit %:h<CR> |
+            \ endif
+    " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
         "let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['c', 'cpp', 'perl', 'python'] }
