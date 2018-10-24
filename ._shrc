@@ -130,7 +130,7 @@
             if check-runnable "diff-so-fancy"; then
                 git diff --color=always "$@" | diff-so-fancy | less
             else
-                git diff
+                git diff "$@"
             fi
         } #}}}
 
