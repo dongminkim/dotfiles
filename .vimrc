@@ -84,6 +84,9 @@
 
         " Markdown preview on OS X
         "Plug 'junegunn/vim-xmark', { 'for': 'markdown', 'do': 'make' }
+
+        " Localvimrc
+        Plug 'embear/vim-localvimrc'
     " }}}
 
     " Load local plugins {{{
@@ -672,6 +675,9 @@
         " For perlomni.vim setting.
         " https://github.com/c9s/perlomni.vim
         let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    " }}}
+    " Localvimrc {{{
+         let g:localvimrc_whitelist = $HOME.'/.*'
     " }}}
 " }}}
 
