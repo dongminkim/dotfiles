@@ -603,6 +603,12 @@
         nnoremap <Leader>tU :UndotreeToggle<CR>
         nnoremap <Leader>dU :call ClearUndo()<CR><Bar>:UndotreeHide<CR>
     " }}}
+    " Gist-vim {{{
+        let g:gist_detect_filetype = 1
+        let g:gist_post_private = 1
+        let g:gist_show_privates = 1
+        let g:gist_get_multiplefile = 1
+    " }}}
     " Emmet {{{
         "let g:user_emmet_leader_key='<C-y>'
     " }}}
