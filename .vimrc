@@ -86,6 +86,9 @@
         " Markdown preview on OS X
         "Plug 'junegunn/vim-xmark', { 'for': 'markdown', 'do': 'make' }
 
+        " Smooth scrolling for Vim done right
+        Plug 'psliwka/vim-smoothie'
+
         " Localvimrc
         Plug 'embear/vim-localvimrc'
     " }}}
