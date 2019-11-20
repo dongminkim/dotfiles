@@ -94,7 +94,8 @@ That's it!
         * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
     * Template
         * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
-
+    * Smooth Scrolling
+        * [psliwka/vim-smoothie](https://github.com/psliwka/vim-smoothie)
 ### Customize more
 
 * Shell rc files with `.os.$(uname -s)` prefix will be loaded
