@@ -37,6 +37,9 @@ OS="$(uname -s)"
             echo "${GRN}brew bundle${RST}"
             brew bundle
 
+        # fzf key bindings & fuzzy completion
+            $(brew --prefix)/opt/fzf/install
+
         # Xcode CLI Tools
             echo "${GRN}install${RST} ${BLD}Xcode CLI${RST}"
             xcode-select --install >& /dev/null
@@ -106,14 +109,14 @@ OS="$(uname -s)"
         if [ ! -d "$vdir" ]; then
             echo "${GRN}install${RST} ${BLD}iTerm profiles & color presets${RST}"
             git clone https://github.com/dongminkim/vanity.git "$vdir"
-
-            echo "${MGT}[!] Open iTerm and load preferences${RST}"
-            echo "${BLD}iTerm > Preferences > General > (at bottom) Load preferences${RST}"
-            echo "${MGT}input:${RST} ${BLD}$PWD/$vdir/iTerm2${RST}"
-            open -a iTerm >& /dev/null
         else
             echo "${BLD}iTerm profiles & color presets${RST} ${GRN}exists${RST}"
         fi
+
+        echo "${MGT}[!] Open iTerm and load preferences${RST}"
+        echo "${BLD}iTerm > Preferences > General > (at bottom) Load preferences${RST}"
+        echo "${MGT}input:${RST} ${BLD}$PWD/$vdir/iTerm2${RST}"
+        open -a iTerm >& /dev/null
     fi
 
 echo "${GRN}done${RST}"

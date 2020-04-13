@@ -39,7 +39,7 @@ That's it!
         * [Powerline fonts](https://github.com/powerline/fonts)
     * [tmux](https://tmux.github.io) - Terminal Multiplexer
     * [fzf](https://github.com/junegunn/fzf) - Fuzzy Finder
-        * will be installed via Vim Plugin
+        * will be installed via Homebrew
         * FYI, you may want to take a look at [fzf Examples](https://github.com/junegunn/fzf/wiki/Examples)
     * [fasd](https://github.com/clvv/fasd) - Quick access to files and directories
     * [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) - Line-oriented search tool

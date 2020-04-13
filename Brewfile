@@ -4,11 +4,10 @@
 # - install
 #   brew bundle
 cask_args appdir: '/Applications'
-tap 'caskroom/cask'
 
 # Terminal
 brew 'coreutils'
-brew 'vim', args: ['with-lua']
+brew 'vim'
 brew 'bat'
 brew 'fasd'
 brew 'tldr'
@@ -24,5 +23,6 @@ brew 'reattach-to-user-namespace'
 brew 'the_silver_searcher'
 brew 'ripgrep'
 brew 'diff-so-fancy'
+brew 'fzf'
 cask 'iterm2'
 

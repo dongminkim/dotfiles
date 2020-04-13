@@ -38,11 +38,11 @@ function gem_install {
 }
 
 function pip_install {
-    if [ -x /usr/local/bin/python ]; then
+    if [ -x /usr/local/bin/python3 ]; then
         # force to use pip of python installed with brew
-        pip="/usr/local/bin/python -m pip"
+        pip="/usr/local/bin/python3 -m pip"
     else
-        pip="python -m pip"
+        pip="python3 -m pip"
     fi
 
     if ! $pip show -q "$1" > /dev/null; then
