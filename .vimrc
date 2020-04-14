@@ -26,8 +26,8 @@
         Plug 'nanotech/jellybeans.vim'
         Plug 'altercation/vim-colors-solarized'
 
-        " Powerline
-        Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+        " Vim-airline & Tmuxline
+        Plug 'vim-airline/vim-airline' | Plug 'edkolev/tmuxline.vim'
 
         " A fancy start screen, shows MRU etc.
         Plug 'mhinz/vim-startify'
@@ -514,6 +514,10 @@
 " }}}
 
 " Plugin settings {{{
+    " Startify {{{
+        let g:airline_powerline_fonts = 1
+        let g:airline#extensions#tabline#enabled = 1
+    " }}}
     " Startify {{{
         let g:startify_bookmarks = [
             \ $HOME . "/.vimrc",

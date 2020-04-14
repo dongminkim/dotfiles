@@ -56,8 +56,9 @@ That's it!
     * Colorschemes
         * [nanotech/jellybeans.vim](https://github.com/nanotech/jellybeans.vim)
         * [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
-    * Powerline
-        * [Lokaltog/powerline](https://github.com/Lokaltog/powerline)
+    * Vim-airline & Tmuxline
+        * [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
+        * [edkolev/tmuxline.vim](https://github.com/edkolev/tmuxline.vim)
     * A fancy start screen, shows MRU etc.
         * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
     * Pairs of handy bracket mappings
