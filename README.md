@@ -32,11 +32,10 @@ That's it!
         * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
 * Terminal & Shell
     * zsh
-        * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) with [agnoster theme](https://gist.github.com/agnoster/3712874)
+        * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+        * [Powerlevel10k theme](https://gist.github.com/romkatv/powerlevel10k)
         * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
         * [zsh-interactive-cd](https://github.com/changyuheng/zsh-interactive-cd)
-    * [Powerline](https://github.com/powerline/powerline) - Statusline Plugin
-        * [Powerline fonts](https://github.com/powerline/fonts)
     * [tmux](https://tmux.github.io) - Terminal Multiplexer
     * [fzf](https://github.com/junegunn/fzf) - Fuzzy Finder
         * will be installed via Homebrew

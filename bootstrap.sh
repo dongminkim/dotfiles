@@ -57,10 +57,6 @@ OS="$(uname -s)"
 # install
     [[ "$OS" == "Darwin" ]] && osx_prerequisites
 
-# install powerline
-    pip_install powerline-status
-    pip_install psutil
-
 # install oh-my-zsh
     if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
         echo "${GRN}install${RST} ${BLD}oh-my-zsh${RST}"
@@ -69,6 +65,9 @@ OS="$(uname -s)"
 
         echo "${GRN}install${RST} ${BLD}zsh-syntax-highlighting${RST}"
         zsh -c 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'
+
+        echo "${GRN}install${RST} ${BLD}powerlevel10k${RST}"
+        zsh -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k'
     else
         echo "${BLD}oh-my-zsh${RST} ${GRN}exists${RST}"
     fi

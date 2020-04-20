@@ -257,23 +257,19 @@
 # OS Specific Settings }}}
 
 # Shell Specific Settings {{{
-    export POWERLINE_BINDINGS_DIR="$( find /usr/local/lib/python[23].? -iname 'powerline.zsh' | head -1 | sed -e 's#^\(.*/powerline/bindings\).*$#\1#' )"
     case "$( detect_shell )" in
         bash )
             export _SH_SOURCE="$BASH_SOURCE"
             set -o ignoreeof    # ignore EOF (Ctrl+D)
-            POWERLINE_SCRIPT="$POWERLINE_BINDINGS_DIR/bash/powerline.sh"
             FZF_SCRIPT="$HOME/.fzf.bash"
             ;;
 
         zsh  )
             export _SH_SOURCE="${(%):-%N}"
             setopt IGNORE_EOF   # ignore EOF (Ctrl+D)
-            POWERLINE_SCRIPT="$POWERLINE_BINDINGS_DIR/zsh/powerline.zsh"
             FZF_SCRIPT="$HOME/.fzf.zsh"
             ;;
     esac
-    [ -f "${POWERLINE_SCRIPT}" ] && source "${POWERLINE_SCRIPT}"
     [ -f "${FZF_SCRIPT}" ] && source "${FZF_SCRIPT}"
     export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
     if check-runnable "fasd"; then
