@@ -19,14 +19,6 @@ OS="$(uname -s)"
                 brew update
             fi
 
-        # brew cask
-            if ! brew cask >& /dev/null; then
-                echo "${GRN}brew tap${RST} ${BLD}caskroom/cask${RST}"
-                brew tap caskroom/cask
-            else
-                echo "${BLD}brew cask${RST} ${GRN}exists${RST}"
-            fi
-
         # brew bundle
             if ! brew bundle >& /dev/null; then
                 echo "${GRN}brew tap${RST} ${BLD}Homebrew/bundle${RST}"
