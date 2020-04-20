@@ -64,8 +64,7 @@
         Plug 'majutsushi/tagbar'
 
         " FZF - Fuzzy Finder
-        "Plug 'junegunn/fzf'
-        Plug '/usr/local/opt/fzf'
+        Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
         " Completion
         Plug 'Shougo/neocomplete.vim'
