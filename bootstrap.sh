@@ -13,7 +13,7 @@ OS="$(uname -s)"
         # brew
             if ! which brew >& /dev/null; then
                 echo "${GRN}install${RST} ${BLD}brew${RST}"
-                ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
             else
                 echo "${GRN}brew update${RST}"
                 brew update
