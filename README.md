@@ -86,7 +86,7 @@ That's it!
     * fzf - Fuzzy Finder
         * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
     * Completion
-        * [Shougo/neocomplete.vim](https://github.com/Shougo/neocomplete.vim)
+        * [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
         * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim)
     * Syntax
         * [tpope/vim-git](https://github.com/tpope/vim-git)
