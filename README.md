@@ -87,6 +87,7 @@ That's it!
         * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
     * Completion
         * [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
+            * You might want to install [coc extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
         * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim)
     * Syntax
         * [tpope/vim-git](https://github.com/tpope/vim-git)
@@ -96,6 +97,7 @@ That's it!
         * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
     * Smooth Scrolling
         * [psliwka/vim-smoothie](https://github.com/psliwka/vim-smoothie)
+
 ### Customize more
 
 * Shell rc files with `.os.$(uname -s)` prefix will be loaded
