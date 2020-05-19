@@ -1,6 +1,6 @@
 # Vanity.dump(dotfiles)
 
-![screenshot_080f4e7](https://cloud.githubusercontent.com/assets/1652790/14640795/384677b6-067e-11e6-91f3-9e30ae433eb6.png)
+![screenshot](https://user-images.githubusercontent.com/1652790/82305027-174bbc80-99f8-11ea-8a6d-b66efaa855ff.png)
 Screenshot captured in iTerm2 with `Vanity Dark` Profile
 
 ## Installation
