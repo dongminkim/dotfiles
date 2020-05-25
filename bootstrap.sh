@@ -54,14 +54,22 @@ OS="$(uname -s)"
         echo "${GRN}install${RST} ${BLD}oh-my-zsh${RST}"
         echo "${MGT}[!] Once oh-my-zsh is installed, type ${UND}exit${RUND} to continue${RST}"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-        echo "${GRN}install${RST} ${BLD}zsh-syntax-highlighting${RST}"
-        zsh -c 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'
-
-        echo "${GRN}install${RST} ${BLD}powerlevel10k${RST}"
-        zsh -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k'
     else
         echo "${BLD}oh-my-zsh${RST} ${GRN}exists${RST}"
+    fi
+
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+        echo "${GRN}install${RST} oh-my-zsh plugin ${BLD}zsh-syntax-highlighting${RST}"
+        zsh -c 'git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'
+    else
+        echo "oh-my-zsh plugin ${BLD}zsh-syntax-highlighting${RST} ${GRN}exists${RST}"
+    fi
+
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+        echo "${GRN}install${RST} oh-my-zsh theme ${BLD}powerlevel10k${RST}"
+        zsh -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k'
+    else
+        echo "oh-my-zsh theme ${BLD}powerlevel10k${RST} ${GRN}exists${RST}"
     fi
 
 # install Vim plugins
