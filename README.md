@@ -33,7 +33,7 @@ That's it!
 * Terminal & Shell
     * zsh
         * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-        * [Powerlevel10k theme](https://gist.github.com/romkatv/powerlevel10k)
+        * [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
         * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
         * [zsh-interactive-cd](https://github.com/changyuheng/zsh-interactive-cd)
     * [tmux](https://tmux.github.io) - Terminal Multiplexer
