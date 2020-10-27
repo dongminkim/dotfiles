@@ -1,6 +1,30 @@
 # .install_functions.sh
 # source ./.colors.sh
 
+function install_brew {
+    if ! which brew >& /dev/null; then
+        echo "${GRN}install${RST} ${BLD}brew${RST}"
+        echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    else
+        echo "${GRN}brew update${RST}"
+        brew update
+    fi
+}
+
+function brew_bundle {
+    local brewfile="${1:-Brewfile}"
+
+    if ! brew bundle --help >& /dev/null; then
+        echo "${GRN}brew tap${RST} ${BLD}Homebrew/bundle${RST}"
+        brew tap Homebrew/bundle
+    else
+        echo "${BLD}brew bundle${RST} ${GRN}exists${RST}"
+    fi
+
+    echo "${GRN}brew bundle${RST} --file=${GRN}${brewfile}${RST}"
+    brew bundle --file="$brewfile"
+}
+
 function brew_install {
     if ! brew list "$@" >& /dev/null; then
         echo "${GRN}brew install${RST} ${BLD}$@${RST}"

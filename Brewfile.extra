@@ -4,7 +4,6 @@
 # - install
 #   brew bundle --file=Brewfile.extra
 cask_args appdir: '/Applications'
-tap 'caskroom/cask'
 
 # General
 #cask 'quicksilver'
@@ -34,15 +33,18 @@ brew 'parallel'
 brew 'pv'
 brew 'nmap'
 brew 'gpg'
+brew 'ctags'
+brew 'netcat'
+brew 'socat'
 
 # Dev Tools
 brew 'git'
 brew 'go'
 brew 'node'
 brew 'mysql'
-cask 'sourcetree'
+#cask 'sourcetree'
 #cask 'github-desktop'
-cask 'pycharm'
+#cask 'pycharm'
 cask 'java' unless system '/usr/libexec/java_home --failfast > /dev/null 2>&1'
 #cask 'googleappengine'
 #cask 'google-cloud-sdk'

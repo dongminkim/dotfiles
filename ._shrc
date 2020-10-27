@@ -232,28 +232,35 @@
 # General Settings }}}
 
 # OS Specific Settings {{{
-    os="$(uname -s)"
-    case "$os" in
-        Darwin | FreeBSD )
+    case "$(uname -s)" in
+        Darwin )
             alias ls='ls -vGpb'
             if check-runnable "gls"; then
                 # http://geoff.greer.fm/lscolors/
                 export LSCOLORS="exfxcxdxbxaGagaBabacaf"
                 alias ls='gls --quoting-style=shell-escape --color=auto'
             fi
+
+            # brew-cask
+            export HOMEBREW_CASK_OPTS='--appdir=/Applications'
             ;;
 
-        Linux | CYGWIN*  )
+        Linux )
             # http://geoff.greer.fm/lscolors/
             export LSCOLORS="di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=0;1;46:cd=0;46:su=0;1;41:sg=0;41:tw=0;42:ow=0;45:"
             alias ls='ls --quoting-style=shell-escape --color=auto'
+
+            # https://docs.brew.sh/Homebrew-on-Linux
+            if [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+                eval "$( /home/linuxbrew/.linuxbrew/bin/brew shellenv )"
+            elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
+                eval "$( "$HOME/.linuxbrew/bin/brew" shellenv )"
+            fi
+            export PATH=$( sort_path "$PATH" )
+            export MANPATH=$( compact_path "$MANPATH" )
+            export INFOPATH=$( compact_path "$INFOPATH" )
             ;;
     esac
-
-    if [[ "$os" == "Darwin" ]]; then
-        # brew-cask
-        export HOMEBREW_CASK_OPTS='--appdir=/Applications'
-    fi
 # OS Specific Settings }}}
 
 # Shell Specific Settings {{{

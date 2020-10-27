@@ -74,7 +74,7 @@
         Plug 'tpope/vim-git', { 'for': 'git' }
         Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
         Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-        Plug 'apple/swift', { 'rtp': 'utils/vim/', 'name': 'Swift-Syntax' }     " You may need to git-clone manually before :PlugInstall
+        "Plug 'apple/swift', { 'rtp': 'utils/vim/', 'name': 'Swift-Syntax' }     " You may need to git-clone manually before :PlugInstall
 
         " Template
         Plug 'mattn/emmet-vim', { 'for': 'html' }

@@ -1,16 +1,1 @@
-# Linuxbrew {{{
-    # http://linuxbrew.sh
-    # http://linuxbrew.sh/#dependencies
-    #
-    #   Debian, Ubuntu, etc.
-    #       sudo apt-get install build-essential
-    #   Fedora, Red Hat, CentOS, etc.
-    #       sudo yum groupinstall 'Development Tools'
-    #
-    #   We recommend that you install GCC by running:
-    #       brew install gcc
-    export PATH=$( sort_path "$HOME/.linuxbrew/bin:$PATH" )
-    export MANPATH=$( compact_path "$HOME/.linuxbrew/share/man:$MANPATH" )
-    export INFOPATH=$( compact_path "$HOME/.linuxbrew/share/info:$INFOPATH" )
-#}}}
 

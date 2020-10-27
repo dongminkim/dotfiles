@@ -1,0 +1,16 @@
+# Brewfile.Darwin
+# - relies on https://github.com/Homebrew/homebrew-bundle
+#   brew tap Homebrew/bundle
+# - install
+#   brew bundle --file=Brewfile.Darwin
+cask_args appdir: '/Applications'
+
+brew 'coreutils'
+#brew 'vim'
+#brew 'python'
+brew 'wget'
+brew 'openssl'
+brew 'reattach-to-user-namespace'
+brew 'the_silver_searcher'
+cask 'iterm2'
+
