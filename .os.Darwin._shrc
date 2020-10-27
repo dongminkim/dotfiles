@@ -38,3 +38,6 @@
         } #}}}
 #}}}
 
+# 'trash -F' moves files into macOS Trash with capability to be put back
+alias trash='trash -F'
+
