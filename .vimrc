@@ -591,6 +591,9 @@
             \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
             \   nnoremap <buffer> .. :edit %:h<CR> |
             \ endif
+        " :Gdiffsplit!
+        nnoremap <leader>dgh :diffget //2<CR>
+        nnoremap <leader>dgl :diffget //3<CR>
     " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
