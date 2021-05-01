@@ -105,12 +105,14 @@ function setup_macOS_terminalEnvironment {
         fi
 
         echo "${MGT}[!] Open iTerm and load preferences${RST}"
-        echo "${BLD}iTerm > Preferences > General > (at bottom) Load preferences${RST}"
-        echo "${MGT}input:${RST} ${BLD}$PWD/$vdir/iTerm2${RST}"
+        echo "1. iTerm > Preferences > Profiles > (at bottom) Other Actions... > ${MGT}Import JSON Profiles...${RST}"
+        echo "2. Choose ${MGT}\"$PWD/$vdir/iTerm2/Vanity Profiles.json\"${RST}"
+        echo "3. Click ${MGT}Vanity Dark${RST} or ${MGT}Vanity Light${RST}"
+        echo "4. iTerm > Preferences > Profiles > (at bottom) Other Actions... > ${MGT}Set as Default${RST}"
+        echo "5. Restart iTerm"
         open -a iTerm >& /dev/null
     fi
 }
-
 
 [[ "$OS" == "Darwin" ]] && install_macOS_prerequisites
 install_brew
