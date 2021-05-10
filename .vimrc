@@ -57,6 +57,9 @@
         " Awesome syntax checker
         Plug 'scrooloose/syntastic'
 
+        " tabnine - AI Code Completion
+        Plug 'codota/tabnine-vim'
+
         " NERDTree
         Plug 'scrooloose/nerdtree'
 

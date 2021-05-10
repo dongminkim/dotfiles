@@ -6,8 +6,8 @@
 cask_args appdir: '/Applications'
 
 brew 'coreutils'
-#brew 'vim'
-#brew 'python'
+brew 'vim'
+brew 'python'
 brew 'wget'
 brew 'openssl'
 brew 'trash'
