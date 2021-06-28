@@ -48,6 +48,9 @@
         " Git inside Vim
         Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
 
+        " Git blamer just like VS Code's GitLens
+        Plug 'APZelos/blamer.nvim'
+
         " Gist inside Vim
         Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
@@ -597,6 +600,13 @@
         " :Gdiffsplit!
         nnoremap <leader>dgh :diffget //2<CR>
         nnoremap <leader>dgl :diffget //3<CR>
+    " }}}
+    " Blamer {{{
+        let g:blamer_enabled = 1
+        let g:blamer_delay = 500
+        let g:blamer_relative_time = 1
+        let g:blamer_show_in_visual_modes = 1
+        let g:blamer_show_in_insert_modes = 0
     " }}}
     " Syntastic {{{
         " Automatic checking for active, only when :SyntasticCheck for passive
