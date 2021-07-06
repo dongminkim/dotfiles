@@ -23,15 +23,6 @@ function install_macOS_prerequisites {
     fi
 }
 
-function setup_linuxbrew_path {
-    # https://docs.brew.sh/Homebrew-on-Linux
-    if [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-        eval "$( /home/linuxbrew/.linuxbrew/bin/brew shellenv )"
-    elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
-        eval "$( "$HOME/.linuxbrew/bin/brew" shellenv )"
-    fi
-}
-
 function setup_fzf {
     # fzf key bindings & fuzzy completion
     $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
@@ -116,7 +107,6 @@ function setup_macOS_terminalEnvironment {
 
 [[ "$OS" == "Darwin" ]] && install_macOS_prerequisites
 install_brew
-[[ "$OS" == "Linux" ]] && setup_linuxbrew_path
 brew_bundle
 [[ -f "Brewfile.$OS" ]] && brew_bundle "Brewfile.$OS"
 setup_fzf

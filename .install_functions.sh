@@ -5,6 +5,14 @@ function install_brew {
     if ! which brew >& /dev/null; then
         echo "${GRN}install${RST} ${BLD}brew${RST}"
         echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+        if [ -x "/opt/homebrew/bin/brew" ]; then
+            eval "$( "/opt/homebrew/bin/brew" shellenv )"
+        elif [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+            eval "$( /home/linuxbrew/.linuxbrew/bin/brew shellenv )"
+        elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
+            eval "$( "$HOME/.linuxbrew/bin/brew" shellenv )"
+        fi
     else
         echo "${GRN}brew update${RST}"
         brew update

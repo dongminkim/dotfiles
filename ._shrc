@@ -243,6 +243,11 @@
 
             # brew-cask
             export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+
+            # arm64
+            if [ -x "/opt/homebrew/bin/brew" ]; then
+                eval "$( /opt/homebrew/bin/brew shellenv )"
+            fi
             ;;
 
         Linux )
@@ -256,11 +261,11 @@
             elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
                 eval "$( "$HOME/.linuxbrew/bin/brew" shellenv )"
             fi
-            export PATH=$( sort_path "$PATH" )
-            export MANPATH=$( compact_path "$MANPATH" )
-            export INFOPATH=$( compact_path "$INFOPATH" )
             ;;
     esac
+    export PATH=$( sort_path "$PATH" )
+    export MANPATH=$( compact_path "$MANPATH" )
+    export INFOPATH=$( compact_path "$INFOPATH" )
 # OS Specific Settings }}}
 
 # Shell Specific Settings {{{
