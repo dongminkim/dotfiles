@@ -61,7 +61,7 @@
         Plug 'scrooloose/syntastic'
 
         " tabnine - AI Code Completion
-        Plug 'codota/tabnine-vim'
+        "Plug 'codota/tabnine-vim'
 
         " NERDTree
         Plug 'scrooloose/nerdtree'
