@@ -89,12 +89,11 @@ That's it!
         * [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
             * You might want to install [coc extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
         * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim)
-    * Syntax
-        * [tpope/vim-git](https://github.com/tpope/vim-git)
-        * [cakebaker/scss-syntax.vim](https://github.com/cakebaker/scss-syntax.vim)
-        * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
-    * Template
-        * [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
+    * Syntax highlighting
+        * [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot)
+    * Tools for specific languages
+        * Markdown: [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
+        * HTML: [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
     * Smooth Scrolling
         * [psliwka/vim-smoothie](https://github.com/psliwka/vim-smoothie)
 
