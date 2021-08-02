@@ -101,7 +101,7 @@ That's it!
 
 * Shell rc files with `.os.$(uname -s)` prefix will be loaded
     * `.os.$(uname -s)._shrc`(for both zsh and bash), `.os.$(uname -s).zshrc`, `.os.$(uname -s).bashrc`
-        * e.g. `os.Darwin.zshrc` will be loaded in Mac OS X zsh
+        * e.g. `.os.Darwin.zshrc` will be loaded in Mac OS X zsh
 * Shell rc files with `.host.$(uname -n)` prefix will be loaded
     * `.host.$(uname -n)._shrc`(for both zsh and bash), `.host.$(uname -n).zshrc`, `.host.$(uname -n).bashrc`
         * e.g. `.host.github.com.bashrc` will be loaded in bash at host github.com
