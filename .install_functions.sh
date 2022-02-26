@@ -4,7 +4,7 @@
 function install_brew {
     if ! which brew >& /dev/null; then
         echo "${GRN}install${RST} ${BLD}brew${RST}"
-        echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
         if [ -x "/opt/homebrew/bin/brew" ]; then
             eval "$( "/opt/homebrew/bin/brew" shellenv )"
@@ -51,12 +51,31 @@ function brew_cask_install {
     fi
 }
 
+function install_node {
+    if ! which node >& /dev/null; then
+        echo "${GRN}install${RST} ${BLD}node${RST}"
+        nvm install --lts
+    else
+        echo "${BLD}node${RST} ${GRN}exists${RST}"
+    fi
+}
+
 function npm_install {
     if ! npm ls "$@" >& /dev/null; then
         echo "${GRN}npm install${RST} ${BLD}$@${RST}"
         npm install "$@"
     else
         echo "${BLD}npm $@${RST} ${GRN}exists${RST}"
+    fi
+}
+
+function install_rvm {
+    if ! which rvm >& /dev/null; then
+        echo "${GRN}install${RST} ${BLD}rvm${RST}"
+        grep '\<gem:\s*--no-document/>' "$HOME/.gemrc" > /dev/null || echo "gem: --no-document" >> "$HOME/.gemrc"
+        curl -L https://get.rvm.io | bash -s stable --auto-dotfiles --autolibs=enable --rails
+    else
+        echo "${BLD}rvm${RST} ${GRN}exists${RST}"
     fi
 }
 

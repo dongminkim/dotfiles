@@ -28,6 +28,15 @@ function setup_fzf {
     $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 }
 
+function install_zsh {
+    if ! which zsh >& /dev/null; then
+        echo "${GRN}install${RST} ${BLD}zsh${RST}"
+        brew_install zsh
+    else
+        echo "${BLD}zsh${RST} ${GRN}exists${RST}"
+    fi
+}
+
 function install_ohMyZsh {
     if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
         echo "${GRN}install${RST} ${BLD}oh-my-zsh${RST}"
@@ -109,8 +118,9 @@ function setup_macOS_terminalEnvironment {
 install_brew
 brew_bundle
 [[ -f "Brewfile.$OS" ]] && brew_bundle "Brewfile.$OS"
+install_node
 setup_fzf
-install_ohMyZsh
+install_zsh && install_ohMyZsh
 install_vimPlugins
 install_dotfiles
 [[ "$OS" == "Darwin" ]] && setup_macOS_terminalEnvironment

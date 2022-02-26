@@ -5,6 +5,9 @@
 #   brew bundle
 
 # Terminal
+brew 'vim'
+brew 'nvm'
+brew 'python'
 brew 'fzf'
 brew 'ripgrep'
 brew 'fasd'
