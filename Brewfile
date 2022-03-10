@@ -6,7 +6,7 @@
 
 # Terminal
 brew 'vim'
-#brew 'nvm' # substituted with zsh-nvm
+brew 'nvm'
 brew 'python'
 brew 'fzf'
 brew 'ripgrep'
