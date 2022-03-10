@@ -1,6 +1,9 @@
 # .zshrc
 # vim:foldmethod=marker
 
+#zmodload zsh/zprof
+#ZSH_DISABLE_COMPFIX="true"
+
 # Basic 
 export ZSH=$HOME/.oh-my-zsh
 DEFAULT_USER="$USER"

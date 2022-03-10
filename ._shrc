@@ -135,7 +135,7 @@
         } #}}}
 
     # Path Compactor
-        function compact-path { #{{{
+        function unique-path { #{{{
             echo "$*" \
                 | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':' \
                 | sed -e 's/:$//'
@@ -143,7 +143,7 @@
         function sort-path { #{{{
             local user_path="$HOME/local/bin:$HOME/bin"
             local system_path="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-            compact-path "$user_path:$*:$system_path"
+            unique-path "$user_path:$*:$system_path"
         } #}}}
 
     # More RC Files
@@ -174,6 +174,34 @@
                 *zsh  ) echo zsh;  return 0 ;;
             esac
             return 1
+        } #}}}
+
+    # Lazy Loading
+        function lazy-load { #{{{
+            # modified from https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0
+            if [ "$1" = "--run" ]; then
+                # $2: lazy loading function/command to be loaded before actual target commands
+                # $3: target commands to be unaliased in a string format
+                # $4+: the command line to run after lazy-loading
+                local -a targets
+                if [[ -n "$ZSH_VERSION" ]]; then
+                    targets=("${(@s: :)${3}}")
+                else
+                    targets=($3)
+                fi
+                unalias "${targets[@]}"
+                "$2"
+                shift 3
+                "$@"
+            else
+                # $1: lazy loading function/command to be loaded before actual target commands
+                # $2+: target commands
+                local lazy="$1"
+                shift 1
+                for cmd in "$@"; do
+                    alias $cmd="lazy-load --run $lazy '$*' $cmd"
+                done
+            fi
         } #}}}
 
     # EvalCache
@@ -207,11 +235,11 @@
     ulimit -c 0
 
     # set path {{{
-        export PATH=$( sort-path "$PATH" )
+        export PATH="$( sort-path "$PATH" )"
         if whereis manpath > /dev/null 2>&1 ; then
-            export MANPATH=$( compact-path "$HOME/local/share/man:$(manpath)" )
+            export MANPATH=$( unique-path "$HOME/local/share/man:$(manpath)" )
         else
-            export MANPATH=$( compact-path "$HOME/local/share/man:$MANPATH" )
+            export MANPATH=$( unique-path "$HOME/local/share/man:$MANPATH" )
         fi > /dev/null 2>&1
     #}}}
 
@@ -288,9 +316,9 @@
             fi
             ;;
     esac
-    export PATH=$( sort-path "$PATH" )
-    export MANPATH=$( compact-path "$MANPATH" )
-    export INFOPATH=$( compact-path "$INFOPATH" )
+    export PATH="$( sort-path "$PATH" )"
+    export MANPATH="$( unique-path "$MANPATH" )"
+    export INFOPATH="$( unique-path "$INFOPATH" )"
 # OS Specific Settings }}}
 
 # Shell Specific Settings {{{
@@ -321,5 +349,13 @@
 
 # Additonal Settings {{{
     load-more-rc-files "$( basename $_SH_SOURCE )" "$@"
+
+    function _shrc-nvm-init {
+        local brew_dir="$( brew --prefix )"
+        [ -s "$brew_dir/opt/nvm/nvm.sh" ] && \. "$brew_dir/opt/nvm/nvm.sh"  # This loads nvm
+        [ -s "$brew_dir/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$brew_dir/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+        unset -f "$0"
+    }
+    lazy-load _shrc-nvm-init nvm node npm truffle gulp yarn
 # Additonal Settings }}}
 
