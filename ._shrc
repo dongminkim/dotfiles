@@ -175,6 +175,31 @@
             esac
             return 1
         } #}}}
+
+    # EvalCache
+        function eval-cache { #{{{
+            local cache_dir="$HOME/.eval-cache/$( detect-shell )"
+            if [ "$1" = "--clear" ]; then
+                rm -Rf "$cache_dir"
+                return
+            fi
+            local cache_sha1="$( echo "$*" | sha1sum | cut -c 1-40 )"
+            local cache_file="$cache_dir/${1##*/}..$cache_sha1.sh"
+            if [ "$EVAL_CACHE_DISABLED" = "true" ]; then
+                eval "$( "$@" )"
+            elif [ -s "$cache_file" ]; then
+                source "$cache_file"
+            else
+                if type "$1" > /dev/null; then
+                    echo "eval-cache: init: $*"
+                    mkdir -p "$cache_dir"
+                    "$@" > "$cache_file"
+                    source "$cache_file"
+                else
+                    echo "eval-cache: command not found: $1"
+                fi 1>&2
+            fi
+        } #}}}
 # Functions }}}
 
 # General Settings {{{
@@ -246,7 +271,7 @@
 
             # arm64
             if [ -x "/opt/homebrew/bin/brew" ]; then
-                eval "$( /opt/homebrew/bin/brew shellenv )"
+                eval-cache /opt/homebrew/bin/brew shellenv
             fi
             ;;
 
@@ -257,9 +282,9 @@
 
             # https://docs.brew.sh/Homebrew-on-Linux
             if [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-                eval "$( /home/linuxbrew/.linuxbrew/bin/brew shellenv )"
+                eval-cache /home/linuxbrew/.linuxbrew/bin/brew shellenv
             elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
-                eval "$( "$HOME/.linuxbrew/bin/brew" shellenv )"
+                eval-cache "$HOME/.linuxbrew/bin/brew" shellenv
             fi
             ;;
     esac
@@ -285,7 +310,7 @@
     [ -f "${FZF_SCRIPT}" ] && source "${FZF_SCRIPT}"
     export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
     if check-runnable "fasd"; then
-        eval "$( fasd --init auto )"
+        eval-cache fasd --init auto
         unalias z zz sd sf
         function z() {
             local dir
