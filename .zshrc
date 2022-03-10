@@ -59,45 +59,44 @@ plugins=(zsh-nvm zsh-syntax-highlighting)
             fi
             find -L "$dir" -mindepth 1 -maxdepth 1 -type d 2>/dev/null \
                 | cut -b $(( ${length} + 2 ))- | sed '/^$/d' | while read -r line; do
-            if [[ "${line[1]}" == "." ]]; then
-                continue
+                if [[ "${line[1]}" == "." ]]; then
+                    continue
+                fi
+                echo "$line"
+            done
+        else
+            dir=$(dirname -- "$1")
+            length=$(echo -n "$dir" | wc -c)
+            if [ "$dir" = "/" ]; then
+                length=0
             fi
-            echo "$line"
-        done
-    else
-        dir=$(dirname -- "$1")
-        length=$(echo -n "$dir" | wc -c)
-        if [ "$dir" = "/" ]; then
-            length=0
+            seg=$(basename -- "$1")
+            starts_with_dir=$( \
+                find -L "$dir" -mindepth 1 -maxdepth 1 -type d \
+                2>/dev/null | cut -b $(( ${length} + 2 ))- | sed '/^$/d' \
+                | while read -r line; do
+                    if [[ "${seg[1]}" != "." && "${line[1]}" == "." ]]; then
+                        continue
+                    fi
+                    if [[ "$line" == "$seg"* ]]; then
+                        echo "$line"
+                    fi
+                done)
+            if [ -n "$starts_with_dir" ]; then
+                echo "$starts_with_dir"
+            else
+                find -L "$dir" -mindepth 1 -maxdepth 1 -type d \
+                    2>/dev/null | cut -b $(( ${length} + 2 ))- | sed '/^$/d' \
+                    | while read -r line; do
+                    if [[ "${seg[1]}" != "." && "${line[1]}" == "." ]]; then
+                        continue
+                    fi
+                    if [[ "$line" == *"$seg"* ]]; then
+                        echo "$line"
+                    fi
+                done
+            fi
         fi
-        seg=$(basename -- "$1")
-        starts_with_dir=$( \
-            find -L "$dir" -mindepth 1 -maxdepth 1 -type d \
-            2>/dev/null | cut -b $(( ${length} + 2 ))- | sed '/^$/d' \
-            | while read -r line; do
-        if [[ "${seg[1]}" != "." && "${line[1]}" == "." ]]; then
-            continue
-        fi
-        if [[ "$line" == "$seg"* ]]; then
-            echo "$line"
-        fi
-    done
-    )
-    if [ -n "$starts_with_dir" ]; then
-        echo "$starts_with_dir"
-    else
-        find -L "$dir" -mindepth 1 -maxdepth 1 -type d \
-            2>/dev/null | cut -b $(( ${length} + 2 ))- | sed '/^$/d' \
-            | while read -r line; do
-        if [[ "${seg[1]}" != "." && "${line[1]}" == "." ]]; then
-            continue
-        fi
-        if [[ "$line" == *"$seg"* ]]; then
-            echo "$line"
-        fi
-    done
-        fi
-    fi
     }
 
     _zic_list_generator() {
@@ -125,63 +124,63 @@ plugins=(zsh-nvm zsh-syntax-highlighting)
                 --reverse $FZF_DEFAULT_OPTS $FZF_COMPLETION_OPTS \
                 --bind 'shift-tab:up,tab:down'" ${=fzf} \
                 | while read -r item; do
-            echo -n "${(q)item} "
-        done)
-    fi
+                echo -n "${(q)item} "
+            done)
+        fi
 
-    matches=${matches% }
-    if [ -n "$matches" ]; then
-        tokens=(${(z)LBUFFER})
-        base="${(Q)@[-1]}"
-        if [[ "$base" != */ ]]; then
-            if [[ "$base" == */* ]]; then
-                base="$(dirname -- "$base")"
-                if [[ ${base[-1]} != / ]]; then
-                    base="$base/"
+        matches=${matches% }
+        if [ -n "$matches" ]; then
+            tokens=(${(z)LBUFFER})
+            base="${(Q)@[-1]}"
+            if [[ "$base" != */ ]]; then
+                if [[ "$base" == */* ]]; then
+                    base="$(dirname -- "$base")"
+                    if [[ ${base[-1]} != / ]]; then
+                        base="$base/"
+                    fi
+                else
+                    base=""
                 fi
-            else
-                base=""
             fi
-        fi
-        LBUFFER="${tokens[1]} "
-        if [ -n "$base" ]; then
-            base="${(q)base}"
-            if [ "${tokens[2][1]}" = "~" ]; then
-                base="${base/#$HOME/~}"
+            LBUFFER="${tokens[1]} "
+            if [ -n "$base" ]; then
+                base="${(q)base}"
+                if [ "${tokens[2][1]}" = "~" ]; then
+                    base="${base/#$HOME/~}"
+                fi
+                LBUFFER="${LBUFFER}${base}"
             fi
-            LBUFFER="${LBUFFER}${base}"
+            LBUFFER="${LBUFFER}${matches}/"
         fi
-        LBUFFER="${LBUFFER}${matches}/"
-    fi
-    zle redisplay
-    typeset -f zle-line-init >/dev/null && zle zle-line-init
+        zle redisplay
+        typeset -f zle-line-init >/dev/null && zle zle-line-init
     }
 
     zic-completion() {
-    setopt localoptions noshwordsplit noksh_arrays noposixbuiltins
-    local tokens cmd
+        setopt localoptions noshwordsplit noksh_arrays noposixbuiltins
+        local tokens cmd
 
-    tokens=(${(z)LBUFFER})
-    cmd=${tokens[1]}
+        tokens=(${(z)LBUFFER})
+        cmd=${tokens[1]}
 
-    if [[ "$LBUFFER" =~ "^\ *cd$" ]]; then
-        zle ${__zic_default_completion:-expand-or-complete}
-    elif [ "$cmd" = cd ] || [ "$cmd" = pushd ]; then
-        _zic_complete ${tokens[2,${#tokens}]/#\~/$HOME}
-    else
-        zle ${__zic_default_completion:-expand-or-complete}
-    fi
+        if [[ "$LBUFFER" =~ "^\ *cd$" ]]; then
+            zle ${__zic_default_completion:-expand-or-complete}
+        elif [ "$cmd" = cd ] || [ "$cmd" = pushd ]; then
+            _zic_complete ${tokens[2,${#tokens}]/#\~/$HOME}
+        else
+            zle ${__zic_default_completion:-expand-or-complete}
+        fi
     }
 
     [ -z "$__zic_default_completion" ] && {
         binding=$(bindkey '^I')
-    # $binding[(s: :w)2]
-    # The command substitution and following word splitting to determine the
-    # default zle widget for ^I formerly only works if the IFS parameter contains
-    # a space via $binding[(w)2]. Now it specifically splits at spaces, regardless
-    # of IFS.
-    [[ $binding =~ 'undefined-key' ]] || __zic_default_completion=$binding[(s: :w)2]
-    unset binding
+        # $binding[(s: :w)2]
+        # The command substitution and following word splitting to determine the
+        # default zle widget for ^I formerly only works if the IFS parameter contains
+        # a space via $binding[(w)2]. Now it specifically splits at spaces, regardless
+        # of IFS.
+        [[ $binding =~ 'undefined-key' ]] || __zic_default_completion=$binding[(s: :w)2]
+        unset binding
     }
 
     zle -N zic-completion
