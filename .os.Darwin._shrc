@@ -4,9 +4,9 @@
 
 # Functions {{{
     # Shared ACL
-        function set_shared_acl { #{{{
+        function set-shared-acl { #{{{
             if [ $# -lt 2 ]; then
-                echo "Usage: set_shared_acl GROUP PATH [PATH [PATH ...]]"
+                echo "Usage: set-shared-acl GROUP PATH [PATH [PATH ...]]"
                 return 1
             fi
             group=$1

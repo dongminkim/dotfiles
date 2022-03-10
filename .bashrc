@@ -3,7 +3,7 @@
 
 if [ "$PS1" ]; then
     # Escape Sequences {{{
-        function escape_sequence_256color { #{{{
+        function escape-sequence-256color { #{{{
             SEQ=''
             while getopts ":BUNf:b:" opt; do
                 case $opt in
@@ -16,7 +16,7 @@ if [ "$PS1" ]; then
             done
             echo $SEQ
         } #}}}
-        function escape_sequence_16color { #{{{
+        function escape-sequence-16color { #{{{
             SEQ='\033['
             while getopts ":BUNf:b:" opt; do
                 case $opt in
@@ -31,26 +31,26 @@ if [ "$PS1" ]; then
             SEQ="${SEQ/;m/m}"
             echo $SEQ
         } #}}}
-        function escape_sequence { #{{{
+        function escape-sequence { #{{{
             if [[ "$TERM" =~ -256color(-.*)? ]]; then
-                escape_sequence_256color "$@"
+                escape-sequence-256color "$@"
             else
-                escape_sequence_16color "$@"
+                escape-sequence-16color "$@"
             fi
         } #}}}
     #}}}
 
     # Prompt String {{{
-        function set_pr_addon { #{{{
+        function set-pr-addon { #{{{
             local _PR_ADD_ON=""
             local GIT_BRANCH=$(git branch --no-color 2> /dev/null | egrep "^\*" | cut -c3-)
             if [ -n "$GIT_BRANCH" ]; then
                 local GIT_ORIGIN=$(basename $(git remote show -n origin | egrep 'Fetch URL' | cut -c14- | sed -e '/.*:/s///') .git)
                 local GIT_TRACK=$(git rev-parse --revs-only --symbolic-full-name @{u} 2> /dev/null | grep -v '@{u}')
-                CR0=$(escape_sequence -N)
-                CR1=$(escape_sequence -f $1)
-                CR2=$(escape_sequence -B -f $2)
-                CR3=$(escape_sequence -N -f $2)
+                CR0=$(escape-sequence -N)
+                CR1=$(escape-sequence -f $1)
+                CR2=$(escape-sequence -B -f $2)
+                CR3=$(escape-sequence -N -f $2)
                 if [ -n "$GIT_TRACK" ]; then
                     GIT_REMOTE="${GIT_TRACK##refs/remotes/}"
                     GIT_TRACK="${CR1}::${CR3}${GIT_REMOTE%/*}/${CR2}${GIT_REMOTE##*/}"
@@ -59,7 +59,7 @@ if [ "$PS1" ]; then
             fi
             export PR_ADD_ON="$_PR_ADD_ON"
         } #}}}
-        function set_prompt { #{{{
+        function set-prompt { #{{{
             # current date
             local PS1_DATE='\D{%F %T}'
             if [ $BASH_VERSINFO -lt 3 ]; then
@@ -105,18 +105,18 @@ if [ "$PS1" ]; then
             eval "local CV_GIT_FG2=\$CC_GRASS_${CC_COLORS}"
 
             # partial prompts
-            local PR_USER="$( escape_sequence -N -f $CV_USER_FG -b $CV_USER_BG )\\u$( escape_sequence -N )@"
-            local PR_HOST="$( escape_sequence -N -f $CV_HOST_FG -b $CV_HOST_BG )\\h$( escape_sequence -N )"
-            local PR_PATH="$( escape_sequence -f $CV_PATH_FG )\\w$( escape_sequence -N )"
-            local PR_DATE="$( escape_sequence -f $CV_DATE_FG )$PS1_DATE$( escape_sequence -N )"
-            local PR_NUMBER="$( escape_sequence -f $CV_NUMBER_FG )#\\#$( escape_sequence -N )"
+            local PR_USER="$( escape-sequence -N -f $CV_USER_FG -b $CV_USER_BG )\\u$( escape-sequence -N )@"
+            local PR_HOST="$( escape-sequence -N -f $CV_HOST_FG -b $CV_HOST_BG )\\h$( escape-sequence -N )"
+            local PR_PATH="$( escape-sequence -f $CV_PATH_FG )\\w$( escape-sequence -N )"
+            local PR_DATE="$( escape-sequence -f $CV_DATE_FG )$PS1_DATE$( escape-sequence -N )"
+            local PR_NUMBER="$( escape-sequence -f $CV_NUMBER_FG )#\\#$( escape-sequence -N )"
             local PR_DOLLAR="$E_NL\$ "
 
             # set prompt
             export PS1=${PR_USER}${PR_HOST}' '$PR_PATH' '"\$(echo -ne \"\$PR_ADD_ON\")"$PR_DATE' '$PR_NUMBER' '$PR_DOLLAR
             case "$TERM" in
-                xterm*  )    export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; set_pr_addon '$CV_GIT_FG1' '$CV_GIT_FG2'; echo -ne "\007"' ;;
-                screen* )    export PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; set_pr_addon '$CV_GIT_FG1' '$CV_GIT_FG2'; echo -ne "\033\\"' ;;
+                xterm*  )    export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; set-pr-addon '$CV_GIT_FG1' '$CV_GIT_FG2'; echo -ne "\007"' ;;
+                screen* )    export PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; set-pr-addon '$CV_GIT_FG1' '$CV_GIT_FG2'; echo -ne "\033\\"' ;;
                 *       )    ;;
             esac
         } #}}}
@@ -126,7 +126,7 @@ if [ "$PS1" ]; then
         export BASH_ENV=$HOME/.bashrc
 
     # prompt
-        set_prompt
+        set-prompt
 
     # check the terminal size when bash regains control
         shopt -s checkwinsize

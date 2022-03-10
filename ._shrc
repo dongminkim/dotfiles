@@ -4,7 +4,7 @@
 
 # Functions {{{
     # Color Settings for Manual Pages
-        function set_less_256colors { #{{{
+        function set-less-256colors { #{{{
             export LESS_TERMCAP_mb=$'\E[01;31m'             # begin blinking
             export LESS_TERMCAP_md=$'\E[01;38;5;160m'       # begin bold
             export LESS_TERMCAP_me=$'\E[0m'                 # end mode
@@ -13,7 +13,7 @@
             export LESS_TERMCAP_so=$'\E[01;04;38;5;162m'    # begin standout (info-bar, search)
             export LESS_TERMCAP_se=$'\E[0m'                 # end standout (info-bar, search)
         } #}}}
-        function set_less_16colors { #{{{
+        function set-less-16colors { #{{{
             export LESS_TERMCAP_mb=$'\E[01;31m'     # begin blinking
             export LESS_TERMCAP_md=$'\E[31m'        # begin bold
             export LESS_TERMCAP_me=$'\E[0m'         # end mode
@@ -26,7 +26,7 @@
 
     # Command Existenace Checker
         function check-runnable { #{{{
-            case "$( detect_shell )" in
+            case "$( detect-shell )" in
                 bash ) [ "$( type -t $1 )" = "" ] && return 1 || return 0 ;;
                 zsh  ) type "$1" > /dev/null ;;
             esac
@@ -135,19 +135,19 @@
         } #}}}
 
     # Path Compactor
-        function compact_path { #{{{
+        function compact-path { #{{{
             echo "$*" \
                 | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':' \
                 | sed -e 's/:$//'
         } #}}}
-        function sort_path { #{{{
+        function sort-path { #{{{
             local user_path="$HOME/local/bin:$HOME/bin"
             local system_path="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-            compact_path "$user_path:$*:$system_path"
+            compact-path "$user_path:$*:$system_path"
         } #}}}
 
     # More RC Files
-        function load_more_rc_files { #{{{
+        function load-more-rc-files { #{{{
             local placeholder="{{}}"
             local more_rc_files
             more_rc_files=(
@@ -168,7 +168,7 @@
         } #}}}
 
     # Shell Detector
-        function detect_shell { #{{{
+        function detect-shell { #{{{
             case "$( ps -p $$ -ocomm= )" in
                 *bash ) echo bash; return 0 ;;
                 *zsh  ) echo zsh;  return 0 ;;
@@ -182,11 +182,11 @@
     ulimit -c 0
 
     # set path {{{
-        export PATH=$( sort_path "$PATH" )
+        export PATH=$( sort-path "$PATH" )
         if whereis manpath > /dev/null 2>&1 ; then
-            export MANPATH=$( compact_path "$HOME/local/share/man:$(manpath)" )
+            export MANPATH=$( compact-path "$HOME/local/share/man:$(manpath)" )
         else
-            export MANPATH=$( compact_path "$HOME/local/share/man:$MANPATH" )
+            export MANPATH=$( compact-path "$HOME/local/share/man:$MANPATH" )
         fi > /dev/null 2>&1
     #}}}
 
@@ -200,9 +200,9 @@
 
     # set colors: man {{{
         if [[ "$TERM" =~ -256color(-.*)? ]]; then
-            set_less_256colors
+            set-less-256colors
         else
-            set_less_16colors
+            set-less-16colors
         fi
     #}}}
 
@@ -263,13 +263,13 @@
             fi
             ;;
     esac
-    export PATH=$( sort_path "$PATH" )
-    export MANPATH=$( compact_path "$MANPATH" )
-    export INFOPATH=$( compact_path "$INFOPATH" )
+    export PATH=$( sort-path "$PATH" )
+    export MANPATH=$( compact-path "$MANPATH" )
+    export INFOPATH=$( compact-path "$INFOPATH" )
 # OS Specific Settings }}}
 
 # Shell Specific Settings {{{
-    case "$( detect_shell )" in
+    case "$( detect-shell )" in
         bash )
             export _SH_SOURCE="$BASH_SOURCE"
             set -o ignoreeof    # ignore EOF (Ctrl+D)
@@ -295,6 +295,6 @@
 # Shell Specific Settings }}}
 
 # Additonal Settings {{{
-    load_more_rc_files "$( basename $_SH_SOURCE )" "$@"
+    load-more-rc-files "$( basename $_SH_SOURCE )" "$@"
 # Additonal Settings }}}
 
