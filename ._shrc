@@ -336,7 +336,9 @@
             ;;
     esac
     [ -f "${FZF_SCRIPT}" ] && source "${FZF_SCRIPT}"
-    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+    export FZF_DEFAULT_COMMAND='fd -tf'
+    function _fzf_compgen_path { fd -I -H -L -E.git . "$1"; }
+    function _fzf_compgen_dir { fd -I -H -td -L -E.git -d1 . "$1"; }
     if check-runnable "fasd"; then
         eval-cache fasd --init auto
         unalias z zz sd sf

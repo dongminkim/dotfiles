@@ -8,6 +8,7 @@
 brew 'vim'
 brew 'nvm'
 brew 'python'
+brew 'fd'
 brew 'fzf'
 brew 'ripgrep'
 brew 'fasd'
