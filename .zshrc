@@ -1,6 +1,9 @@
 # .zshrc
 # vim:foldmethod=marker
 
+#zmodload zsh/zprof
+#ZSH_DISABLE_COMPFIX="true"
+
 # Basic 
 export ZSH=$HOME/.oh-my-zsh
 DEFAULT_USER="$USER"
@@ -18,8 +21,12 @@ HIST_STAMPS="yyyy-mm-dd"
     fi
 #}}}
 
+# https://github.com/lukechilds/zsh-nvm.git {{{
+    export NVM_LAZY_LOAD=true
+    export NVM_COMPLETION=true
+#}}}
 # https://github.com/zsh-users/zsh-syntax-highlighting
-plugins=(zsh-syntax-highlighting)
+plugins=(zsh-nvm zsh-syntax-highlighting)
 
 # User configuration {{{
     source $ZSH/oh-my-zsh.sh
