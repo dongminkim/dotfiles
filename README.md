@@ -1,4 +1,4 @@
-# Vanity.dump(dotfiles)
+**A collection of dotfiles for developers using macOS and Linux.**
 
 ![screenshot](https://user-images.githubusercontent.com/1652790/82305027-174bbc80-99f8-11ea-8a6d-b66efaa855ff.png)
 Screenshot captured in iTerm2 with `Vanity Dark` Profile
@@ -26,78 +26,75 @@ That's it!
 
 ### What will be installed?
 
-* Mac OS X
-    * [Homebrew](http://brew.sh)
-    * [iTerm2](https://iterm2.com)
-        * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
+* OS Specific
+    * macOS(Mac OS X)
+        * [Homebrew](http://brew.sh)
+            * [coreutils](https://formulae.brew.sh/formula/coreutils), [wget](https://formulae.brew.sh/formula/wget), [openssl](https://formulae.brew.sh/formula/openssl@3), [trash](https://formulae.brew.sh/formula/trash), [reattach-to-user-namespace](https://formulae.brew.sh/formula/reattach-to-user-namespace), [the_silver_searcher (ag)](https://formulae.brew.sh/formula/the_silver_searcher)
+        * [iTerm2](https://iterm2.com)
+            * iTerm2 Profiles & color presets [Vanity](https://github.com/dongminkim/vanity)
+    * Linux
+        * [Homebrew on Linux(linuxbrew)](https://docs.brew.sh/Homebrew-on-Linux)
 * Terminal & Shell
-    * zsh
+    * [zsh](https://www.zsh.org)
         * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
         * [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
         * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
         * [zsh-interactive-cd](https://github.com/changyuheng/zsh-interactive-cd)
-    * [tmux](https://tmux.github.io) - Terminal Multiplexer
-    * [fzf](https://github.com/junegunn/fzf) - Fuzzy Finder
+    * [tmux](https://tmux.github.io) - a terminal multiplexer
+    * [Vim](https://www.vim.org) - the editor
+    * Languages
+        * [python](https://www.python.org)
+        * [nvm](https://github.com/nvm-sh/nvm) - [Node.js](https://nodejs.org/) version manager
+    * [fd](https://github.com/sharkdp/fd) - an alternative to `find`
+    * [fzf](https://github.com/junegunn/fzf) - a general-purpose command-line fuzzy finder
         * will be installed via Homebrew
         * FYI, you may want to take a look at [fzf Examples](https://github.com/junegunn/fzf/wiki/Examples)
-    * [fasd](https://github.com/clvv/fasd) - Quick access to files and directories
-    * [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) - Line-oriented search tool
-    * [tldr](https://github.com/tldr-pages/tldr) - Community-driven man pages
+    * [fasd](https://github.com/clvv/fasd) - offers quick access to files and directories for POSIX shells
+    * [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) - a line-oriented search tool that recursively searches the current directory for a regex pattern
+    * [bat](https://github.com/sharkdp/bat) - a cat clone with syntax highlighting and git integration
+    * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) - an alternative to `diff`
+    * [tldr](https://github.com/tldr-pages/tldr) - a collection of community-maintained help pages for command-line tools
+    * [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) - provides a set of functions for use by applications that allow users to edit command lines as they are typed in
     * dotfiles
         * `._shrc`(for both zsh and bash), `.zshrc`, `.bashrc`, `.profile`, `.inputrc`
-        * `.vimrc`(My old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
+        * `.vimrc`(my old `.vimrc` has been rewritten with that of [timss/vimconf](https://github.com/timss/vimconf))
         * `.tmux.conf`
         * `.screenrc`
-
 * Vim
-    * Plugin manager
-        * [junegunn/vim-plug](https://github.com/junegunn/vim-plug)
-    * Colorschemes
+    * [junegunn/vim-plug](https://github.com/junegunn/vim-plug) - a vim plugin manager
+    * colorschemes
         * [nanotech/jellybeans.vim](https://github.com/nanotech/jellybeans.vim)
         * [altercation/vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
-    * Vim-airline & Tmuxline
+    * status line
         * [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
         * [edkolev/tmuxline.vim](https://github.com/edkolev/tmuxline.vim)
-    * A fancy start screen, shows MRU etc.
-        * [mhinz/vim-startify](https://github.com/mhinz/vim-startify)
-    * Pairs of handy bracket mappings
-        * [tpope/vim-unimpaired](https://github.com/tpope/vim-unimpaired)
-            * https://noahfrederick.com/log/a-list-of-vims-lists
-    * Handle surround chars like ''
-        * [tpope/vim-surround](https://github.com/tpope/vim-surround)
-    * Preview the contents of registers
-        * [junegunn/vim-peekaboo](https://github.com/junegunn/vim-peekaboo)
-    * Visualize undo tree
-        * [mbbill/undotree](https://github.com/mbbill/undotree)
+    * [mhinz/vim-startify](https://github.com/mhinz/vim-startify) - a fancy start screen
+    * [tpope/vim-unimpaired](https://github.com/tpope/vim-unimpaired) - pairs of handy bracket mappings, [(more...)](https://noahfrederick.com/log/a-list-of-vims-lists)
+    * [tpope/vim-surround](https://github.com/tpope/vim-surround) - provides mappings to easily delete, change and add surroundings in pairs
+    * [junegunn/vim-peekaboo](https://github.com/junegunn/vim-peekaboo) - extends `"` and `@` in normal mode and `<CTRL-R>` in insert mode so you can see the contents of the registers
+    * [mbbill/undotree](https://github.com/mbbill/undotree) - visualizes undo history, `:UndotreeToggle`, `,tU`
     * Git inside Vim
-        * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
-        * [junegunn/gv.vim](https://github.com/junegunn/gv.vim)
+        * [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) - `:Git`
+        * [tpope/vim-rhubarb](https://github.com/tpope/vim-rhubarb) - `:GBrowse` to open GitHub URLs
+        * [junegunn/gv.vim](https://github.com/junegunn/gv.vim) - a git commit browser, `:GV`
     * Gist inside Vim
         * [mattn/webapi-vim](https://github.com/mattn/webapi-vim)
-        * [mattn/gist-vim](https://github.com/mattn/gist-vim)
-    * Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
-        * [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
-    * Awesome syntax checker
-        * [scrooloose/syntastic](https://github.com/scrooloose/syntastic)
-    * NERDTree
-        * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
-    * Class outline viewer
-        * [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
-    * fzf - Fuzzy Finder
-        * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim)
+        * [mattn/gist-vim](https://github.com/mattn/gist-vim) - `:Gist`, `:Gist -l dongminkim`
+    * [mhinz/vim-signify](https://github.com/mhinz/vim-signify) - uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS)
+    * [scrooloose/syntastic](https://github.com/scrooloose/syntastic) - a syntax checking plugin
+    * [scrooloose/nerdtree](https://github.com/scrooloose/nerdtree) - a file system explorer, `:NERDTreeToggle`, `,t.`
+    * [majutsushi/tagbar](https://github.com/majutsushi/tagbar) - a class outline viewer, `:TagbarToggle`, `,tT`
+    * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim) - a fzf integration plugin, `:Buffers`, `:GFiles`, `:Windows`, `:Rg [PATTERN]`
     * Completion
-        * [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
-            * You might want to install [coc extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
-        * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim)
-    * Syntax highlighting
-        * [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot)
-    * Tools for specific languages
-        * Markdown: [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown)
-        * HTML: [mattn/emmet-vim](https://github.com/mattn/emmet-vim)
-    * Smooth Scrolling
-        * [psliwka/vim-smoothie](https://github.com/psliwka/vim-smoothie)
+        * [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim) - supports snippet and additional text editing, [(coc extensions)](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
+        * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim) - a plugin for insert mode completion of words in adjacent tmux panes
+    * Additional Language Supports
+        * [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot) - a collection of language packs
+        * [plasticboy/vim-markdown](https://github.com/plasticboy/vim-markdown) - markdown
+        * [mattn/emmet-vim](https://github.com/mattn/emmet-vim) - html template
+    * [tpope/vim-characterize](https://github.com/tpope/vim-characterize) - reveals a character representation in decimal, octal, and hex, `ga` 🔍
 
-### Customize more
+### Customization
 
 * Shell rc files with `.os.$(uname -s)` prefix will be loaded
     * `.os.$(uname -s)._shrc`(for both zsh and bash), `.os.$(uname -s).zshrc`, `.os.$(uname -s).bashrc`

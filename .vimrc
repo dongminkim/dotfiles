@@ -22,46 +22,43 @@
     call plug#begin('~/.vim/plugged')
 
     " Load Plugins {{{
-        " Colorschemes
+        " colorschemes
         Plug 'nanotech/jellybeans.vim'
         Plug 'altercation/vim-colors-solarized'
 
-        " Vim-airline & Tmuxline
+        " status line
         Plug 'vim-airline/vim-airline' | Plug 'edkolev/tmuxline.vim'
 
-        " A fancy start screen, shows MRU etc.
+        " a fancy start screen
         Plug 'mhinz/vim-startify'
 
-        " Pairs of handy bracket mappings (e.g. ]q [q for quickfix)
+        " pairs of handy bracket mappings,
         " https://noahfrederick.com/log/a-list-of-vims-lists
         Plug 'tpope/vim-unimpaired'
 
-        " Handle surround chars like ''
+        " provides mappings to easily delete, change and add surroundings in pairs
         Plug 'tpope/vim-surround'
 
-        " Preview the contents of registers
+        " extends `"` and `@` in normal mode and `<CTRL-R>` in insert mode so you can see the contents of the registers
         Plug 'junegunn/vim-peekaboo'
 
-        " Visualize undo tree
+        " visualizes undo history, `:UndotreeToggle`, `,tU`
         Plug 'mbbill/undotree'
 
         " Git inside Vim
         Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
 
         " Git blamer just like VS Code's GitLens
-        Plug 'APZelos/blamer.nvim'
+        "Plug 'APZelos/blamer.nvim'
 
         " Gist inside Vim
         Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
-        " Vim signs (:h signs) for modified lines based off VCS (e.g. Git)
+        " uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS)
         Plug 'mhinz/vim-signify'
 
-        " Awesome syntax checker
+        " a syntax checking plugin
         Plug 'scrooloose/syntastic'
-
-        " tabnine - AI Code Completion
-        "Plug 'codota/tabnine-vim'
 
         " NERDTree
         Plug 'scrooloose/nerdtree'
@@ -72,18 +69,26 @@
         " FZF - Fuzzy Finder
         Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
-        " Completion
+        " AI code completion
+        "Plug 'codota/tabnine-vim'
+
+        " supports snippet and additional text editing
+        " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+        " a plugin for insert mode completion of words in adjacent tmux panes
         Plug 'wellle/tmux-complete.vim'
 
-        " Syntax
+        " a collection of language packs
         Plug 'sheerun/vim-polyglot'
+
+        " markdown
         Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
-        " Template
+        " html template
         Plug 'mattn/emmet-vim', { 'for': 'html' }
 
-        " Unicode utils
+        " reveals a Unicode character representation in decimal, octal, and hex, `ga` 🔍
         Plug 'tpope/vim-characterize'
         "Plug 'chrisbra/unicode.vim'
 
@@ -91,13 +96,13 @@
         "Plug 'junegunn/vim-xmark', { 'for': 'markdown', 'do': 'make' }
 
         " Smooth scrolling for Vim done right
-        Plug 'psliwka/vim-smoothie'
+        "Plug 'psliwka/vim-smoothie'
 
-        " Localvimrc
-        Plug 'embear/vim-localvimrc'
+        " searches and loads all `.lvimrc` files up to the root directory
+        "Plug 'embear/vim-localvimrc'
     " }}}
 
-    " Load local plugins {{{
+   " Load local plugins {{{
         if filereadable($HOME.'/.local.plugins.vimrc')
             source $HOME/.local.plugins.vimrc
         endif
