@@ -48,32 +48,42 @@
 
     # Tmux Launcher
         function tmx { #{{{
-            local OPTIND opt_dup
-            while getopts ":dh" opt; do
+            local OPTIND tmx_opt
+            while getopts ":hadl" opt; do
                 case $opt in
-                    d ) opt_dup=1 ;;
-                    h ) echo "Usage: $0 [-h][-d] [SESSION_NAME]"
+                    a ) tmx_opt=ATTACH ;;
+                    d ) tmx_opt=DUPLICATE ;;
+                    l ) tmx_opt=LIST ;;
+                    h ) echo "Usage: $0 [-h][-a][-d][-l] [SESSION_NAME]"
+                        echo "   If SESSION_NAME is 'ls', just list sessions"
+                        echo "   If SESSION_NAME exists, attach to it with detaching the old ttys"
+                        echo "   Otherwise, create new tmux session with SESSION_NAME(default '0')"
+                        echo
                         echo "Options:"
                         echo "  -h  Print this help"
-                        echo "  -d  Duplicate SESSION_NAME(default '0') tmux session"
+                        echo "  -a  Attach to SESSION_NAME without detaching the old ttys"
+                        echo "  -d  Duplicate SESSION_NAME"
+                        echo "  -l  List sessions"
                         return 0 ;;
                 esac
             done
             shift $(($OPTIND - 1))
 
             local ses_name="${1:-0}"
-            if [ "$ses_name" = "ls" ]; then
+            if [ "$tmx_opt" = LIST ] || [ "$ses_name" = "ls" ]; then
                 tmux ls
             elif tmux ls 2> /dev/null | grep "^$ses_name:"; then
-                if [ "$opt_dup" ]; then
+                if [ "$tmx_opt" = DUPLICATE ]; then
                     local dup_seq=$( tmux ls | egrep "^vv~\d+:" | cut -f1 -d: | cut -f2 -d~ | sort -n | awk '$1!=p+1{print p+1;exit}{p=$1}' )
                     local dup_ses_name="${ses_name}~${dup_seq:-1}"
                     tmux new-session -t "$ses_name" -s "$dup_ses_name"
+                elif [ "$tmx_opt" = ATTACH ]; then
+                    tmux attach-session -t "$ses_name"
                 else
                     tmux attach-session -d -t "$ses_name"
                 fi
             else
-                if [ "$opt_dup" ]; then
+                if [ ! -z "$tmx_opt" ]; then
                     echo "No such tmux session '$ses_name'" 1>&2
                     return 1
                 else

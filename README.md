@@ -154,15 +154,31 @@ Here are all the modified key bindings:
 And I made `tmx` shell function that does run the user-defined startup script, attach to existing session or duplicate and open duplicated session.
 
 ```sh
+tmx -l
+tmx ls
+```
+* equivalent to `tmux ls`
+
+
+```sh
 tmx foo
 ```
 * if there is a tmux session with name `foo`,
-    * attach to the existing `foo` session
+    * attach to the existing `foo` session with detaching the old ttys
 * if there is no tmux session with name `foo`,
     * if there is a runnable function or command `tmx-foo`,
         * run `tmx-foo foo` that might make a tmux session with name `foo`
     * if there is no function or command `tmx-foo`,
-        * just open a new tmux session with name `foo`
+        * just create new tmux session with name `foo`
+
+```sh
+tmx -a foo
+```
+* if there is a tmux session with name `foo`,
+    * attach to the existing `foo` session without detaching the old ttys
+    * the attached ttys are synchronized
+* if there is no tmux session with name `foo`,
+    * just print error message
 
 ```sh
 tmx -d foo
