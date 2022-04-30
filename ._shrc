@@ -221,7 +221,8 @@
                 rm -Rf "$cache_dir"
                 return
             fi
-            local cache_sha1="$( echo "$*" | sha1sum | cut -c 1-40 )"
+            local sha1sum="$( check-runnable shasum && echo shasum || echo sha1sum )"
+            local cache_sha1="$( echo "$*" | "$sha1sum" | cut -c 1-40 )"
             local cache_file="$cache_dir/${1##*/}..$cache_sha1.sh"
             if [ "$EVAL_CACHE_DISABLED" = "true" ]; then
                 eval "$( "$@" )"
