@@ -87,11 +87,20 @@ function setup_macOS_terminalEnvironment {
     if [ ! -d "$fontdir" ]; then
         echo "${GRN}install${RST} ${BLD}powerline fonts${RST}"
         git clone https://github.com/powerline/fonts.git "$fontdir"
-        cd "$fontdir"
-        ./install.sh
-        cd -
+        "$fontdir/install.sh"
     else
         echo "${BLD}powerline fonts${RST} ${GRN}exists${RST}"
+    fi
+
+    # install powerlevel10k-media fonts(MesloLGS NF)
+    fontdir2=ext/fonts2
+    if [ ! -d "$fontdir2" ]; then
+        echo "${GRN}install${RST} ${BLD}powerlevel10k-media(MesloLGS NF) fonts${RST}"
+        git clone https://github.com/romkatv/powerlevel10k-media.git "$fontdir2"
+        cp "$fontdir/install.sh" "$fontdir2/"
+        "$fontdir2/install.sh"
+    else
+        echo "${BLD}powerlevel10k-media(MesloLGS NF) fonts${RST} ${GRN}exists${RST}"
     fi
 
     # install iTerm profiles & color presets
