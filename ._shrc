@@ -369,6 +369,6 @@
         [ -s "$brew_dir/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$brew_dir/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
         unset -f "$0"
     }
-    lazy-load _shrc-nvm-init nvm node npm truffle gulp yarn
+    lazy-load _shrc-nvm-init nvm node npm truffle gulp yarn tsc ts-node
 # Additonal Settings }}}
 
