@@ -298,13 +298,6 @@
 # OS Specific Settings {{{
     case "$(uname -s)" in
         Darwin )
-            alias ls='ls -vGpb'
-            if check-runnable "gls"; then
-                # http://geoff.greer.fm/lscolors/
-                export LSCOLORS="exfxcxdxbxaGagaBabacaf"
-                alias ls='gls --quoting-style=shell-escape --color=auto'
-            fi
-
             # brew-cask
             export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
@@ -312,19 +305,26 @@
             if [ -x "/opt/homebrew/bin/brew" ]; then
                 eval-cache /opt/homebrew/bin/brew shellenv
             fi
+
+            alias ls='ls -vGpb'
+            if check-runnable "gls"; then
+                # http://geoff.greer.fm/lscolors/
+                export LSCOLORS="exfxcxdxbxaGagaBabacaf"
+                alias ls='gls --quoting-style=shell-escape --color=auto'
+            fi
             ;;
 
         Linux )
-            # http://geoff.greer.fm/lscolors/
-            export LSCOLORS="di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=0;1;46:cd=0;46:su=0;1;41:sg=0;41:tw=0;42:ow=0;45:"
-            alias ls='ls --quoting-style=shell-escape --color=auto'
-
             # https://docs.brew.sh/Homebrew-on-Linux
             if [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
                 eval-cache /home/linuxbrew/.linuxbrew/bin/brew shellenv
             elif [ -x "$HOME/.linuxbrew/bin/brew" ]; then
                 eval-cache "$HOME/.linuxbrew/bin/brew" shellenv
             fi
+
+            # http://geoff.greer.fm/lscolors/
+            export LSCOLORS="di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=0;1;46:cd=0;46:su=0;1;41:sg=0;41:tw=0;42:ow=0;45:"
+            alias ls='ls --quoting-style=shell-escape --color=auto'
             ;;
     esac
     export PATH="$( sort-path "$PATH" )"
