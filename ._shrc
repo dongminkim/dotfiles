@@ -187,29 +187,28 @@
         } #}}}
 
     # Lazy Loading
+        declare -A __lli_targets
         function lazy-load { #{{{
+            function lazy-load-pt { echo "${__lli_targets["$1"]}" | tr ':' '\n' | sort -u | sed '/^$/d' }
             # modified from https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0
             if [ "$1" = "--run" ]; then
                 # $2: lazy loading function/command to be loaded before actual target commands
-                # $3: target commands to be unaliased in a string format
-                # $4+: the command line to run after lazy-loading
-                local -a targets
-                if [[ -n "$ZSH_VERSION" ]]; then
-                    targets=("${(@s: :)${3}}")
-                else
-                    targets=($3)
-                fi
+                # $3+: the command line to run after lazy-loading
+                local lazy="$2"
+                local targets=("${(@f)$( lazy-load-pt "$lazy" )}")
                 unalias "${targets[@]}"
                 "$2"
-                shift 3
+                shift 2
                 "$@"
             else
                 # $1: lazy loading function/command to be loaded before actual target commands
                 # $2+: target commands
                 local lazy="$1"
                 shift 1
+                local targets=("${(@f)$( lazy-load-pt "$lazy" )}" "$@")
+                __lli_targets["$lazy"]="$( printf '%s:' "${targets[@]}" )"
                 for cmd in "$@"; do
-                    alias $cmd="lazy-load --run $lazy '$*' $cmd"
+                    alias $cmd="lazy-load --run '$lazy' '$cmd'"
                 done
             fi
         } #}}}
@@ -370,5 +369,6 @@
         unset -f "$0"
     }
     lazy-load _shrc-nvm-init nvm node npm truffle gulp yarn tsc ts-node
+    lazy-load _shrc-nvm-init vim    # for coc.nvim
 # Additonal Settings }}}
 
