@@ -54,6 +54,9 @@ function brew_cask_install {
 function install_node {
     if ! which node >& /dev/null; then
         echo "${GRN}install${RST} ${BLD}node${RST}"
+        local brew_dir="$( brew --prefix )"
+        [ -s "$brew_dir/opt/nvm/nvm.sh" ] && \. "$brew_dir/opt/nvm/nvm.sh"  # This loads nvm
+        [ -s "$brew_dir/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$brew_dir/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
         nvm install --lts
     else
         echo "${BLD}node${RST} ${GRN}exists${RST}"
