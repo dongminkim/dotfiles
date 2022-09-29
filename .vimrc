@@ -67,7 +67,7 @@
         Plug 'majutsushi/tagbar'
 
         " FZF - Fuzzy Finder
-        Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+        Plug '/opt/homebrew/opt/fzf' | Plug 'junegunn/fzf.vim'
 
         " AI code completion
         "Plug 'codota/tabnine-vim'
