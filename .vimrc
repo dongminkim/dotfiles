@@ -67,7 +67,9 @@
         Plug 'majutsushi/tagbar'
 
         " FZF - Fuzzy Finder
-        Plug '/opt/homebrew/opt/fzf' | Plug 'junegunn/fzf.vim'
+        Plug 'junegunn/fzf.vim'
+        " M1 macOS runtimepath is /opt/homebrew/opt/fzf
+        Plug (has('mac') && system('uname -m') =~ 'arm64' ? '/opt/homebrew/opt/fzf' : '/usr/local/opt/fzf')
 
         " AI code completion
         "Plug 'codota/tabnine-vim'
