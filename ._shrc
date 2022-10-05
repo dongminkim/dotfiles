@@ -54,22 +54,23 @@
                     a ) tmx_opt=ATTACH ;;
                     d ) tmx_opt=DUPLICATE ;;
                     l ) tmx_opt=LIST ;;
-                    h ) echo "Usage: $0 [-h][-a][-d][-l] [SESSION_NAME]"
-                        echo "   If SESSION_NAME is 'ls', just list sessions"
-                        echo "   If SESSION_NAME exists, attach to it with detaching the old ttys"
-                        echo "   Otherwise, create new tmux session with SESSION_NAME(default '0')"
+                    h ) echo "Usage: $0 [-h][-a][-d][-l] [SESSION]"
+                        echo "   If SESSION is 'ls', just list sessions *DEPRECATED*"
+                        echo "   If SESSION is 'new', run 'tmx-new' to create a new tmux session"
+                        echo "   If SESSION exists, attach to it with detaching the old ttys"
+                        echo "   Otherwise, create new tmux session with SESSION(default '0')"
                         echo
                         echo "Options:"
                         echo "  -h  Print this help"
-                        echo "  -a  Attach to SESSION_NAME without detaching the old ttys"
-                        echo "  -d  Duplicate SESSION_NAME"
+                        echo "  -a  Attach to SESSION without detaching the old ttys"
+                        echo "  -d  Duplicate SESSION"
                         echo "  -l  List sessions"
                         return 0 ;;
                 esac
             done
             shift $(($OPTIND - 1))
-
             local ses_name="${1:-0}"
+
             if [ "$tmx_opt" = LIST ] || [ "$ses_name" = "ls" ]; then
                 tmux ls
             elif tmux ls 2> /dev/null | grep "^$ses_name:"; then
@@ -88,12 +89,57 @@
                     return 1
                 else
                     if check-runnable "tmx-$ses_name"; then
-                        "tmx-$ses_name" "$ses_name"
+                        if [[ "$ses_name" == "new" ]]; then
+                            shift
+                        fi
+                        "tmx-$ses_name" "$@"
                     else
                         tmux new-session -s "$ses_name"
                     fi
                 fi
             fi
+        } #}}}
+        function tmx-new { #{{{
+            local OPTIND
+            local ses_name="0"
+            local work_dirs=("$PWD")
+            local remain_on_exit=0
+            while getopts ":ht:w:r" opt; do
+                case $opt in
+                    r ) remain_on_exit=1 ;;
+                    t ) ses_name="$OPTARG" ;;
+                    w ) work_dirs=("${(@s;:;)${OPTARG//\~/$HOME}}");;
+                    h ) echo "Usage: $0 [-h][-t SESSION][-w PATH][-r]"
+                        echo "   create new tmux session"
+                        echo
+                        echo "Options:"
+                        echo "  -h          Print this help"
+                        echo "  -t SESSION  Set tmux taret session to SESSION"
+                        echo "  -w PATH     Set tmux working directory to PATH"
+                        echo "              Multiple directories supported with colon-seperated format"
+                        echo "              e.g. '~/Work/dir1:~/Work/dir2' makes two windows"
+                        echo "  -r          Set remain-on-exit on"
+                        return 0 ;;
+                esac
+            done
+            shift $(($OPTIND - 1))
+
+            if tmux has-session -t $ses_name 2> /dev/null; then
+                local ses_name_maxnum=$( tmx ls 2>/dev/null | grep "^${ses_name}" | cut -d: -f1 | cut -d- -f2 | sort -nr | head -1 )
+                ses_name="${ses_name}-$((ses_name_maxnum + 1))"
+            fi
+
+            tmux new-session -d -s $ses_name -c "$HOME"
+            tmux rename-window -t $ses_name:0 '~'
+            tmux set -t $ses_name:0 remain-on-exit on
+            for (( i=1; i <= ${#work_dirs}; i++)); do
+                tmux new-window -t $ses_name:$i -n "${work_dirs[$i]##*/}" -c "$work_dirs[$i]"
+                if (( $remain_on_exit != 0 )); then
+                    tmux set -t $ses_name:$i remain-on-exit on
+                fi
+            done
+            tmux select-window -t $ses_name:1
+            tmux attach-session -t $ses_name -c "$work_dirs[1]"
         } #}}}
 
     # Git Command Overrider
