@@ -415,6 +415,6 @@
         unset -f "$0"
     }
     lazy-load _shrc-nvm-init nvm node npm npx truffle gulp yarn tsc ts-node
-    lazy-load _shrc-nvm-init vim    # for coc.nvim
+    lazy-load _shrc-nvm-init vim git   # for coc.nvim
 # Additonal Settings }}}
 
