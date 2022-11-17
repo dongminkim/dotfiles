@@ -94,7 +94,7 @@
                         fi
                         "tmx-$ses_name" "$@"
                     else
-                        tmux new-session -s "$ses_name"
+                        tmx-new -t "$ses_name"
                     fi
                 fi
             fi
@@ -102,7 +102,7 @@
         function tmx-new { #{{{
             local OPTIND
             local ses_name="0"
-            local work_dirs=("$PWD")
+            local work_dirs=()
             local remain_on_exit=0
             while getopts ":ht:w:r" opt; do
                 case $opt in
@@ -123,6 +123,10 @@
                 esac
             done
             shift $(($OPTIND - 1))
+
+            if [ ${#work_dirs} -eq 0 ] && [ "$PWD" != "$HOME" ]; then
+                work_dirs+=("$PWD")
+            fi
 
             if tmux has-session -t $ses_name 2> /dev/null; then
                 local ses_name_maxnum=$( tmx ls 2>/dev/null | grep "^${ses_name}" | cut -d: -f1 | cut -d- -f2 | sort -nr | head -1 )
