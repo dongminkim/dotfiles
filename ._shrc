@@ -103,10 +103,8 @@
             local OPTIND
             local ses_name="0"
             local work_dirs=()
-            local remain_on_exit=0
             while getopts ":ht:w:r" opt; do
                 case $opt in
-                    r ) remain_on_exit=1 ;;
                     t ) ses_name="$OPTARG" ;;
                     w ) work_dirs=("${(@s;:;)${OPTARG//\~/$HOME}}");;
                     h ) echo "Usage: $0 [-h][-t SESSION][-w PATH][-r]"
@@ -138,9 +136,7 @@
             tmux set -t $ses_name:0 remain-on-exit on
             for (( i=1; i <= ${#work_dirs}; i++)); do
                 tmux new-window -t $ses_name:$i -n "${work_dirs[$i]##*/}" -c "$work_dirs[$i]"
-                if (( $remain_on_exit != 0 )); then
-                    tmux set -t $ses_name:$i remain-on-exit on
-                fi
+                tmux set -t $ses_name:$i remain-on-exit on
             done
             tmux select-window -t $ses_name:1
             tmux attach-session -t $ses_name -c "$work_dirs[1]"
