@@ -53,6 +53,13 @@ function install_ohMyZsh {
         echo "oh-my-zsh plugin ${BLD}zsh-syntax-highlighting${RST} ${GRN}exists${RST}"
     fi
 
+    if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kk" ]; then
+        echo "${GRN}install${RST} oh-my-zsh plugin ${BLD}kk${RST}"
+        zsh -c 'git clone https://github.com/dongminkim/kk.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/kk'
+    else
+        echo "oh-my-zsh plugin ${BLD}kk${RST} ${GRN}exists${RST}"
+    fi
+
     if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
         echo "${GRN}install${RST} oh-my-zsh theme ${BLD}powerlevel10k${RST}"
         zsh -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k'
