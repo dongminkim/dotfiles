@@ -53,7 +53,8 @@ That's it!
     * [fasd](https://github.com/clvv/fasd) - offers quick access to files and directories for POSIX shells
     * [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) - a line-oriented search tool that recursively searches the current directory for a regex pattern
     * [bat](https://github.com/sharkdp/bat) - a cat clone with syntax highlighting and git integration
-    * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) - an alternative to `diff`
+    * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) - makes diff output more humal readable
+    * [difftastic](https://github.com/wilfred/difftastic) - a structural diff tool that compares files based on their syntax
     * [tldr](https://github.com/tldr-pages/tldr) - a collection of community-maintained help pages for command-line tools
     * [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) - provides a set of functions for use by applications that allow users to edit command lines as they are typed in
     * dotfiles

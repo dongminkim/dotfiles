@@ -189,6 +189,9 @@
                 git diff "$@"
             fi
         } #}}}
+        function git-dft { #{{{
+            GIT_EXTERNAL_DIFF="difft --color=always" git diff "$@"
+        } #}}}
 
     # Path Compactor
         function unique-path { #{{{

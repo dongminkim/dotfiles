@@ -15,6 +15,7 @@ brew 'fasd'
 brew 'tmux'
 brew 'bat'
 brew 'diff-so-fancy'
+brew 'difftastic'
 brew 'tldr'
 brew 'readline'
 
