@@ -71,9 +71,6 @@
         " M1 macOS runtimepath is /opt/homebrew/opt/fzf
         Plug (has('mac') && system('uname -m') =~ 'arm64' ? '/opt/homebrew/opt/fzf' : '/usr/local/opt/fzf')
 
-        " AI code completion
-        "Plug 'codota/tabnine-vim'
-
         " supports snippet and additional text editing
         " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -588,6 +585,8 @@
         nmap <C-w><Space> :Windows<CR>
     " }}}
     " Coc {{{
+        " You can also install coc-extensions with :CocInstall
+        let g:coc_global_extensions = ['coc-tabnine', 'coc-json']
         " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
         " position. Coc only does snippet and additional edit on confirm.
         " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.

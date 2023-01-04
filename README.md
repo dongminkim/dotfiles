@@ -89,6 +89,7 @@ That's it!
     * [junegunn/fzf.vim](https://github.com/junegunn/fzf.vim) - a fzf integration plugin, `:Buffers`, `:GFiles`, `:Windows`, `:Rg [PATTERN]`
     * Completion
         * [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim) - supports snippet and additional text editing, [(coc extensions)](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
+            * with `coc-tabnine` extension
         * [wellle/tmux-complete.vim](https://github.com/wellle/tmux-complete.vim) - a plugin for insert mode completion of words in adjacent tmux panes
     * Additional Language Supports
         * [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot) - a collection of language packs
