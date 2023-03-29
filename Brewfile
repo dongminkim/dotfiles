@@ -18,4 +18,6 @@ brew 'diff-so-fancy'
 brew 'difftastic'
 brew 'tldr'
 brew 'readline'
+brew 'direnv'
+brew 'jq'
 
