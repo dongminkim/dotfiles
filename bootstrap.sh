@@ -12,15 +12,6 @@ function install_macOS_prerequisites {
     # Xcode CLI Tools
     echo "${GRN}install${RST} ${BLD}Xcode CLI${RST}"
     xcode-select --install >& /dev/null
-
-    # enable python pip install without sudo
-    py_pkg_dir=/Library/Python/2.7/site-packages
-    if ! touch "$py_pkg_dir/_" >& /dev/null; then
-        echo "${GRN}chmod${RST} ${BLD}${py_pkg_dir}${RST}"
-        sudo chmod -R +a "user:$USER allow add_subdirectory,add_file,delete_child,directory_inherit" "$py_pkg_dir"
-    else
-        echo "${BLD}${py_pkg_dir}${RST} ${GRN}ACL exists${RST}"
-    fi
 }
 
 function setup_fzf {
