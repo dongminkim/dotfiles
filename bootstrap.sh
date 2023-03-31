@@ -79,7 +79,7 @@ function install_dotfiles {
     done
 }
 
-function setup_macOS_terminalEnvironment {
+function install_fonts {
     # install powerline fonts
     fontdir=ext/fonts
     if [ ! -d "$fontdir" ]; then
@@ -100,7 +100,9 @@ function setup_macOS_terminalEnvironment {
     else
         echo "${BLD}powerlevel10k-media(MesloLGS NF) fonts${RST} ${GRN}exists${RST}"
     fi
+}
 
+function setup_macOS_terminalEnvironment {
     # install iTerm profiles & color presets
     if [[ "$OS" == "Darwin" ]]; then
         vdir=ext/vanity
@@ -130,6 +132,7 @@ setup_fzf
 install_zsh && install_ohMyZsh
 install_vimPlugins
 install_dotfiles
+install_fonts
 [[ "$OS" == "Darwin" ]] && setup_macOS_terminalEnvironment
 
 
