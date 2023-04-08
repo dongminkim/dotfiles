@@ -1,0 +1,6 @@
+# Brewfile.Linux
+# - install
+#   brew bundle --file=Brewfile.Linux
+
+brew 'xclip'
+
