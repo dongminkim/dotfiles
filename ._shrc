@@ -102,11 +102,11 @@
         function tmx-new { #{{{
             local OPTIND
             local ses_name="0"
-            local work_dirs=()
+            local work_dirs_str
             while getopts ":ht:w:r" opt; do
                 case $opt in
                     t ) ses_name="$OPTARG" ;;
-                    w ) work_dirs=("${(@s;:;)${OPTARG//\~/$HOME}}");;
+                    w ) work_dirs_str="${OPTARG//\~/$HOME}" ;;
                     h ) echo "Usage: $0 [-h][-t SESSION][-w PATH][-r]"
                         echo "   create new tmux session"
                         echo
@@ -122,8 +122,14 @@
             done
             shift $(($OPTIND - 1))
 
-            if [ ${#work_dirs} -eq 0 ] && [ "$PWD" != "$HOME" ]; then
-                work_dirs+=("$PWD")
+            local work_dirs=()
+            if [ "$work_dirs_str" != "" ]; then
+                case "$( detect-shell )" in
+                    bash )  eval 'IFS=: read -ra work_dirs <<< "$work_dirs_str"' ;;
+                    zsh  )  eval 'work_dirs=("${(@s;:;)${work_dirs_str}}")' ;;
+                esac
+            elif [ "$PWD" != "$HOME" ]; then
+                work_dirs=("$PWD")
             fi
 
             if tmux has-session -t $ses_name 2> /dev/null; then
@@ -134,12 +140,20 @@
             tmux new-session -d -s $ses_name -c "$HOME"
             tmux rename-window -t $ses_name:0 '~'
             tmux set -t $ses_name:0 remain-on-exit on
-            for (( i=1; i <= ${#work_dirs}; i++)); do
-                tmux new-window -t $ses_name:$i -n "${work_dirs[$i]##*/}" -c "$work_dirs[$i]"
-                tmux set -t $ses_name:$i remain-on-exit on
+            local start_offset=0
+            if [[ "$( detect-shell )" == "zsh" ]]; then
+                start_offset=1
+            fi
+            for (( i=0; i < ${#work_dirs[@]}; i++)); do
+                local j=$(( i + start_offset ))
+                local k=$(( i + 1 ))
+                tmux new-window -t $ses_name:$k -n "${work_dirs[$j]##*/}" -c "${work_dirs[$j]}"
+                tmux set -t $ses_name:$k remain-on-exit on
             done
-            tmux select-window -t $ses_name:1
-            tmux attach-session -t $ses_name -c "$work_dirs[1]"
+            if [ ${#work_dirs[@]} -gt 0 ]; then
+                tmux select-window -t $ses_name:1
+            fi
+            tmux attach-session -t $ses_name
         } #}}}
 
     # Git Command Overrider
@@ -238,13 +252,20 @@
     # Lazy Loading
         declare -A __lli_targets
         function lazy-load { #{{{
-            function lazy-load-pt { echo "${__lli_targets["$1"]}" | tr ':' '\n' | sort -u | sed '/^$/d' }
+            function lazy-load-pt {
+                echo "${__lli_targets["$1"]}" | tr ':' '\n' | sort -u | sed '/^$/d'
+            }
             # modified from https://gist.github.com/QinMing/364774610afc0e06cc223b467abe83c0
             if [ "$1" = "--run" ]; then
                 # $2: lazy loading function/command to be loaded before actual target commands
                 # $3+: the command line to run after lazy-loading
                 local lazy="$2"
-                local targets=("${(@f)$( lazy-load-pt "$lazy" )}")
+                local targets_str="$( lazy-load-pt "$lazy" )"
+                local targets
+                case "$( detect-shell )" in
+                    bash )  eval 'read -r -d "" -a targets <<< "$targets_str"' ;;
+                    zsh  )  eval 'targets=("${(@f)targets_str}")' ;;
+                esac
                 unalias "${targets[@]}"
                 "$2"
                 shift 2
@@ -254,7 +275,13 @@
                 # $2+: target commands
                 local lazy="$1"
                 shift 1
-                local targets=("${(@f)$( lazy-load-pt "$lazy" )}" "$@")
+                local targets_str="$( lazy-load-pt "$lazy" )"
+                local targets
+                case "$( detect-shell )" in
+                    bash )  eval 'read -r -d "" -a targets <<< "$targets_str"' ;;
+                    zsh  )  eval 'targets=("${(@f)targets_str}")' ;;
+                esac
+                targets=("${targets[@]}" "$@")
                 __lli_targets["$lazy"]="$( printf '%s:' "${targets[@]}" )"
                 for cmd in "$@"; do
                     alias $cmd="lazy-load --run '$lazy' '$cmd'"
