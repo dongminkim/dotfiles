@@ -4,7 +4,15 @@
 function install_brew {
     if ! which brew >& /dev/null; then
         echo "${GRN}install${RST} ${BLD}brew${RST}"
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        local url="https://raw.githubusercontent.com/Homebrew/install/master/install.sh"
+        if ! which curl >& /dev/null; then
+            /bin/bash -c "$(curl -fsSL "$url")"
+        elif ! which wget >& /dev/null; then
+            /bin/bash -c "$(wget -O- "$url")"
+        else
+            echo "${CLD}curl${RST} or ${BLD}wget${RST} ${RED}NOT FOUND${RST}"
+            exit 1
+        fi
 
         if [ -x "/opt/homebrew/bin/brew" ]; then
             eval "$( "/opt/homebrew/bin/brew" shellenv )"
