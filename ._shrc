@@ -347,10 +347,8 @@
 
     # locale UTF-8 {{{
         export LANG=$( LC_CTYPE=C locale -a | grep -i 'en_US\.utf-*8' )
-        export LC_CTYPE="$LANG"
-
-        # workaround for problems in ls, sort and etc.
-        export LC_COLLATE=C
+        export LC_ALL="$LANG"
+        export LANGUAGE=en_US
     #}}}
 
     # default programs {{{
