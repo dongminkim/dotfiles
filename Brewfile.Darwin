@@ -11,5 +11,7 @@ brew 'openssl'
 brew 'trash'
 brew 'reattach-to-user-namespace'
 brew 'the_silver_searcher'
+
 cask 'iterm2'
+cask 'maccy'
 
