@@ -10,8 +10,13 @@ source ./.install_functions.sh
 
 function install_macOS_prerequisites {
     # Xcode CLI Tools
-    echo "${GRN}install${RST} ${BLD}Xcode CLI${RST}"
-    xcode-select --install >& /dev/null
+    if ! which clang >& /dev/null; then
+        echo "${GRN}install${RST} ${BLD}Xcode CLI${RST} and come back again when it's done"
+        xcode-select --install >& /dev/null
+        exit
+    else
+        echo "${BLD}Xcode CLI${RST} ${GRN}exists${RST}"
+    fi
 }
 
 function setup_fzf {
