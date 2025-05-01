@@ -423,13 +423,8 @@
     export FZF_DEFAULT_COMMAND='fd -tf'
     function _fzf_compgen_path { fd -I -H -L -E.git . "$1"; }
     function _fzf_compgen_dir { fd -I -H -td -L -E.git -d1 . "$1"; }
-    if check-runnable "fasd"; then
-        eval-cache fasd --init auto
-        unalias z zz sd sf
-        function z() {
-            local dir
-            dir="$( fasd -Rdl "$1" | fzf -1 -0 --no-sort +m )" && cd "${dir}" || return 1
-        }
+    if check-runnable "zoxide"; then
+        eval-cache zoxide init $( detect-shell ) 
     fi
 # Shell Specific Settings }}}
 

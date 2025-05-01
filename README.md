@@ -50,7 +50,7 @@ That's it!
     * [fzf](https://github.com/junegunn/fzf) - a general-purpose command-line fuzzy finder
         * will be installed via Homebrew
         * FYI, you may want to take a look at [fzf Examples](https://github.com/junegunn/fzf/wiki/Examples)
-    * [fasd](https://github.com/clvv/fasd) - offers quick access to files and directories for POSIX shells
+    * [zoxide](https://github.com/ajeetdsouza/zoxide) - a smarter cd command
     * [ripgrep (rg)](https://github.com/BurntSushi/ripgrep) - a line-oriented search tool that recursively searches the current directory for a regex pattern
     * [bat](https://github.com/sharkdp/bat) - a cat clone with syntax highlighting and git integration
     * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) - makes diff output more humal readable
