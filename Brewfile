@@ -4,6 +4,8 @@
 # - install
 #   brew bundle
 
+tap 'dongminkim/kk', 'https://github.com/dongminkim/kk'
+
 # Terminal
 brew 'vim'
 brew 'nvm'
@@ -20,4 +22,5 @@ brew 'tldr'
 brew 'readline'
 brew 'direnv'
 brew 'jq'
+brew 'dongminkim/kk/kk'
 

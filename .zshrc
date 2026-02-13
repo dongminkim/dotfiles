@@ -22,18 +22,13 @@ HIST_STAMPS="yyyy-mm-dd"
 #}}}
 
 # https://github.com/zsh-users/zsh-syntax-highlighting
-# https://github.com/dongminkim/kk
-plugins=(zsh-syntax-highlighting kk)
+plugins=(zsh-syntax-highlighting)
 
 # User configuration {{{
     source $ZSH/oh-my-zsh.sh
     unsetopt autopushd
     source $HOME/._shrc "${(%):-%N}"
 #}}}
-
-alias l='\kk'
-alias ll='\kk -A'
-alias la='\kk -a'
 
 # https://github.com/junegunn/fzf {{{
     export FZF_COMPLETION_TRIGGER=''

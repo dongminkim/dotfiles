@@ -363,8 +363,10 @@
         alias grep='grep --color=auto'
         alias fgrep='fgrep --color=auto'
         alias vi='vim'
-        alias ag='ag --page "less -Ri"'
-        alias list='ls -al'
+        alias l='\kk'
+        alias ll='\kk -A'
+        alias la='\kk -a'
+
     # }}}
 # General Settings }}}
 

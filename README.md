@@ -39,8 +39,8 @@ That's it!
         * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
         * [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
         * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-        * [kk](https://github.com/dongminkim/kk)
         * [zsh-interactive-cd](https://github.com/changyuheng/zsh-interactive-cd)
+    * [kk](https://github.com/dongminkim/kk) - a modern `ls` replacement written in Rust
     * [tmux](https://tmux.github.io) - a terminal multiplexer
     * [Vim](https://www.vim.org) - the editor
     * Languages
