@@ -75,7 +75,7 @@
                 tmux ls
             elif tmux ls 2> /dev/null | grep "^$ses_name:"; then
                 if [ "$tmx_opt" = DUPLICATE ]; then
-                    local dup_seq=$( tmux ls | egrep "^vv~\d+:" | cut -f1 -d: | cut -f2 -d~ | sort -n | awk '$1!=p+1{print p+1;exit}{p=$1}' )
+                    local dup_seq=$( tmux ls | egrep "^${ses_name}~\d+:" | cut -f1 -d: | cut -f2 -d~ | sort -nr | head -1 | awk '{print $0+1}' )
                     local dup_ses_name="${ses_name}~${dup_seq:-1}"
                     tmux new-session -t "$ses_name" -s "$dup_ses_name"
                 elif [ "$tmx_opt" = ATTACH ]; then
