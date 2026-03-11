@@ -26,10 +26,7 @@
 
     # Command Existence Checker
         function check-runnable { #{{{
-            case "$( detect-shell )" in
-                bash ) type -t "$1" > /dev/null 2>&1 ;;
-                zsh  ) type "$1" > /dev/null ;;
-            esac
+            command -v "$1" > /dev/null 2>&1
         } #}}}
 
     # Screen Command Overrider
