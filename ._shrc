@@ -24,7 +24,7 @@
         } #}}}
         export LESS="-Ri"
 
-    # Command Existenace Checker
+    # Command Existence Checker
         function check-runnable { #{{{
             case "$( detect-shell )" in
                 bash ) [ "$( type -t $1 )" = "" ] && return 1 || return 0 ;;
@@ -114,7 +114,7 @@
                         echo "  -h          Print this help"
                         echo "  -t SESSION  Set tmux taret session to SESSION"
                         echo "  -w PATH     Set tmux working directory to PATH"
-                        echo "              Multiple directories supported with colon-seperated format"
+                        echo "              Multiple directories supported with colon-separated format"
                         echo "              e.g. '~/Work/dir1:~/Work/dir2' makes two windows"
                         echo "  -r          Set remain-on-exit on"
                         return 0 ;;
@@ -430,7 +430,7 @@
     fi
 # Shell Specific Settings }}}
 
-# Additonal Settings {{{
+# Additional Settings {{{
     load-more-rc-files "$( basename $_SH_SOURCE )" "$@"
 
     function _shrc-nvm-init {
@@ -441,5 +441,5 @@
     }
     lazy-load _shrc-nvm-init nvm node npm npx truffle gulp yarn tsc ts-node
     lazy-load _shrc-nvm-init vim git   # for coc.nvim
-# Additonal Settings }}}
+# Additional Settings }}}
 
