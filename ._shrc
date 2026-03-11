@@ -261,10 +261,10 @@
                 local targets
                 case "$( detect-shell )" in
                     bash )  eval 'read -r -d "" -a targets <<< "$targets_str"' ;;
-                    zsh  )  eval 'targets=("${(@f)targets_str}")' ;;
+                    zsh  )  [[ -n "$targets_str" ]] && eval 'targets=("${(@f)targets_str}")' || targets=() ;;
                 esac
-                unalias "${targets[@]}"
-                "$2"
+                unalias "${targets[@]}" 2>/dev/null
+                command -v "$2" > /dev/null 2>&1 && "$2"
                 shift 2
                 "$@"
             else
@@ -276,7 +276,7 @@
                 local targets
                 case "$( detect-shell )" in
                     bash )  eval 'read -r -d "" -a targets <<< "$targets_str"' ;;
-                    zsh  )  eval 'targets=("${(@f)targets_str}")' ;;
+                    zsh  )  [[ -n "$targets_str" ]] && eval 'targets=("${(@f)targets_str}")' || targets=() ;;
                 esac
                 targets=("${targets[@]}" "$@")
                 __lli_targets["$lazy"]="$( printf '%s:' "${targets[@]}" )"
